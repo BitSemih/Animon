@@ -18,40 +18,42 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        //setContentView(R.layout.activity_main);
 
-        spaceShooterCanvas = findViewById(R.id.spaceShooter);
-        spaceShooter = new Game();
+        startActivity(new Intent(this, nl.saxion.playground.template.mygame.Activity.class));
 
-        findViewById(R.id.spaceShooterText).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, Activity.class));
-            }
-        });
-
-        platformerCanvas = findViewById(R.id.platformer);
-        platformer = new nl.saxion.playground.template.platformer.Game();
-
-        findViewById(R.id.platformerText).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, nl.saxion.playground.template.platformer.Activity.class));
-            }
-        });
+//        spaceShooterCanvas = findViewById(R.id.spaceShooter);
+//        spaceShooter = new Game();
+//
+//        findViewById(R.id.spaceShooterText).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(MainActivity.this, Activity.class));
+//            }
+//        });
+//
+//        platformerCanvas = findViewById(R.id.platformer);
+//        platformer = new nl.saxion.playground.template.platformer.Game();
+//
+//        findViewById(R.id.platformerText).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(MainActivity.this, nl.saxion.playground.template.platformer.Activity.class));
+//            }
+//        });
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        spaceShooterCanvas.setGame(spaceShooter);
-        platformerCanvas.setGame(platformer);
+        //spaceShooterCanvas.setGame(spaceShooter);
+        //platformerCanvas.setGame(platformer);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        spaceShooterCanvas.setGame(null);
-        platformerCanvas.setGame(null);
+        //spaceShooterCanvas.setGame(null);
+        //platformerCanvas.setGame(null);
     }
 }
