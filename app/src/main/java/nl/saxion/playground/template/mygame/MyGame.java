@@ -11,6 +11,8 @@ public class MyGame extends GameModel {
         addEntity(new SwipeEntity(this));
         //addEntity(new Background(this));
         addEntity(new Map(this));
+        addEntity(new Layer1(this));
+        addEntity(new Layer2(this));
         addEntity(new MyTestEntity(this));
 
         Log.i("MyGame virtual size:", getWidth() + " / " + getHeight());
