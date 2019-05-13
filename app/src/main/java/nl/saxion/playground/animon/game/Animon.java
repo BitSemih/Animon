@@ -10,6 +10,7 @@ public class Animon extends GameModel {
     public void start() {
         addEntity(new SwipeEntity(this));
         addEntity(new Ground(this));
+        addEntity(new Path(this));
         addEntity(new Player(this));
 
         Log.i("Animon virtual size:", getWidth() + " / " + getHeight());
