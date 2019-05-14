@@ -8,7 +8,7 @@ public class Animon extends GameModel {
 
     @Override
     public void start() {
-        addEntity(new SwipeEntity(this));
+        addEntity(new KeyEntity(this));
         addEntity(new Ground(this));
         addEntity(new Path(this));
         addEntity(new Player(this));
@@ -21,13 +21,14 @@ public class Animon extends GameModel {
     @Override
     public float getWidth() {
         // Width is always 8 units.
-        return 320;
+        return 16f;
+        //return 320;
     }
 
     @Override
     public float getHeight() {
         // Height fills actual screen size, but is based on width scaling.
-        //return actualHeight/actualWidth * getWidth();
-        return 640;
+        return actualHeight/actualWidth * getWidth();
+        //return 640;
     }
 }

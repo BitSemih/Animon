@@ -3,27 +3,35 @@ package nl.saxion.playground.animon.game;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.Log;
 
+import nl.saxion.playground.animon.R;
 import nl.saxion.playground.animon._lib.Entity;
 import nl.saxion.playground.animon._lib.GameView;
 
-public class Player extends Entity implements SwipeListener {
+public class Player extends Entity implements KeyListener {
 
-    private float x;
-    private float y;
+    private static final String TAG = "Player";
+
+    private int x;
+    private int y;
 
     private float vx = 0;
     private float vy = 0;
 
-    static private final int[] aspriteResourceIds = {0};
+    static private final int[] spriteResourceIds = {0, R.drawable.s_player};
 
     // When resources are first used, the decoded Bitmap is written to this array, as a cache.
-    static private Bitmap[] aspriteBitmaps;
+    static private Bitmap[] spriteBitmaps;
+
+    private Animon game;
 
     public Player(Animon game) {
-        aspriteBitmaps = new Bitmap[aspriteResourceIds.length];
+        spriteBitmaps = new Bitmap[spriteResourceIds.length];
 
-        game.getEntity(SwipeEntity.class).addSwipeListener(this);
+        this.game = game;
+
+        this.game.getEntity(KeyEntity.class).addKeyListener(this);
 
         x = 0;
         y = 0;
@@ -38,50 +46,41 @@ public class Player extends Entity implements SwipeListener {
     public void draw(GameView gv) {
         super.draw(gv);
 
-        //make sure we see the whole view
-        //gv.getCanvas().drawRect(0, 0, gv.getWidth(), gv.getHeight(), bgPaint);
-        //aspriteBitmaps[1] = gv.getBitmapFromResource(aspriteResourceIds[1]);
-       // gv.drawBitmap(aspriteBitmaps[1], 0,0, 32, 32);
-        Paint paint = new Paint();
-        paint.setColor(Color.BLUE);
-        gv.getCanvas().drawRect(x, y, x+32, y+32, paint);
+        //Draw the player sprite
+        spriteBitmaps[1] = gv.getBitmapFromResource(spriteResourceIds[1]);
+        gv.drawBitmap(spriteBitmaps[1], x,y, 1, 1);
     }
 
+    @Override
+    public void onRightKey() {
+        x+=1;
+    }
 
+    @Override
+    public void onLeftKey() {
+        x-=1;
+    }
+
+    @Override
+    public void onUpKey() {
+        y-=1;
+    }
+
+    @Override
+    public void onDownKey() {
+        y+=1;
+    }
+
+//
 //    @Override
-//    public void tick() {
-//        x += vx;
-//        y += vy;
-//
-//        vx *= 0.9f;
-//        vy *= 0.9f;
-//    }
-//
-//
-//    public void handleTouch(GameModel.Touch touch, MotionEvent event) {
-//        vx += (touch.x - x)/100;
-//        vy += (touch.y - y)/100;
+//    public void onDownSwipe() {
+//        Log.i(TAG, "x: " + x + " y: " + y);
+//        if (this.game.getEntity(Path.class).returnTile(x, y + 1) == 0){
+//            return;
+//        } else {
+//            y += 1;
+//        }
+//        Log.i(TAG, "Tile: " + this.game.getEntity(Path.class).returnTile(x/32, y/32));
 //    }
 
-    @Override
-    public void onLeftSwipe() {
-        x -= 32;
-        //vx += (0 - x)/100;
-    }
-
-    @Override
-    public void onRightSwipe() {
-        x += 32;
-        //vx += (0 - x)/100;
-    }
-
-    @Override
-    public void onUpSwipe() {
-        y -= 32;
-    }
-
-    @Override
-    public void onDownSwipe() {
-        y += 32;
-    }
 }

@@ -61,6 +61,11 @@ public class Ground extends Entity {
     }
 
     @Override
+    public int getLayer() {
+        return 1;
+    }
+
+    @Override
     public void draw(GameView gv) {
         // Calculate which tiles are visible at the current scroll position.
         int endX = Math.min(1+(int)game.getWidth(), width);
@@ -75,8 +80,18 @@ public class Ground extends Entity {
                     // Load/decode bitmaps before we first draw them.
                     spriteBitmaps[tile] = gv.getBitmapFromResource(spriteResourceIds[tile]);
                 }
-                gv.drawBitmap(spriteBitmaps[tile], x*32,y*32, 32, 32);
+                gv.drawBitmap(spriteBitmaps[tile], x,y, 1, 1);
             }
         }
+    }
+
+    /**
+     * Return the tile number from the 2 dimensional int
+     * @param x the x position
+     * @param y the y position
+     * @return the value of the x,y position
+     */
+    public int returnTile(int x, int y){
+        return tiles[x][y];
     }
 }
