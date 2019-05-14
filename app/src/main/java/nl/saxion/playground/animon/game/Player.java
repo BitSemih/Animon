@@ -53,22 +53,48 @@ public class Player extends Entity implements KeyListener {
 
     @Override
     public void onRightKey() {
-        x+=1;
+        if (!checkCollisions(x+1, y)){
+            x+=1;
+        }
     }
 
     @Override
     public void onLeftKey() {
-        x-=1;
+        if (x==0){
+            return;
+        }
+
+        if (!checkCollisions(x-1, y)){
+            x-=1;
+        }
     }
 
     @Override
     public void onUpKey() {
-        y-=1;
+        if (y==0){
+            return;
+        }
+
+        if (!checkCollisions(x, y-1)){
+            y-=1;
+        }
     }
 
     @Override
     public void onDownKey() {
-        y+=1;
+        if (!checkCollisions(x, y+1)){
+            y+=1;
+        }
+    }
+
+    /**
+     *
+     * @param x x to check
+     * @param y y to check
+     * @return true if there is a collision, false when there is not
+     */
+    private boolean checkCollisions(int x, int y){
+        return this.game.getEntity(Trees.class).returnTile(x, y) != 0;
     }
 
 //
