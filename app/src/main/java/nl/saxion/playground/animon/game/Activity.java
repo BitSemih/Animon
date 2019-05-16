@@ -6,6 +6,7 @@ import android.view.View;
 
 import nl.saxion.playground.animon.R;
 import nl.saxion.playground.animon._lib.GameView;
+import nl.saxion.playground.animon._lib.RepeatListener;
 
 public class Activity extends AppCompatActivity {
 
@@ -30,33 +31,33 @@ public class Activity extends AppCompatActivity {
             game = new Animon();
         }
 
-        findViewById(R.id.buttonRight).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.buttonRight).setOnTouchListener(new RepeatListener(1000, 1000, new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 game.getEntity(KeyEntity.class).onKeyPress("right");
             }
-        });
+        }));
 
-        findViewById(R.id.buttonLeft).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.buttonLeft).setOnTouchListener(new RepeatListener(100, 100, new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 game.getEntity(KeyEntity.class).onKeyPress("left");
             }
-        });
+        }));
 
-        findViewById(R.id.buttonUp).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.buttonUp).setOnTouchListener(new RepeatListener(100, 100, new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 game.getEntity(KeyEntity.class).onKeyPress("up");
             }
-        });
-
-        findViewById(R.id.buttonDown).setOnClickListener(new View.OnClickListener() {
+        }));
+//
+        findViewById(R.id.buttonDown).setOnTouchListener(new RepeatListener(100, 100, new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 game.getEntity(KeyEntity.class).onKeyPress("down");
             }
-        });
+        }));
     }
 
     @Override
