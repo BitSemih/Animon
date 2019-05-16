@@ -11,7 +11,7 @@ import nl.saxion.playground.animon._lib.GameView;
 
 public class Player extends Entity implements KeyListener {
 
-    private static final String TAG = "Player";
+    private static final String TAG = "PlayerEntity";
 
     private int x;
     private int y;
@@ -27,14 +27,15 @@ public class Player extends Entity implements KeyListener {
     private Animon game;
 
     public Player(Animon game) {
+        //TODO check if the player already has an instance
         spriteBitmaps = new Bitmap[spriteResourceIds.length];
 
         this.game = game;
 
         this.game.getEntity(KeyEntity.class).addKeyListener(this);
 
-        x = 0;
-        y = 0;
+        x = 7;
+        y = (int) (game.getHeight()/2) + 1;
     }
 
     @Override
@@ -48,7 +49,7 @@ public class Player extends Entity implements KeyListener {
 
         //Draw the player sprite
         spriteBitmaps[1] = gv.getBitmapFromResource(spriteResourceIds[1]);
-        gv.drawBitmap(spriteBitmaps[1], x,y, 1, 1);
+        gv.drawBitmap(spriteBitmaps[1], 7,(int)(game.getHeight()/2) + 1, 1, 1);
     }
 
     @Override
@@ -94,10 +95,18 @@ public class Player extends Entity implements KeyListener {
      * @return true if there is a collision, false when there is not
      */
     private boolean checkCollisions(int x, int y){
-        return this.game.getEntity(Trees.class).returnTile(x, y) != 0;
+        return this.game.getEntity(Tiles.class).returnTile(x, y, 2) != 0;
     }
 
-//
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    //
 //    @Override
 //    public void onDownSwipe() {
 //        Log.i(TAG, "x: " + x + " y: " + y);

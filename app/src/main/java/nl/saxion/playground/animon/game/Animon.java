@@ -9,9 +9,7 @@ public class Animon extends GameModel {
     @Override
     public void start() {
         addEntity(new KeyEntity(this));
-        addEntity(new Ground(this));
-        addEntity(new Path(this));
-        addEntity(new Trees(this));
+        addEntity(new Tiles(this));
         addEntity(new Player(this));
 
         Log.i("Animon virtual size:", getWidth() + " / " + getHeight());
