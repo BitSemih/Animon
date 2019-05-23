@@ -4,12 +4,16 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.Log;
+import android.view.MotionEvent;
+
+import java.util.ArrayList;
 
 import nl.saxion.playground.animon.R;
 import nl.saxion.playground.animon._lib.Entity;
+import nl.saxion.playground.animon._lib.GameModel;
 import nl.saxion.playground.animon._lib.GameView;
 
-public class Player extends Entity implements KeyListener {
+public class Player extends Entity {
 
     private static final String TAG = "PlayerEntity";
 
@@ -20,6 +24,7 @@ public class Player extends Entity implements KeyListener {
     private int leftBoundary = 0;
     private int upperBoundary = 0;
     private int downBoundary = 0;
+
 
     static private final int[] spriteResourceIds = {0, R.drawable.s_player};
 
@@ -33,7 +38,6 @@ public class Player extends Entity implements KeyListener {
         spriteBitmaps = new Bitmap[spriteResourceIds.length];
 
         this.game = game;
-        this.game.getEntity(KeyEntity.class).addKeyListener(this);
 
         x = 7;
         y = (int) (game.getHeight()/2) + 1;
@@ -55,57 +59,12 @@ public class Player extends Entity implements KeyListener {
 
         //Draw the player sprite
         spriteBitmaps[1] = gv.getBitmapFromResource(spriteResourceIds[1]);
-        gv.drawBitmap(spriteBitmaps[1], 7,(int)(game.getHeight()/2) + 1, 1, 1);
+        gv.drawBitmap(spriteBitmaps[1], 7,(int)((game.getHeight()/2)/2) + 1, 1, 1);
     }
 
     @Override
     public void tick() {
         super.tick();
-    }
-
-    @Override
-    public void onRightKey() {
-        if (x == rightBoundary){
-            return;
-        }
-
-        if (!checkCollisions(x+1, y)){
-            x+=1;
-            game.getEntity(Movement.class).z = 1;
-        }
-    }
-
-    @Override
-    public void onLeftKey() {
-        if (x==leftBoundary){
-            return;
-        }
-
-        if (!checkCollisions(x-1, y)){
-            x-=1;
-        }
-    }
-
-    @Override
-    public void onUpKey() {
-        if (y==upperBoundary){
-            return;
-        }
-
-        if (!checkCollisions(x, y-1)){
-            y-=1;
-        }
-    }
-
-    @Override
-    public void onDownKey() {
-        if (x==downBoundary){
-            return;
-        }
-
-        if (!checkCollisions(x, y+1)){
-            y+=1;
-        }
     }
 
     /**
@@ -125,8 +84,7 @@ public class Player extends Entity implements KeyListener {
     public float getY() {
         return y;
     }
-
-    //
+//
 //    @Override
 //    public void onDownSwipe() {
 //        Log.i(TAG, "x: " + x + " y: " + y);
