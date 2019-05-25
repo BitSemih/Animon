@@ -9,7 +9,6 @@ public class Animon extends GameModel {
     @Override
     public void start() {
         addEntity(new KeyEntity(this));
-        addEntity(new Movement(this));
         addEntity(new Tiles(this));
         addEntity(new Player(this));
 
