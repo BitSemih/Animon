@@ -188,7 +188,7 @@ public class Tiles extends Entity {
 
                 // Ground
                 tile = groundTiles[x][y];
-                if (tile != 0) {
+                if (tile > 0) {
                     if (spriteBitmaps[tile] == null) {
                         // Load/decode bitmaps before we first draw them.
                         spriteBitmaps[tile] = gv.getBitmapFromResource(spriteResourceIds[tile]);
@@ -198,7 +198,7 @@ public class Tiles extends Entity {
 
                 // Path
                 tile = pathTiles[x][y];
-                if (tile != 0) {
+                if (tile > 0) {
                     if (spriteBitmaps[tile] == null) {
                         // Load/decode bitmaps before we first draw them.
                         spriteBitmaps[tile] = gv.getBitmapFromResource(spriteResourceIds[tile]);
@@ -208,7 +208,7 @@ public class Tiles extends Entity {
 
                 // Trees
                 tile = treesTiles[x][y];
-                if (tile != 0) {
+                if (tile > 0) {
                     if (spriteBitmaps[tile] == null) {
                         // Load/decode bitmaps before we first draw them.
                         spriteBitmaps[tile] = gv.getBitmapFromResource(spriteResourceIds[tile]);
