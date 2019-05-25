@@ -45,22 +45,12 @@ public class Player extends Entity implements KeyListener {
     }
 
     @Override
-    public int getLayer() {
-        return 10;
-    }
-
-    @Override
     public void draw(GameView gv) {
         super.draw(gv);
 
         //Draw the player sprite
         spriteBitmaps[1] = gv.getBitmapFromResource(spriteResourceIds[1]);
         gv.drawBitmap(spriteBitmaps[1], 7,(int)(game.getHeight()/2) + 1, 1, 1);
-    }
-
-    @Override
-    public void tick() {
-        super.tick();
     }
 
     @Override
@@ -71,7 +61,6 @@ public class Player extends Entity implements KeyListener {
 
         if (!checkCollisions(x+1, y)){
             x+=1;
-            game.getEntity(Movement.class).z = 1;
         }
     }
 
@@ -125,17 +114,5 @@ public class Player extends Entity implements KeyListener {
     public float getY() {
         return y;
     }
-
-    //
-//    @Override
-//    public void onDownSwipe() {
-//        Log.i(TAG, "x: " + x + " y: " + y);
-//        if (this.game.getEntity(Path.class).returnTile(x, y + 1) == 0){
-//            return;
-//        } else {
-//            y += 1;
-//        }
-//        Log.i(TAG, "Tile: " + this.game.getEntity(Path.class).returnTile(x/32, y/32));
-//    }
 
 }

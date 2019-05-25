@@ -31,7 +31,7 @@ public class Activity extends AppCompatActivity {
             game = new Animon();
         }
 
-        findViewById(R.id.buttonRight).setOnTouchListener(new RepeatListener(1000, 1000, new View.OnClickListener() {
+        findViewById(R.id.buttonRight).setOnTouchListener(new RepeatListener(100, 100, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 game.getEntity(KeyEntity.class).onKeyPress("right");
