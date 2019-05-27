@@ -31,7 +31,25 @@ In onderstaande menu kan men zijn of haar animons inzien en terug naar het hoofd
 
 ![menu](menu.png)
 
+Hier kan de speler selecteren om naar het animon scherm te gaan. Of het spel op te slaan.
+
+- save: slaat het spel op.
+- Animon: gaat naar  het animon collectie scherm.
+
 ### Animon collectie scherm 
-to-do
+Hierin ziet de speler een overzicht van alle Animons die hij in zijn team heeft en verzameld. 
+
+![animoncollection](animoncollection.png)
+
+### Animon battle scherm
+Dit scherm verschijnt nadat de speler in het gras of water een animon heeft gevonden.
+
+![battlescreen](battlescreen.png)
+
+- Attack: deze knop zorgt ervoor dat de speler uit vier aanvallen kan kiezen om de vijand mee aan te vallen.
+- Run: Hiermee heb je de kans om weg te rennen van het gevecht en terug te keren naar het spel scherm.
+- Bag: In je bag kan je kooien gooien om de animon te vangen en potions on je animon te genezen. 
+- je ziet jou animon links en de vijandelijke animon rechts
+- Boven hun naam staat een HP bar. 
 
 
