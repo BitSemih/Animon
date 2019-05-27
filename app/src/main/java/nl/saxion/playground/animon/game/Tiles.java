@@ -204,7 +204,6 @@ public class Tiles extends Entity {
                     }
                     gv.drawBitmap(spriteBitmaps[tile], x - startX,y - startY, 1, 1);
                 }
-
             }
         }
 
