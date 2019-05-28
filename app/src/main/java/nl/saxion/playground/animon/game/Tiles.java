@@ -1,7 +1,6 @@
 package nl.saxion.playground.animon.game;
 
 import android.graphics.Bitmap;
-import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -50,9 +49,9 @@ public class Tiles extends Entity {
     // When resources are first used, the decoded Bitmap is written to this array, as a cache.
     static private Bitmap[] spriteBitmaps;
 
-    private Animon game;
+    private Game game;
 
-    Tiles(Animon game) {
+    Tiles(Game game) {
         this.game = game;
 
         try {
