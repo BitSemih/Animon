@@ -148,10 +148,10 @@ Entity <|-- Player
 Entity <|-- KeyEntity
 Entity <|-- Tiles
 
-Move --> Animon
-Layer --> Tiles
-Animon --> Player
-Collisions -> Player
+Animon --> "*" Move
+Tiles --> "*" Layer
+Player --> Animon
+Player -> Collisions
 
 MainActivity --> Activity
 Activity --> Game
