@@ -31,28 +31,28 @@ public class Activity extends AppCompatActivity {
             game = new Game();
         }
 
-        findViewById(R.id.buttonRight).setOnTouchListener(new RepeatListener(100, 100, new View.OnClickListener() {
+        findViewById(R.id.buttonRight).setOnTouchListener(new RepeatListener(10, 10, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 game.getEntity(KeyEntity.class).onKeyPress("right");
             }
         }));
 
-        findViewById(R.id.buttonLeft).setOnTouchListener(new RepeatListener(100, 100, new View.OnClickListener() {
+        findViewById(R.id.buttonLeft).setOnTouchListener(new RepeatListener(10, 10, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 game.getEntity(KeyEntity.class).onKeyPress("left");
             }
         }));
 
-        findViewById(R.id.buttonUp).setOnTouchListener(new RepeatListener(100, 100, new View.OnClickListener() {
+        findViewById(R.id.buttonUp).setOnTouchListener(new RepeatListener(10, 10, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 game.getEntity(KeyEntity.class).onKeyPress("up");
             }
         }));
 //
-        findViewById(R.id.buttonDown).setOnTouchListener(new RepeatListener(100, 100, new View.OnClickListener() {
+        findViewById(R.id.buttonDown).setOnTouchListener(new RepeatListener(10, 10, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 game.getEntity(KeyEntity.class).onKeyPress("down");

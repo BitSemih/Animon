@@ -167,7 +167,7 @@ public class Tiles extends Entity {
         int startX = (int) (game.getEntity(Player.class).getX() - 7);
         int startY = (int) (game.getEntity(Player.class).getY() - (game.getHeight() /2));
         int endX = startX + 18;
-        int endY = (int) (startY + game.getHeight() + 1);
+        int endY = (int) (startY + game.getHeight() + 1) + 1;
 
         // Draw any visible groundTiles.
         for(int x = startX; x < endX; x++) {
@@ -181,7 +181,7 @@ public class Tiles extends Entity {
                         // Load/decode bitmaps before we first draw them.
                         spriteBitmaps[tile] = gv.getBitmapFromResource(spriteResourceIds[tile]);
                     }
-                    gv.drawBitmap(spriteBitmaps[tile], x - startX,y - startY, 1, 1);
+                    gv.drawBitmap(spriteBitmaps[tile], x - game.getEntity(Player.class).getX() + 7,y - (game.getEntity(Player.class).getY() - (game.getHeight() /2)), 1, 1);
                 }
 
                 // Path
@@ -191,7 +191,7 @@ public class Tiles extends Entity {
                         // Load/decode bitmaps before we first draw them.
                         spriteBitmaps[tile] = gv.getBitmapFromResource(spriteResourceIds[tile]);
                     }
-                    gv.drawBitmap(spriteBitmaps[tile], x - startX,y - startY, 1, 1);
+                    gv.drawBitmap(spriteBitmaps[tile], x - game.getEntity(Player.class).getX() + 7,y - (game.getEntity(Player.class).getY() - (game.getHeight() /2)), 1, 1);
                 }
 
                 // Trees
@@ -201,10 +201,11 @@ public class Tiles extends Entity {
                         // Load/decode bitmaps before we first draw them.
                         spriteBitmaps[tile] = gv.getBitmapFromResource(spriteResourceIds[tile]);
                     }
-                    gv.drawBitmap(spriteBitmaps[tile], x - startX,y - startY, 1, 1);
+                    gv.drawBitmap(spriteBitmaps[tile], x - game.getEntity(Player.class).getX() + 7,y - (game.getEntity(Player.class).getY() - (game.getHeight() /2)), 1, 1);
                 }
             }
         }
+
 
     }
 
@@ -215,8 +216,8 @@ public class Tiles extends Entity {
      * @return the value of the x,y position
      */
     public int returnTile(float x, float y, int layer){
-        int xX = (int)(x);
-        int yY = (int)(y);
+        int xX = Math.round(x);
+        int yY = Math.round(y);
         if (layer == 2){
             return treesTiles[xX][yY];
         } else {

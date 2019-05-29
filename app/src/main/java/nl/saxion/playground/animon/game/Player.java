@@ -56,8 +56,8 @@ public class Player extends Entity implements KeyListener {
             return;
         }
 
-        if (!checkCollisions(x+1, y)){
-            x+=1;
+        if (!checkCollisions(x+0.4f, y)){
+            x+=0.2;
         }
     }
 
@@ -67,8 +67,8 @@ public class Player extends Entity implements KeyListener {
             return;
         }
 
-        if (!checkCollisions(x-1, y)){
-            x-=1;
+        if (!checkCollisions(x-0.4f, y)){
+            x-=0.2;
         }
     }
 
@@ -78,8 +78,8 @@ public class Player extends Entity implements KeyListener {
             return;
         }
 
-        if (!checkCollisions(x, y-1)){
-            y-=1;
+        if (!checkCollisions(x, y-0.1f)){
+            y-=0.2;
         }
     }
 
@@ -89,8 +89,8 @@ public class Player extends Entity implements KeyListener {
             return;
         }
 
-        if (!checkCollisions(x, y+1)){
-            y+=1;
+        if (!checkCollisions(x, y+1.3f)){
+            y+=0.2;
         }
     }
 
