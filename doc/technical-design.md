@@ -7,7 +7,7 @@ skinparam class {
     BackgroundColor<< game >> lightgrey
 }
 
-class Animon<<game>> {
+class Game<<game>> {
     + getWidth()
     + getHeight()
     + start()
@@ -31,6 +31,7 @@ class Player<<game>> {
     - spriteResourceIds: int[]
     - spireBitmaps: Bitmap[]
     - game: Animon
+    - animonArrayList: ArrayList<Animon>
     + Player(game: Animon)
     + draw(gv: GameView)
     + onRightKey()
@@ -45,20 +46,23 @@ class Player<<game>> {
 class Tiles<<game>> {
     - width: int
     - height: int
-    - groundJson: String
-    - pathJson: String
-    - treesJson: String
-    - groundTiles: int[][]
-    - pathTiles: int[][]
-    - treesTiles: int[][]
-    - spriteResourceIds: int[]
-    - spriteBitmaps: Bitmap[]
     - game: Animon
     + Tiles(game: Animon)
     + draw(gv: GameView)
-    + returnTile(x: float, y: float, layer: int)
     + getWidth()
     + getHeight()
+}
+
+class Layer<<game>>{ 
+    - width: int
+    - height: int
+    - json: String
+    - tiles: int[][]
+    - spriteResourceIds: int[]
+    - spriteBitmaps: Bitmap[]
+    - game: Animon
+    + Layer(game: Animon)
+    + draw(gv: GameView)
 }
 
 class Activity<<game>> {
@@ -68,6 +72,28 @@ class Activity<<game>> {
     + onSaveInstanceState(Bundle: outState)
     + onResume()
     + onPause()
+}
+
+class Collisions<<game>> {
+    - noMove: int[][]
+    + Collisions()
+    + checkPos(x: int, y: int) : boolean
+}
+
+class Animon<<game>> {
+    - name: String
+    - level: int
+    - spriteResource: int
+    - movesArrayList: ArrayList<Move>
+    + Animon(name: String, level: int)
+    + addMove(move: Move)
+}
+
+class Move<<game>> {
+    - name: String
+    - damage: int
+    - succeedChance: int
+    + Move(name: String, damage: int, succeedChance: int)
 }
 
 class RepeatListener<<lib>> {
@@ -112,22 +138,25 @@ class GameView<<lib>> {
     + getCanvas(): Canvas
 }
 
-
 GameModel o-> "*" Entity
 
 GameView --> GameModel
 
-Animon -|> GameModel
+Game -|> GameModel
 
 Entity <|-- Player
 Entity <|-- KeyEntity
 Entity <|-- Tiles
 
+Animon --> "*" Move
+Tiles --> "*" Layer
+Player --> Animon
+Player -> Collisions
+
 MainActivity --> Activity
-Activity --> Animon
+Activity --> Game
 Activity -> GameView
 Activity --> RepeatListener 
-
 
 class android.View {
     + onDraw()
