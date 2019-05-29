@@ -4,16 +4,12 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.Log;
-import android.view.MotionEvent;
-
-import java.util.ArrayList;
 
 import nl.saxion.playground.animon.R;
 import nl.saxion.playground.animon._lib.Entity;
-import nl.saxion.playground.animon._lib.GameModel;
 import nl.saxion.playground.animon._lib.GameView;
 
-public class Player extends Entity {
+public class Player extends Entity implements KeyListener {
 
     private static final String TAG = "PlayerEntity";
 
@@ -24,7 +20,6 @@ public class Player extends Entity {
     private int leftBoundary = 0;
     private int upperBoundary = 0;
     private int downBoundary = 0;
-
 
     static private final int[] spriteResourceIds = {0, R.drawable.s_player};
 
@@ -38,6 +33,7 @@ public class Player extends Entity {
         spriteBitmaps = new Bitmap[spriteResourceIds.length];
 
         this.game = game;
+        this.game.getEntity(KeyEntity.class).addKeyListener(this);
 
         x = 7;
         y = (int) (game.getHeight()/2) + 1;
@@ -49,22 +45,56 @@ public class Player extends Entity {
     }
 
     @Override
-    public int getLayer() {
-        return 10;
-    }
-
-    @Override
     public void draw(GameView gv) {
         super.draw(gv);
 
         //Draw the player sprite
         spriteBitmaps[1] = gv.getBitmapFromResource(spriteResourceIds[1]);
-        gv.drawBitmap(spriteBitmaps[1], 7,(int)((game.getHeight()/2)/2) + 1, 1, 1);
+        gv.drawBitmap(spriteBitmaps[1], 7,(int)(game.getHeight()/2) + 1, 1, 1);
     }
 
     @Override
-    public void tick() {
-        super.tick();
+    public void onRightKey() {
+        if (x == rightBoundary){
+            return;
+        }
+
+        if (!checkCollisions(x+0.4f, y)){
+            x+=0.2;
+        }
+    }
+
+    @Override
+    public void onLeftKey() {
+        if (x==leftBoundary){
+            return;
+        }
+
+        if (!checkCollisions(x-0.4f, y)){
+            x-=0.2;
+        }
+    }
+
+    @Override
+    public void onUpKey() {
+        if (y==upperBoundary){
+            return;
+        }
+
+        if (!checkCollisions(x, y-0.8f)){
+            y-=0.2;
+        }
+    }
+
+    @Override
+    public void onDownKey() {
+        if (x==downBoundary){
+            return;
+        }
+
+        if (!checkCollisions(x, y+0.8f)){
+            y+=0.2;
+        }
     }
 
     /**
@@ -84,16 +114,5 @@ public class Player extends Entity {
     public float getY() {
         return y;
     }
-//
-//    @Override
-//    public void onDownSwipe() {
-//        Log.i(TAG, "x: " + x + " y: " + y);
-//        if (this.game.getEntity(Path.class).returnTile(x, y + 1) == 0){
-//            return;
-//        } else {
-//            y += 1;
-//        }
-//        Log.i(TAG, "Tile: " + this.game.getEntity(Path.class).returnTile(x/32, y/32));
-//    }
 
 }

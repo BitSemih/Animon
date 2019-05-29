@@ -30,6 +30,34 @@ public class Activity extends AppCompatActivity {
         } else {
             game = new Animon();
         }
+
+        findViewById(R.id.buttonRight).setOnTouchListener(new RepeatListener(10, 10, new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                game.getEntity(KeyEntity.class).onKeyPress("right");
+            }
+        }));
+
+        findViewById(R.id.buttonLeft).setOnTouchListener(new RepeatListener(10, 10, new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                game.getEntity(KeyEntity.class).onKeyPress("left");
+            }
+        }));
+
+        findViewById(R.id.buttonUp).setOnTouchListener(new RepeatListener(10, 10, new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                game.getEntity(KeyEntity.class).onKeyPress("up");
+            }
+        }));
+//
+        findViewById(R.id.buttonDown).setOnTouchListener(new RepeatListener(10, 10, new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                game.getEntity(KeyEntity.class).onKeyPress("down");
+            }
+        }));
     }
 
     @Override

@@ -2,16 +2,12 @@ package nl.saxion.playground.animon.game;
 
 import android.graphics.Bitmap;
 import android.util.Log;
-import android.view.MotionEvent;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-
 import nl.saxion.playground.animon.R;
 import nl.saxion.playground.animon._lib.Entity;
-import nl.saxion.playground.animon._lib.GameModel;
 import nl.saxion.playground.animon._lib.GameView;
 
 public class Tiles extends Entity {
@@ -19,8 +15,6 @@ public class Tiles extends Entity {
     // Size of the level in treesTiles.
     private static final int width = 128;
     private static final int height = 128;
-
-    private int x, y;
 
     private static final String TAG = "Tiles";
 
@@ -56,15 +50,10 @@ public class Tiles extends Entity {
     // When resources are first used, the decoded Bitmap is written to this array, as a cache.
     static private Bitmap[] spriteBitmaps;
 
-    private ArrayList<OnScreenButtons> moveButtons;
-
     private Animon game;
 
-    Tiles(Animon game, ArrayList<OnScreenButtons> moveButtons) {
+    Tiles(Animon game) {
         this.game = game;
-        this.moveButtons = moveButtons;
-        this.x = (int) this.game.getEntity(Player.class).getX();
-        this.y = (int) this.game.getEntity(Player.class).getY();
 
         try {
             JSONArray jr = new JSONArray(groundJson);
@@ -75,19 +64,19 @@ public class Tiles extends Entity {
             int y = 0;
             for (int i = 0; i < st.length(); i++) {
                 int number = st.getInt(i);
-                if (number == 2) {
+                if (number == 2){
                     groundTiles[x][y] = 1;
                 } else {
                     groundTiles[x][y] = 0;
                 }
                 x++;
 
-                if (x == width) {
+                if (x == width){
                     x = 0;
                     y++;
                 }
             }
-        } catch (Exception e) {
+        }catch(Exception e) {
             e.printStackTrace();
         }
 
@@ -100,43 +89,43 @@ public class Tiles extends Entity {
             int y = 0;
             for (int i = 0; i < st.length(); i++) {
                 int number = st.getInt(i);
-                if (number == 664) {
+                if (number == 664){
                     pathTiles[x][y] = 4;
-                } else if (number == 665) {
+                } else if (number == 665){
                     pathTiles[x][y] = 5;
-                } else if (number == 666) {
+                } else if (number == 666){
                     pathTiles[x][y] = 6;
-                } else if (number == 667) {
+                } else if (number == 667){
                     pathTiles[x][y] = 7;
-                } else if (number == 668) {
+                } else if (number == 668){
                     pathTiles[x][y] = 8;
-                } else if (number == 758) {
+                } else if (number == 758){
                     pathTiles[x][y] = 9;
-                } else if (number == 759) {
+                } else if (number == 759){
                     pathTiles[x][y] = 10;
-                } else if (number == 760) {
+                } else if (number == 760){
                     pathTiles[x][y] = 11;
-                } else if (number == 761) {
+                } else if (number == 761){
                     pathTiles[x][y] = 12;
-                } else if (number == 762) {
+                } else if (number == 762){
                     pathTiles[x][y] = 13;
-                } else if (number == 852) {
+                } else if (number == 852){
                     pathTiles[x][y] = 14;
-                } else if (number == 853) {
+                } else if (number == 853){
                     pathTiles[x][y] = 15;
-                } else if (number == 854) {
+                } else if (number == 854){
                     pathTiles[x][y] = 16;
                 } else {
                     pathTiles[x][y] = 0;
                 }
                 x++;
 
-                if (x == width) {
+                if (x == width){
                     x = 0;
                     y++;
                 }
             }
-        } catch (Exception e) {
+        }catch(Exception e) {
             e.printStackTrace();
         }
 
@@ -149,116 +138,88 @@ public class Tiles extends Entity {
             int y = 0;
             for (int i = 0; i < st.length(); i++) {
                 int number = st.getInt(i);
-                if (number == 41) {
+                if (number == 41){
                     treesTiles[x][y] = 2;
-                } else if (number == 42) {
+                } else if (number == 42){
                     treesTiles[x][y] = 3;
-                } else if (number == 135) {
+                } else if (number == 135){
                     treesTiles[x][y] = 17;
                 } else {
                     treesTiles[x][y] = 0;
                 }
                 x++;
 
-                if (x == width) {
+                if (x == width){
                     x = 0;
                     y++;
                 }
             }
-        } catch (Exception e) {
+        }catch(Exception e) {
             e.printStackTrace();
         }
 
-        if (spriteBitmaps == null) spriteBitmaps = new Bitmap[spriteResourceIds.length];
+        if (spriteBitmaps ==null) spriteBitmaps = new Bitmap[spriteResourceIds.length];
     }
 
     @Override
     public void draw(GameView gv) {
         // Calculate which treesTiles are visible at the current scroll position.
         //float offset = game.getEntity(Movement.class).z;
-        int startX = (this.x - 7);
-        int startY = (int) (this.y - (game.getHeight() / 2));
+        int startX = (int) (game.getEntity(Player.class).getX() - 7);
+        int startY = (int) (game.getEntity(Player.class).getY() - (game.getHeight() /2));
         int endX = startX + 18;
-        int endY = (int) (startY + game.getHeight() + 1) / 2;
+        int endY = (int) (startY + game.getHeight() + 1) + 1;
 
         // Draw any visible groundTiles.
-        for (int x = startX; x < endX; x++) {
+        for(int x = startX; x < endX; x++) {
             for (int y = startY; y < endY; y++) {
                 int tile = 0;
 
                 // Ground
                 tile = groundTiles[x][y];
-                if (tile > 0) {
+                if (tile != 0){
                     if (spriteBitmaps[tile] == null) {
                         // Load/decode bitmaps before we first draw them.
                         spriteBitmaps[tile] = gv.getBitmapFromResource(spriteResourceIds[tile]);
                     }
-                    gv.drawBitmap(spriteBitmaps[tile], x - startX, y - startY, 1, 1);
+                    gv.drawBitmap(spriteBitmaps[tile], x - game.getEntity(Player.class).getX() + 7,y - (game.getEntity(Player.class).getY() - (game.getHeight() /2)), 1, 1);
                 }
 
                 // Path
                 tile = pathTiles[x][y];
-                if (tile > 0) {
+                if (tile != 0){
                     if (spriteBitmaps[tile] == null) {
                         // Load/decode bitmaps before we first draw them.
                         spriteBitmaps[tile] = gv.getBitmapFromResource(spriteResourceIds[tile]);
                     }
-                    gv.drawBitmap(spriteBitmaps[tile], x - startX, y - startY, 1, 1);
+                    gv.drawBitmap(spriteBitmaps[tile], x - game.getEntity(Player.class).getX() + 7,y - (game.getEntity(Player.class).getY() - (game.getHeight() /2)), 1, 1);
                 }
 
                 // Trees
                 tile = treesTiles[x][y];
-                if (tile > 0) {
+                if (tile != 0){
                     if (spriteBitmaps[tile] == null) {
                         // Load/decode bitmaps before we first draw them.
                         spriteBitmaps[tile] = gv.getBitmapFromResource(spriteResourceIds[tile]);
                     }
-                    gv.drawBitmap(spriteBitmaps[tile], x - startX, y - startY, 1, 1);
-                }
-
-            }
-        }
-
-    }
-
-    @Override
-    public void handleTouch(GameModel.Touch touch, MotionEvent event) {
-        if (touch.lastAction == event.ACTION_UP) {
-            for (OnScreenButtons button : this.moveButtons) {
-                if (touch.x >= (button.getX() - (button.getWidth() / 2)) && touch.x <= (button.getX() + (button.getWidth() / 2)) && touch.y >= (button.getY() - (button.getHeight() / 2)) && touch.y <= (button.getY() + (button.getHeight() / 2))) {
-                    System.out.println(button.getDirection());
-                    switch (button.getDirection()) {
-                        case "down":
-                            this.y++;
-                            break;
-                        case "up":
-                            this.y--;
-                            break;
-                        case "left":
-                            this.x--;
-                            break;
-                        case "right":
-                            this.x++;
-                            break;
-                    }
-                    return;
+                    gv.drawBitmap(spriteBitmaps[tile], x - game.getEntity(Player.class).getX() + 7,y - (game.getEntity(Player.class).getY() - (game.getHeight() /2)), 1, 1);
                 }
             }
         }
-    }
 
+
+    }
 
     /**
      * Return the tile number from the 2 dimensional int
-     *
      * @param x the x position
      * @param y the y position
      * @return the value of the x,y position
      */
-    public int returnTile(float x, float y, int layer) {
-        int xX = (int) (x);
-        int yY = (int) (y);
-        if (layer == 2) {
+    public int returnTile(float x, float y, int layer){
+        int xX = Math.round(x);
+        int yY = Math.round(y);
+        if (layer == 2){
             return treesTiles[xX][yY];
         } else {
             return 0;
