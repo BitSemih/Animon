@@ -1,9 +1,6 @@
 package nl.saxion.playground.animon.game;
 
 import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.util.Log;
 
 import nl.saxion.playground.animon.R;
 import nl.saxion.playground.animon._lib.Entity;
@@ -26,9 +23,9 @@ public class Player extends Entity implements KeyListener {
     // When resources are first used, the decoded Bitmap is written to this array, as a cache.
     static private Bitmap[] spriteBitmaps;
 
-    private Animon game;
+    private Game game;
 
-    public Player(Animon game) {
+    public Player(Game game) {
         //TODO check if the player already has an instance
         spriteBitmaps = new Bitmap[spriteResourceIds.length];
 
@@ -45,11 +42,6 @@ public class Player extends Entity implements KeyListener {
     }
 
     @Override
-    public int getLayer() {
-        return 10;
-    }
-
-    @Override
     public void draw(GameView gv) {
         super.draw(gv);
 
@@ -59,19 +51,13 @@ public class Player extends Entity implements KeyListener {
     }
 
     @Override
-    public void tick() {
-        super.tick();
-    }
-
-    @Override
     public void onRightKey() {
         if (x == rightBoundary){
             return;
         }
 
-        if (!checkCollisions(x+1, y)){
-            x+=1;
-            game.getEntity(Movement.class).z = 1;
+        if (!checkCollisions(x+0.4f, y)){
+            x+=0.2;
         }
     }
 
@@ -81,8 +67,8 @@ public class Player extends Entity implements KeyListener {
             return;
         }
 
-        if (!checkCollisions(x-1, y)){
-            x-=1;
+        if (!checkCollisions(x-0.4f, y)){
+            x-=0.2;
         }
     }
 
@@ -92,8 +78,8 @@ public class Player extends Entity implements KeyListener {
             return;
         }
 
-        if (!checkCollisions(x, y-1)){
-            y-=1;
+        if (!checkCollisions(x, y-0.1f)){
+            y-=0.2;
         }
     }
 
@@ -103,8 +89,8 @@ public class Player extends Entity implements KeyListener {
             return;
         }
 
-        if (!checkCollisions(x, y+1)){
-            y+=1;
+        if (!checkCollisions(x, y+1.3f)){
+            y+=0.2;
         }
     }
 
@@ -125,17 +111,5 @@ public class Player extends Entity implements KeyListener {
     public float getY() {
         return y;
     }
-
-    //
-//    @Override
-//    public void onDownSwipe() {
-//        Log.i(TAG, "x: " + x + " y: " + y);
-//        if (this.game.getEntity(Path.class).returnTile(x, y + 1) == 0){
-//            return;
-//        } else {
-//            y += 1;
-//        }
-//        Log.i(TAG, "Tile: " + this.game.getEntity(Path.class).returnTile(x/32, y/32));
-//    }
 
 }

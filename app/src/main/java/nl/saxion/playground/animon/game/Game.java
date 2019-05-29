@@ -4,17 +4,16 @@ import android.util.Log;
 
 import nl.saxion.playground.animon._lib.GameModel;
 
-public class Animon extends GameModel {
+public class Game extends GameModel {
 
     @Override
     public void start() {
         addEntity(new KeyEntity(this));
-        addEntity(new Movement(this));
         addEntity(new Tiles(this));
         addEntity(new Player(this));
 
-        Log.i("Animon virtual size:", getWidth() + " / " + getHeight());
-        Log.i("Animon actual size:", actualWidth + " / " + actualHeight);
+        Log.i("Game virtual size:", getWidth() + " / " + getHeight());
+        Log.i("Game actual size:", actualWidth + " / " + actualHeight);
     }
 
 //    //this allows us to specify our virtual size!

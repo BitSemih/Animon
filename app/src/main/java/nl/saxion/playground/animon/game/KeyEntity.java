@@ -7,9 +7,9 @@ import nl.saxion.playground.animon._lib.Entity;
 public class KeyEntity extends Entity {
 
     private ArrayList<KeyListener> keyListeners = new ArrayList<>();
-    private Animon game;
+    private Game game;
 
-    public KeyEntity(Animon game) {
+    public KeyEntity(Game game) {
         this.game = game;
     }
 

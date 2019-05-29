@@ -10,7 +10,7 @@ import nl.saxion.playground.animon._lib.RepeatListener;
 
 public class Activity extends AppCompatActivity {
 
-    Animon game;
+    Game game;
     GameView gameView;
 
     @Override
@@ -26,33 +26,33 @@ public class Activity extends AppCompatActivity {
         // a long time, or because of an orientation change), recreate the Game
         // object from the serialized bundle.
         if (savedInstanceState!=null && savedInstanceState.containsKey("game")) {
-            game = (Animon) savedInstanceState.getSerializable("game");
+            game = (Game) savedInstanceState.getSerializable("game");
         } else {
-            game = new Animon();
+            game = new Game();
         }
 
-        findViewById(R.id.buttonRight).setOnTouchListener(new RepeatListener(1000, 1000, new View.OnClickListener() {
+        findViewById(R.id.buttonRight).setOnTouchListener(new RepeatListener(10, 10, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 game.getEntity(KeyEntity.class).onKeyPress("right");
             }
         }));
 
-        findViewById(R.id.buttonLeft).setOnTouchListener(new RepeatListener(100, 100, new View.OnClickListener() {
+        findViewById(R.id.buttonLeft).setOnTouchListener(new RepeatListener(10, 10, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 game.getEntity(KeyEntity.class).onKeyPress("left");
             }
         }));
 
-        findViewById(R.id.buttonUp).setOnTouchListener(new RepeatListener(100, 100, new View.OnClickListener() {
+        findViewById(R.id.buttonUp).setOnTouchListener(new RepeatListener(10, 10, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 game.getEntity(KeyEntity.class).onKeyPress("up");
             }
         }));
 //
-        findViewById(R.id.buttonDown).setOnTouchListener(new RepeatListener(100, 100, new View.OnClickListener() {
+        findViewById(R.id.buttonDown).setOnTouchListener(new RepeatListener(10, 10, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 game.getEntity(KeyEntity.class).onKeyPress("down");
