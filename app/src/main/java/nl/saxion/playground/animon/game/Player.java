@@ -56,7 +56,7 @@ public class Player extends Entity implements KeyListener {
             return;
         }
 
-        if (!checkCollisions(x+0.4f, y)){
+        if (!this.game.getEntity(Collision.class).checkForCollision(x+0.4f, y, 0)){
             x+=0.2;
         }
     }
@@ -67,7 +67,7 @@ public class Player extends Entity implements KeyListener {
             return;
         }
 
-        if (!checkCollisions(x-0.4f, y)){
+        if (!this.game.getEntity(Collision.class).checkForCollision(x-0.4f, y,0)){
             x-=0.2;
         }
     }
@@ -78,7 +78,7 @@ public class Player extends Entity implements KeyListener {
             return;
         }
 
-        if (!checkCollisions(x, y-0.1f)){
+        if (!this.game.getEntity(Collision.class).checkForCollision(x, y-0.2f, 1)){
             y-=0.2;
         }
     }
@@ -89,7 +89,7 @@ public class Player extends Entity implements KeyListener {
             return;
         }
 
-        if (!checkCollisions(x, y+1.3f)){
+        if (!this.game.getEntity(Collision.class).checkForCollision(x, y+1.3f, 1)){
             y+=0.2;
         }
     }

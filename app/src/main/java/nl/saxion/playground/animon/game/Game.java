@@ -9,7 +9,9 @@ public class Game extends GameModel {
     @Override
     public void start() {
         addEntity(new KeyEntity(this));
-        addEntity(new Tiles(this));
+        Collision colllision = new Collision();
+        addEntity(colllision);
+        addEntity(new Tiles(this, colllision));
         addEntity(new Player(this));
 
         Log.i("Game virtual size:", getWidth() + " / " + getHeight());
