@@ -35,10 +35,10 @@ public class Player extends Entity implements KeyListener {
         x = 7;
         y = (int) (game.getHeight()/2) + 1;
 
-        rightBoundary = Tiles.getWidth() - 7;
+        rightBoundary = Map.getWidth() - 7;
         leftBoundary = 7;
         upperBoundary = (int) (game.getHeight()/2) + 1;
-        downBoundary = Tiles.getHeight() - (int) (game.getHeight()/2);
+        downBoundary = Map.getHeight() - (int) (game.getHeight()/2);
     }
 
     @Override
@@ -101,7 +101,8 @@ public class Player extends Entity implements KeyListener {
      * @return true if there is a collision, false when there is not
      */
     private boolean checkCollisions(float x, float y){
-        return this.game.getEntity(Tiles.class).returnTile(x, y, 2) != 0;
+        //return this.game.getEntity(Tiles.class).returnTile(x, y, 2) != 0;
+        return false;
     }
 
     public float getX() {
