@@ -17,8 +17,6 @@ public class Collision extends Entity {
         int Y = Math.round(y);
         int midY = Math.round(y+0.5f);
         int botY = Math.round(y+1f);
-        System.out.println(collisionTiles);
-        System.out.println(Y);
         if (action == 0){
             //left and right
             if (this.collisionTiles[X][Y] != 0 || this.collisionTiles[X][midY] != 0 || this.collisionTiles[X][botY] != 0){
