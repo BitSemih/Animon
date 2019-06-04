@@ -5,16 +5,22 @@ import android.graphics.Bitmap;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.Arrays;
+
 import nl.saxion.playground.animon.R;
 import nl.saxion.playground.animon._lib.Entity;
 import nl.saxion.playground.animon._lib.GameView;
 
 public class Layer extends Entity {
 
+
+
     private int[][] tiles = null;
 
     // The game to draw in
     private Game game;
+
+    private String name;
 
     // When resources are first used, the decoded Bitmap is written to this array, as a cache.
     static private Bitmap[] spriteBitmaps;
@@ -40,9 +46,19 @@ public class Layer extends Entity {
             R.drawable.s_0135     //17
     };
 
-    public Layer(Game game, int width, int height, JSONArray jsonArray) {
+    public int[][] getTiles() {
+        return tiles;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Layer(Game game, int width, int height, JSONArray jsonArray, String name, Collision collision) {
         this.game = game;
         this.tiles = new int[width][height];
+        this.name = name;
+
         if (spriteBitmaps ==null) spriteBitmaps = new Bitmap[spriteResourceIds.length];
 
         try {
@@ -87,6 +103,11 @@ public class Layer extends Entity {
                 } else {
                     tiles[x][y] = 0;
                 }
+
+                if (name.equals("Trees") && number != 0 || name.equals("Buildings") && number != 0){
+                    collision.addCollisionTiles(x, y, number);
+                }
+
                 x++;
 
                 if (x == width){

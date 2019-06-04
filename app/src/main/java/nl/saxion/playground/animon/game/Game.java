@@ -2,6 +2,8 @@ package nl.saxion.playground.animon.game;
 
 import android.util.Log;
 
+import java.util.ArrayList;
+
 import nl.saxion.playground.animon._lib.GameModel;
 
 public class Game extends GameModel {
@@ -16,8 +18,10 @@ public class Game extends GameModel {
     public void start() {
         addEntity(new KeyEntity(this));
         //addEntity(new Tiles(this));
-        addEntity(new Map(jsonString, this));
-        addEntity(new Player(this));
+        Collision collision = new Collision();
+        addEntity(new Map(jsonString, this, collision));
+
+        addEntity(new Player(this, collision));
 
         Log.i("Game virtual size:", getWidth() + " / " + getHeight());
         Log.i("Game actual size:", actualWidth + " / " + actualHeight);

@@ -12,6 +12,7 @@ public class Player extends Entity implements KeyListener {
 
     private float x;
     private float y;
+    private Collision collision;
 
     private int rightBoundary = 0;
     private int leftBoundary = 0;
@@ -25,11 +26,12 @@ public class Player extends Entity implements KeyListener {
 
     private Game game;
 
-    public Player(Game game) {
+    public Player(Game game, Collision collision) {
         //TODO check if the player already has an instance
         spriteBitmaps = new Bitmap[spriteResourceIds.length];
 
         this.game = game;
+        this.collision = collision;
         this.game.getEntity(KeyEntity.class).addKeyListener(this);
 
         x = 7;
@@ -56,7 +58,7 @@ public class Player extends Entity implements KeyListener {
             return;
         }
 
-        if (!this.game.getEntity(Collision.class).checkForCollision(x+0.4f, y, 0)){
+        if (!collision.checkForCollision(this.x+0.4f, this.y, 0)){
             x+=0.2;
         }
     }
@@ -67,7 +69,7 @@ public class Player extends Entity implements KeyListener {
             return;
         }
 
-        if (!this.game.getEntity(Collision.class).checkForCollision(x-0.4f, y,0)){
+        if (!collision.checkForCollision(this.x-0.4f, this.y,0)){
             x-=0.2;
         }
     }
@@ -78,7 +80,7 @@ public class Player extends Entity implements KeyListener {
             return;
         }
 
-        if (!this.game.getEntity(Collision.class).checkForCollision(x, y-0.2f, 1)){
+        if (!collision.checkForCollision(this.x, this.y-0.2f, 1)){
             y-=0.2;
         }
     }
@@ -89,7 +91,7 @@ public class Player extends Entity implements KeyListener {
             return;
         }
 
-        if (!this.game.getEntity(Collision.class).checkForCollision(x, y+1.3f, 1)){
+        if (!collision.checkForCollision(this.x, this.y+1.1f, 1)){
             y+=0.2;
         }
     }

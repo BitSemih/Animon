@@ -15,7 +15,7 @@ public class Map extends Entity {
 
     private static final String TAG = "Map";
 
-    public Map(String jsonString, Game game) {
+    public Map(String jsonString, Game game, Collision collision) {
         try {
             JSONObject jsonObjectLayers = new JSONObject(jsonString);
             JSONArray jsonArrayLayers = jsonObjectLayers.getJSONArray("layers");
@@ -23,7 +23,8 @@ public class Map extends Entity {
             for (int i = 0; i < jsonArrayLayers.length(); i++) {
                 JSONObject jsonObjectData = jsonArrayLayers.getJSONObject(i);
                 JSONArray jsonArrayData = jsonObjectData.getJSONArray("data");
-                game.addEntity(new Layer(game, width, height, jsonArrayData));
+                String name = jsonObjectData.getString("name");
+                game.addEntity(new Layer(game, width, height, jsonArrayData, name, collision));
             }
 
         } catch (JSONException e) {
