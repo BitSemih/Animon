@@ -2,32 +2,40 @@ package nl.saxion.playground.animon.game;
 
 import android.util.Log;
 
+import java.util.ArrayList;
+
 import nl.saxion.playground.animon._lib.GameModel;
 
 public class Game extends GameModel {
 
+    private String jsonString =  "";
+
+    public Game(String jsonString) {
+        this.jsonString = jsonString;
+    }
+
     @Override
     public void start() {
         addEntity(new KeyEntity(this));
-        addEntity(new Tiles(this));
-        addEntity(new Player(this));
+        //addEntity(new Tiles(this));
+        Collision collision = new Collision();
+        addEntity(new Map(jsonString, this, collision));
+
+        addEntity(new Player(this, collision));
 
         Log.i("Game virtual size:", getWidth() + " / " + getHeight());
         Log.i("Game actual size:", actualWidth + " / " + actualHeight);
     }
 
-//    //this allows us to specify our virtual size!
     @Override
     public float getWidth() {
-        // Width is always 8 units.
+        // Width is always 16 units.
         return 16f;
-        //return 320;
     }
 
     @Override
     public float getHeight() {
         // Height fills actual screen size, but is based on width scaling.
         return actualHeight/actualWidth * getWidth();
-        //return 640;
     }
 }

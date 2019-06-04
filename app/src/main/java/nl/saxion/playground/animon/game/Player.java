@@ -12,6 +12,7 @@ public class Player extends Entity implements KeyListener {
 
     private float x;
     private float y;
+    private Collision collision;
 
     private int rightBoundary = 0;
     private int leftBoundary = 0;
@@ -25,20 +26,21 @@ public class Player extends Entity implements KeyListener {
 
     private Game game;
 
-    public Player(Game game) {
+    public Player(Game game, Collision collision) {
         //TODO check if the player already has an instance
         spriteBitmaps = new Bitmap[spriteResourceIds.length];
 
         this.game = game;
+        this.collision = collision;
         this.game.getEntity(KeyEntity.class).addKeyListener(this);
 
         x = 7;
         y = (int) (game.getHeight()/2) + 1;
 
-        rightBoundary = Tiles.getWidth() - 7;
+        rightBoundary = Map.getWidth() - 7;
         leftBoundary = 7;
         upperBoundary = (int) (game.getHeight()/2) + 1;
-        downBoundary = Tiles.getHeight() - (int) (game.getHeight()/2);
+        downBoundary = Map.getHeight() - (int) (game.getHeight()/2);
     }
 
     @Override
@@ -56,7 +58,7 @@ public class Player extends Entity implements KeyListener {
             return;
         }
 
-        if (!checkCollisions(x+0.4f, y)){
+        if (!collision.checkForCollision(this.x+0.4f, this.y, 0)){
             x+=0.2;
         }
     }
@@ -67,7 +69,7 @@ public class Player extends Entity implements KeyListener {
             return;
         }
 
-        if (!checkCollisions(x-0.4f, y)){
+        if (!collision.checkForCollision(this.x-0.4f, this.y,0)){
             x-=0.2;
         }
     }
@@ -78,7 +80,7 @@ public class Player extends Entity implements KeyListener {
             return;
         }
 
-        if (!checkCollisions(x, y-0.1f)){
+        if (!collision.checkForCollision(this.x, this.y-0.2f, 1)){
             y-=0.2;
         }
     }
@@ -89,7 +91,7 @@ public class Player extends Entity implements KeyListener {
             return;
         }
 
-        if (!checkCollisions(x, y+1.3f)){
+        if (!collision.checkForCollision(this.x, this.y+1.1f, 1)){
             y+=0.2;
         }
     }
@@ -101,7 +103,8 @@ public class Player extends Entity implements KeyListener {
      * @return true if there is a collision, false when there is not
      */
     private boolean checkCollisions(float x, float y){
-        return this.game.getEntity(Tiles.class).returnTile(x, y, 2) != 0;
+        //return this.game.getEntity(Tiles.class).returnTile(x, y, 2) != 0;
+        return false;
     }
 
     public float getX() {

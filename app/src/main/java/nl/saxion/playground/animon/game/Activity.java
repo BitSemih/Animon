@@ -4,6 +4,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import java.io.IOException;
+import java.io.InputStream;
+
 import nl.saxion.playground.animon.R;
 import nl.saxion.playground.animon._lib.GameView;
 import nl.saxion.playground.animon._lib.RepeatListener;
@@ -28,7 +31,7 @@ public class Activity extends AppCompatActivity {
         if (savedInstanceState!=null && savedInstanceState.containsKey("game")) {
             game = (Game) savedInstanceState.getSerializable("game");
         } else {
-            game = new Game();
+            game = new Game(loadJSONFromAsset());
         }
 
         findViewById(R.id.buttonRight).setOnTouchListener(new RepeatListener(10, 10, new View.OnClickListener() {
@@ -58,6 +61,22 @@ public class Activity extends AppCompatActivity {
                 game.getEntity(KeyEntity.class).onKeyPress("down");
             }
         }));
+    }
+
+    public String loadJSONFromAsset() {
+        String json = null;
+        try {
+            InputStream is = this.getAssets().open("map.json");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            json = new String(buffer, "UTF-8");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        return json;
     }
 
     @Override
