@@ -87,6 +87,69 @@ public class Layer extends Entity {
             R.drawable.sprite_0167, //56
             R.drawable.sprite_0168, //57
 
+            //animon1
+            R.drawable.sprite_0005, //58
+
+            //tree 4
+            R.drawable.sprite_0020, //59
+            R.drawable.sprite_0021, //60
+            R.drawable.sprite_0022, //61
+            R.drawable.sprite_0086, //62
+            R.drawable.sprite_0087, //63
+            R.drawable.sprite_0088, //64
+            R.drawable.sprite_0169, //65
+            R.drawable.sprite_0170, //66
+            R.drawable.sprite_0171, //67
+
+            // tree 5
+            R.drawable.sprite_0026, //68
+            R.drawable.sprite_0027, //69
+            R.drawable.sprite_0028, //70
+            R.drawable.sprite_0092, //71
+            R.drawable.sprite_0093, //72
+            R.drawable.sprite_0094, //74
+            R.drawable.sprite_0175, //75
+            R.drawable.sprite_0176, //76
+            R.drawable.sprite_0177, //77
+
+            //tree 6
+            R.drawable.sprite_0029, //78
+            R.drawable.sprite_0030, //79
+            R.drawable.sprite_0031, //80
+            R.drawable.sprite_0095, //81
+            R.drawable.sprite_0096, //82
+            R.drawable.sprite_0097, //83
+            R.drawable.sprite_0178, //84
+            R.drawable.sprite_0179, //85
+            R.drawable.sprite_0180, //86
+
+            // palm tree
+            R.drawable.sprite_0837, //87
+            R.drawable.sprite_0838, //88
+            R.drawable.sprite_0839, //89
+            R.drawable.sprite_0906, //90
+            R.drawable.sprite_0907, //91
+            R.drawable.sprite_0908, //92
+            R.drawable.sprite_0909, //93
+            R.drawable.sprite_0975, //94
+            R.drawable.sprite_0976, //95
+            R.drawable.sprite_0977, //96
+            R.drawable.sprite_0978, //97
+            R.drawable.sprite_1056, //98
+            R.drawable.sprite_1057, //99
+            R.drawable.sprite_1058, //100
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -137,7 +200,7 @@ public class Layer extends Entity {
                     tiles[x][y] = 15;
                 } else if (number == 855) {
                     tiles[x][y] = 16;
-                } else if (number == 136) {
+                } else if (number == 135) {
                     tiles[x][y] = 17;
 
                     // tree 1
@@ -228,6 +291,116 @@ public class Layer extends Entity {
                     tiles[x][y] = 56;
                 } else if (number == 209) {
                     tiles[x][y] = 57;
+
+                    // animon
+                } else if (number == 7) {
+                    tiles[x][y] = 58;
+
+                    // tree 4
+                } else if (number == 22) {
+                    tiles[x][y] = 59;
+                } else if (number == 23) {
+                    tiles[x][y] = 60;
+                } else if (number == 24) {
+                    tiles[x][y] = 61;
+                } else if (number == 116) {
+                    tiles[x][y] = 62;
+                } else if (number == 117) {
+                    tiles[x][y] = 63;
+                } else if (number == 118) {
+                    tiles[x][y] = 64;
+                } else if (number == 210) {
+                    tiles[x][y] = 65;
+                } else if (number == 211) {
+                    tiles[x][y] = 66;
+                } else if (number == 212) {
+                    tiles[x][y] = 67;
+
+                    // tree 5
+                } else if (number == 28) {
+                    tiles[x][y] = 68;
+                } else if (number == 29) {
+                    tiles[x][y] = 69;
+                } else if (number == 30) {
+                    tiles[x][y] = 70;
+                } else if (number == 122) {
+                    tiles[x][y] = 71;
+                } else if (number == 123) {
+                    tiles[x][y] = 72;
+                } else if (number == 124) {
+                    tiles[x][y] = 73;
+                } else if (number == 216) {
+                    tiles[x][y] = 74;
+                } else if (number == 217) {
+                    tiles[x][y] = 75;
+                } else if (number == 218) {
+                    tiles[x][y] = 76;
+
+                    //tree 6
+                } else if (number == 31) {
+                    tiles[x][y] = 77;
+                } else if (number == 32) {
+                    tiles[x][y] = 78;
+                } else if (number == 33) {
+                    tiles[x][y] = 79;
+                } else if (number == 125) {
+                    tiles[x][y] = 80;
+                } else if (number == 126) {
+                    tiles[x][y] = 81;
+                } else if (number == 127) {
+                    tiles[x][y] = 82;
+                } else if (number == 219) {
+                    tiles[x][y] = 83;
+                } else if (number == 220) {
+                    tiles[x][y] = 84;
+                } else if (number == 221) {
+                    tiles[x][y] = 85;
+
+                    //palm tree
+                } else if (number == 1066) {
+                    tiles[x][y] = 86;
+                } else if (number == 1067) {
+                    tiles[x][y] = 87;
+                } else if (number == 1159) {
+                    tiles[x][y] = 88;
+                } else if (number == 1160) {
+                    tiles[x][y] = 89;
+                } else if (number == 1161) {
+                    tiles[x][y] = 90;
+                } else if (number == 1162) {
+                    tiles[x][y] = 91;
+                } else if (number == 1253) {
+                    tiles[x][y] = 92;
+                } else if (number == 1254) {
+                    tiles[x][y] = 93;
+                } else if (number == 1255) {
+                    tiles[x][y] = 94;
+                } else if (number == 1256) {
+                    tiles[x][y] = 95;
+                } else if (number == 1347) {
+                    tiles[x][y] = 96;
+                } else if (number == 1348) {
+                    tiles[x][y] = 97;
+                } else if (number == 1349) {
+                    tiles[x][y] = 98;
+                } else if (number == 1350) {
+                    tiles[x][y] = 99;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
