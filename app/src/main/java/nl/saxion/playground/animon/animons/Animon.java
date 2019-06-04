@@ -1,42 +1,28 @@
-package nl.saxion.playground.animon.game;
+package nl.saxion.playground.animon.animons;
 
 import android.graphics.Bitmap;
 
 import java.util.ArrayList;
 
 import nl.saxion.playground.animon._lib.Entity;
-import nl.saxion.playground.animon._lib.GameView;
+import nl.saxion.playground.animon.game.Game;
 
-
-public class Animon extends Entity {
+public abstract class Animon extends Entity {
     private String name;
     private int health;
     private int level;
     private int experience;
     private ArrayList<AttackMove> attackMoves;
-    private int spriteResource;
 
-    private static Bitmap bitmap;
+    private Game game;
 
-    public Animon(String name, int health, int level, int experience, ArrayList<AttackMove> attackMoves, int spriteResource) {
+    public Animon(Game game, String name, int health, int level, int experience, ArrayList<AttackMove> attackMoves) {
+        this.game = game;
         this.name = name;
         this.health = health;
         this.level = level;
         this.experience = experience;
         this.attackMoves = attackMoves;
-        this.spriteResource = spriteResource;
-    }
-
-    public void addMove(AttackMove attackMove) {
-        attackMoves.add(attackMove);
-    }
-
-    @Override
-    public void draw(GameView gv) {
-        super.draw(gv);
-        // bitmap = spriteResource
-        gv.drawBitmap(bitmap, 1, 1, 1, 1);
-
     }
 
     public String getName() {
@@ -59,7 +45,4 @@ public class Animon extends Entity {
         return attackMoves;
     }
 
-    public int getSpriteResource() {
-        return spriteResource;
-    }
 }

@@ -1,11 +1,11 @@
-package nl.saxion.playground.animon.game;
+package nl.saxion.playground.animon.animons;
 
 public class AttackMove{
     private String moveName;
     private int damage;
-    private int succeedChance;
+    private double succeedChance;
 
-    public AttackMove(String moveName, int damage, int succeedChance) {
+    public AttackMove(String moveName, int damage, double succeedChance) {
         this.moveName = moveName;
         this.damage = damage;
         this.succeedChance = succeedChance;
@@ -19,7 +19,9 @@ public class AttackMove{
         return damage;
     }
 
-    public int getSucceedChance() {
+    public double getSucceedChance() {
         return succeedChance;
     }
+
+
 }
