@@ -57,6 +57,7 @@ public class Layer extends Entity {
             R.drawable.s_0163,       //33
             R.drawable.s_0164,      //34
             R.drawable.s_0165,       //35
+            R.drawable.s_0812,      //36
 
 
     };
@@ -101,46 +102,49 @@ public class Layer extends Entity {
                     tiles[x][y] = 14;
                 } else if (number == 853) {
                     tiles[x][y] = 15;
-                } else if (number == 854) {
+                } else if (number == 855) {
                     tiles[x][y] = 16;
-                } else if (number == 135) {
+                } else if (number == 136) {
                     tiles[x][y] = 17;
-                } else if (number == 12) {
-                    tiles[x][y] = 18;
                 } else if (number == 13) {
-                    tiles[x][y] = 19;
+                    tiles[x][y] = 18;
                 } else if (number == 14) {
-                    tiles[x][y] = 20;
-                } else if (number == 106) {
-                    tiles[x][y] = 21;
-                } else if (number == 107) {
-                    tiles[x][y] = 22;
-                } else if (number == 108) {
-                    tiles[x][y] = 23;
-                } else if (number == 200) {
-                    tiles[x][y] = 24;
-                } else if (number == 201) {
-                    tiles[x][y] = 25;
-                } else if (number == 202) {
-                    tiles[x][y] = 26;
+                    tiles[x][y] = 19;
                 } else if (number == 15) {
-                    tiles[x][y] = 27;
-                } else if (number == 16) {
-                    tiles[x][y] = 28;
-                } else if (number == 17) {
-                    tiles[x][y] = 29;
+                    tiles[x][y] = 20;
+                } else if (number == 107) {
+                    tiles[x][y] = 21;
+                } else if (number == 108) {
+                    tiles[x][y] = 22;
                 } else if (number == 109) {
-                    tiles[x][y] = 30;
-                } else if (number == 110) {
-                    tiles[x][y] = 31;
-                } else if (number == 111) {
-                    tiles[x][y] = 32;
+                    tiles[x][y] = 23;
+                } else if (number == 201) {
+                    tiles[x][y] = 24;
+                } else if (number == 202) {
+                    tiles[x][y] = 25;
                 } else if (number == 203) {
-                    tiles[x][y] = 33;
+                    tiles[x][y] = 26;
+                } else if (number == 16) {
+                    tiles[x][y] = 27;
+                } else if (number == 17) {
+                    tiles[x][y] = 28;
+                } else if (number == 18) {
+                    tiles[x][y] = 29;
+                } else if (number == 110) {
+                    tiles[x][y] = 30;
+                } else if (number == 111) {
+                    tiles[x][y] = 31;
+                } else if (number == 112) {
+                    tiles[x][y] = 32;
                 } else if (number == 204) {
-                    tiles[x][y] = 34;
+                    tiles[x][y] = 33;
                 } else if (number == 205) {
+                    tiles[x][y] = 34;
+                } else if (number == 206) {
                     tiles[x][y] = 35;
+                } else if (number == 1036) {
+                    tiles[x][y] = 36;
+
                 } else {
                     tiles[x][y] = 0;
                 }
