@@ -14,6 +14,8 @@ abstract public class Entity implements Comparable<Entity>, Serializable {
     // Static variable that provides the next `id`.
     private static int count = 0;
 
+    public static int state = 0;
+
     // The constructor assigns an id that is used for ordering draws.
     protected Entity() {
         id = ++count;
