@@ -23,5 +23,9 @@ public class AttackMove{
         return succeedChance;
     }
 
+    public boolean success(){
+        return false;
+    }
+
 
 }

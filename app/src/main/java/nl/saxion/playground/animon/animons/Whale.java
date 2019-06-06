@@ -19,7 +19,7 @@ public class Whale extends Animon {
     public void draw(GameView gv) {
         super.draw(gv);
 
-        bitmap = gv.getBitmapFromResource(R.drawable.whale);
+        bitmap = gv.getBitmapFromResource(R.drawable.a_whale);
         gv.drawBitmap(bitmap, 3,3,3,3);
     }
 }

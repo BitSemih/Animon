@@ -19,7 +19,7 @@ public class Buffalo extends Animon {
     public void draw(GameView gv) {
         super.draw(gv);
 
-        bitmap = gv.getBitmapFromResource(R.drawable.buffalo);
+        bitmap = gv.getBitmapFromResource(R.drawable.a_buffalo);
         gv.drawBitmap(bitmap, 3,3,3,3);
     }
 }

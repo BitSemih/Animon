@@ -19,7 +19,7 @@ public class Walrus extends Animon {
     public void draw(GameView gv) {
         super.draw(gv);
 
-        bitmap = gv.getBitmapFromResource(R.drawable.walrus);
+        bitmap = gv.getBitmapFromResource(R.drawable.a_walrus);
         gv.drawBitmap(bitmap, 3,3,3,3);
     }
 }

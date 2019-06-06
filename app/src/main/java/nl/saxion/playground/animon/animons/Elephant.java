@@ -19,7 +19,7 @@ public class Elephant extends Animon {
     public void draw(GameView gv) {
         super.draw(gv);
 
-        bitmap = gv.getBitmapFromResource(R.drawable.elephant);
+        bitmap = gv.getBitmapFromResource(R.drawable.a_elephant);
         gv.drawBitmap(bitmap, 3,3,3,3);
     }
 }

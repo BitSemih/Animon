@@ -19,7 +19,7 @@ public class Horse extends Animon {
     public void draw(GameView gv) {
         super.draw(gv);
 
-        bitmap = gv.getBitmapFromResource(R.drawable.horse);
+        bitmap = gv.getBitmapFromResource(R.drawable.a_horse);
         gv.drawBitmap(bitmap, 3,3,3,3);
     }
 }

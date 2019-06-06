@@ -19,7 +19,7 @@ public class Pig extends Animon {
     public void draw(GameView gv) {
         super.draw(gv);
 
-        bitmap = gv.getBitmapFromResource(R.drawable.pig);
+        bitmap = gv.getBitmapFromResource(R.drawable.a_pig);
         gv.drawBitmap(bitmap, 3,3,3,3);
     }
 }

@@ -19,7 +19,7 @@ public class Snake extends Animon {
     public void draw(GameView gv) {
         super.draw(gv);
 
-        bitmap = gv.getBitmapFromResource(R.drawable.snake);
+        bitmap = gv.getBitmapFromResource(R.drawable.a_snake);
         gv.drawBitmap(bitmap, 3,3,3,3);
     }
 }
