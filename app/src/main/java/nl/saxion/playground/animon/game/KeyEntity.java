@@ -37,6 +37,24 @@ public class KeyEntity extends Entity {
                 keyListener.onDownKey();
             }
         }
+
+        if (key.equals("menu")){
+            for (KeyListener keyListener: keyListeners){
+                keyListener.onMenuKey();
+            }
+        }
+
+        if (key.equals("a")){
+            for (KeyListener keyListener: keyListeners){
+                keyListener.onAKey();
+            }
+        }
+
+        if (key.equals("b")){
+            for (KeyListener keyListener: keyListeners){
+                keyListener.onBKey();
+            }
+        }
     }
 
     public void addKeyListener(KeyListener keyListener){

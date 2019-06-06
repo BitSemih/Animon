@@ -61,6 +61,27 @@ public class Activity extends AppCompatActivity {
                 game.getEntity(KeyEntity.class).onKeyPress("down");
             }
         }));
+
+        findViewById(R.id.buttonMenu).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                game.getEntity(KeyEntity.class).onKeyPress("menu");
+            }
+        });
+
+        findViewById(R.id.buttonA).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                game.getEntity(KeyEntity.class).onKeyPress("a");
+            }
+        });
+
+        findViewById(R.id.buttonB).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                game.getEntity(KeyEntity.class).onKeyPress("b");
+            }
+        });
     }
 
     public String loadJSONFromAsset() {
