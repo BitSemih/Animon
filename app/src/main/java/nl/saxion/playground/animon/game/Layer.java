@@ -139,6 +139,17 @@ public class Layer extends Entity {
             R.drawable.sprite_1057, //99
             R.drawable.sprite_1058, //100
 
+            //tree stump 1
+            R.drawable.sprite_0543, //101
+            R.drawable.sprite_0544, //102
+            R.drawable.sprite_0545, //103
+            R.drawable.sprite_0617, //104
+            R.drawable.sprite_0618, //105
+            R.drawable.sprite_0619, //106
+
+
+
+
 
 
 
@@ -198,7 +209,7 @@ public class Layer extends Entity {
                     tiles[x][y] = 14;
                 } else if (number == 853) {
                     tiles[x][y] = 15;
-                } else if (number == 855) {
+                } else if (number == 854) {
                     tiles[x][y] = 16;
                 } else if (number == 135) {
                     tiles[x][y] = 17;
@@ -361,23 +372,23 @@ public class Layer extends Entity {
                     tiles[x][y] = 86;
                 } else if (number == 1067) {
                     tiles[x][y] = 87;
-                } else if (number == 1159) {
+                } else if (number == 1068) {
                     tiles[x][y] = 88;
-                } else if (number == 1160) {
+                } else if (number == 1159) {
                     tiles[x][y] = 89;
-                } else if (number == 1161) {
+                } else if (number == 1160) {
                     tiles[x][y] = 90;
-                } else if (number == 1162) {
+                } else if (number == 1161) {
                     tiles[x][y] = 91;
-                } else if (number == 1253) {
+                } else if (number == 1162) {
                     tiles[x][y] = 92;
-                } else if (number == 1254) {
+                } else if (number == 1253) {
                     tiles[x][y] = 93;
-                } else if (number == 1255) {
+                } else if (number == 1254) {
                     tiles[x][y] = 94;
-                } else if (number == 1256) {
+                } else if (number == 1255) {
                     tiles[x][y] = 95;
-                } else if (number == 1347) {
+                } else if (number == 1256) {
                     tiles[x][y] = 96;
                 } else if (number == 1348) {
                     tiles[x][y] = 97;
@@ -385,6 +396,23 @@ public class Layer extends Entity {
                     tiles[x][y] = 98;
                 } else if (number == 1350) {
                     tiles[x][y] = 99;
+
+                    // tree stump 1
+                } else if (number == 679) {
+                    tiles[x][y] = 100;
+                } else if (number == 680) {
+                    tiles[x][y] = 101;
+                } else if (number == 681) {
+                    tiles[x][y] = 102;
+                } else if (number == 773) {
+                    tiles[x][y] = 103;
+                } else if (number == 774) {
+                    tiles[x][y] = 104;
+                } else if (number == 775) {
+                    tiles[x][y] = 105;
+
+
+
 
 
 
