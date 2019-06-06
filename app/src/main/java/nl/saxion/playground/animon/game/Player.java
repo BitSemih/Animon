@@ -14,17 +14,20 @@ public class Player extends Entity implements KeyListener {
     private float y;
     private Collision collision;
 
+    private Game game;
+
     private int rightBoundary = 0;
     private int leftBoundary = 0;
     private int upperBoundary = 0;
     private int downBoundary = 0;
+    private float playerXPos;
+    private float playerYPos;
+    private float camYCenter;
 
     static private final int[] spriteResourceIds = {0, R.drawable.s_player};
 
     // When resources are first used, the decoded Bitmap is written to this array, as a cache.
     static private Bitmap[] spriteBitmaps;
-
-    private Game game;
 
     public Player(Game game, Collision collision) {
         //TODO check if the player already has an instance
@@ -33,14 +36,17 @@ public class Player extends Entity implements KeyListener {
         this.game = game;
         this.collision = collision;
         this.game.getEntity(KeyEntity.class).addKeyListener(this);
-
+        this.playerXPos = 7;
+        this.playerYPos = (game.getHeight() / 2) + 1;
         x = 7;
-        y = (int) (game.getHeight()/2) + 1;
+        y = (int) (game.getHeight() / 2) + 1;
+
+        camYCenter = (game.getHeight() / 2) + 1;
 
         rightBoundary = Map.getWidth() - 7;
         leftBoundary = 7;
-        upperBoundary = (int) (game.getHeight()/2) + 1;
-        downBoundary = Map.getHeight() - (int) (game.getHeight()/2);
+        upperBoundary = (int) (game.getHeight() / 2) + 1;
+        downBoundary = Map.getHeight() - (int) (game.getHeight() / 2);
     }
 
     @Override
@@ -49,61 +55,88 @@ public class Player extends Entity implements KeyListener {
 
         //Draw the player sprite
         spriteBitmaps[1] = gv.getBitmapFromResource(spriteResourceIds[1]);
-        gv.drawBitmap(spriteBitmaps[1], 7,(int)(game.getHeight()/2) + 1, 1, 1);
+        //gv.drawBitmap(spriteBitmaps[1], 7,(int)(game.getHeight()/2) + 1, 1, 1);
+        gv.drawBitmap(spriteBitmaps[1], playerXPos, playerYPos, 1, 1);
     }
 
     @Override
     public void onRightKey() {
-        if (x == rightBoundary){
-            return;
-        }
-
-        if (!collision.checkForCollision(this.x+0.4f, this.y, 0)){
-            x+=0.2;
+        if (x == rightBoundary || playerXPos < 7) {
+            if (playerXPos < 7){
+                playerXPos += 0.2;
+            }
+        } else {
+            if (!collision.checkForCollision(this.x + 0.4f, this.y, 0)) {
+                x += 0.2;
+            }
         }
     }
 
     @Override
     public void onLeftKey() {
-        if (x==leftBoundary){
-            return;
+        if (playerXPos < 0.2f){
+            playerXPos = 0;
         }
 
-        if (!collision.checkForCollision(this.x-0.4f, this.y,0)){
-            x-=0.2;
+        if (x == leftBoundary || playerXPos > 7) {
+            if (playerXPos > 0){
+                playerXPos -= 0.2;
+            }
+        } else {
+            if (!collision.checkForCollision(this.x - 0.4f, this.y, 0)) {
+                x -= 0.2;
+            }
         }
     }
 
     @Override
     public void onUpKey() {
-        if (y==upperBoundary){
-            return;
+        if (playerYPos < 0.2f){
+            playerYPos = 0;
         }
 
-        if (!collision.checkForCollision(this.x, this.y-0.2f, 1)){
-            y-=0.2;
+        if (y == upperBoundary || playerYPos > camYCenter) {
+            if (playerYPos > 0) {
+                playerYPos -= 0.2;
+            }
+        } else {
+            if (!collision.checkForCollision(this.x, this.y - 0.2f, 1)) {
+                y -= 0.2;
+            }
         }
     }
 
     @Override
     public void onDownKey() {
-        if (x==downBoundary){
-            return;
+        if (playerYPos > game.getHeight() - 0.2f){
+            playerYPos = game.getHeight();
         }
 
-        if (!collision.checkForCollision(this.x, this.y+1.1f, 1)){
-            y+=0.2;
+        if (y == downBoundary || playerYPos < camYCenter) {
+            if (playerYPos < camYCenter) {
+                playerYPos += 0.2;
+            }
+        } else {
+            if (!collision.checkForCollision(this.x, this.y + 1.1f, 1)) {
+                y += 0.2;
+            }
         }
     }
 
     /**
-     *
      * @param x x to check
      * @param y y to check
      * @return true if there is a collision, false when there is not
      */
-    private boolean checkCollisions(float x, float y){
+    private boolean checkCollisions(float x, float y) {
         //return this.game.getEntity(Tiles.class).returnTile(x, y, 2) != 0;
+        return false;
+    }
+
+    private boolean checkBoundary() {
+        if (y == downBoundary || y == upperBoundary || x == leftBoundary || x == rightBoundary) {
+            return true;
+        }
         return false;
     }
 
