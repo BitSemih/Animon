@@ -53,3 +53,5 @@ Dit scherm verschijnt nadat de speler in het gras of water een animon heeft gevo
 - Boven hun naam staat een HP bar. 
 
 
+
+
