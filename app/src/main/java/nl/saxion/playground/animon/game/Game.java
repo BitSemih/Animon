@@ -2,12 +2,7 @@ package nl.saxion.playground.animon.game;
 
 import android.util.Log;
 
-import java.util.ArrayList;
-
 import nl.saxion.playground.animon._lib.GameModel;
-import nl.saxion.playground.animon.animons.AttackMove;
-import nl.saxion.playground.animon.animons.Bear;
-import nl.saxion.playground.animon.animons.Moves;
 
 public class Game extends GameModel {
 
@@ -26,7 +21,7 @@ public class Game extends GameModel {
 
         addEntity(new Player(this, collision));
 
-//        addEntity(new Bear(this, "Bear", 100, 2, 0, Moves.getAttackMovesBear()));
+//        addEntity(new Bear(this, "Bear", 100, 2, 0));
 
         Log.i("Game virtual size:", getWidth() + " / " + getHeight());
         Log.i("Game actual size:", actualWidth + " / " + actualHeight);

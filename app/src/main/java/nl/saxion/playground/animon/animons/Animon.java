@@ -1,7 +1,5 @@
 package nl.saxion.playground.animon.animons;
 
-import android.graphics.Bitmap;
-
 import java.util.ArrayList;
 
 import nl.saxion.playground.animon._lib.Entity;

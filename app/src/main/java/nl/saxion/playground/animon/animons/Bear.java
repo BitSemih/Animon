@@ -23,6 +23,6 @@ public class Bear extends Animon {
         super.draw(gv);
 
         bitmap = gv.getBitmapFromResource(R.drawable.a_bear);
-        //gv.drawBitmap(bitmap, 3,3,3,3);
+        gv.drawBitmap(bitmap, 3,3,3,3);
     }
 }
