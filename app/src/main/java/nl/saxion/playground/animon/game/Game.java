@@ -3,6 +3,8 @@ package nl.saxion.playground.animon.game;
 import android.graphics.Typeface;
 import android.util.Log;
 
+import java.util.ArrayList;
+
 import nl.saxion.playground.animon._lib.GameModel;
 
 public class Game extends GameModel {
@@ -23,10 +25,27 @@ public class Game extends GameModel {
         addEntity(new Map(jsonString, this, collision));
 
         addEntity(new Player(this, collision));
-        addEntity(new Menu(this));
 
-        addEntity(new SaveGame("SAVE GAME", this, pokemonfont));
-        addEntity(new LoadGame("LOAD GAME", this, pokemonfont));
+        Menu menu = new Menu(this);
+
+        addEntity(menu);
+
+        //Adding menu items
+        SaveGame saveGame = new SaveGame("SAVE GAME", this, pokemonfont);
+        LoadGame loadGame = new LoadGame("LOAD GAME", this, pokemonfont);
+        Inventory inventory = new Inventory("INVENTORY", this, pokemonfont);
+        Help help = new Help("HELP", this, pokemonfont);
+
+        //Add menu items to menu class
+        menu.addMenuItem(saveGame);
+        menu.addMenuItem(loadGame);
+        menu.addMenuItem(inventory);
+        menu.addMenuItem(help);
+
+        addEntity(saveGame);
+        addEntity(loadGame);
+        addEntity(inventory);
+        addEntity(help);
 
 //        addEntity(new Bear(this, "Bear", 100, 2, 0));
 
