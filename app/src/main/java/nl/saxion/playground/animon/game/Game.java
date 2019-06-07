@@ -20,6 +20,7 @@ public class Game extends GameModel {
         addEntity(new Map(jsonString, this, collision));
 
         addEntity(new Player(this, collision));
+        addEntity(new Menu(this));
 
 //        addEntity(new Bear(this, "Bear", 100, 2, 0));
 
