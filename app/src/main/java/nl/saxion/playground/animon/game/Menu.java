@@ -25,13 +25,17 @@ public class Menu extends Entity implements KeyListener {
 
         if (bitmap == null) {
             Log.d("paint", "bitmap init");
-            bitmap = gv.getBitmapFromResource(R.drawable.animon_menu);
+            bitmap = gv.getBitmapFromResource(R.drawable.onscreen_menu_background);
         }
 
         if (ismenuactive) {
             Log.d("paint", "painting menu");
-            gv.drawBitmap(bitmap, 500, 505, gv.getWidth(), gv.getHeight());
+            gv.drawBitmap(bitmap, game.getWidth()/2, 0.5f, (game.getWidth()/2)-0.5f, 10);
         }
+    }
+
+    public boolean isIsmenuactive() {
+        return ismenuactive;
     }
 
     @Override
@@ -65,16 +69,11 @@ public class Menu extends Entity implements KeyListener {
 
     @Override
     public void onMenuKey() {
-
-
-        if (ismenuactive) {
-            Log.d("menu","menu shuttin donw");
-            ismenuactive = false;
-        } else {
-            Log.d("menu","menu activating");
+        if (!ismenuactive){
             ismenuactive = true;
+        } else {
+            ismenuactive = false;
         }
-
     }
 }
 

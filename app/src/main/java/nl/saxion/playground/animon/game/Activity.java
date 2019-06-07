@@ -1,5 +1,6 @@
 package nl.saxion.playground.animon.game;
 
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -31,7 +32,8 @@ public class Activity extends AppCompatActivity {
         if (savedInstanceState!=null && savedInstanceState.containsKey("game")) {
             game = (Game) savedInstanceState.getSerializable("game");
         } else {
-            game = new Game(loadJSONFromAsset());
+            Typeface pokemonfont = Typeface.createFromAsset(getAssets(),"pokemonfont.ttf");
+            game = new Game(loadJSONFromAsset(), pokemonfont);
         }
 
         findViewById(R.id.buttonRight).setOnTouchListener(new RepeatListener(10, 10, new View.OnClickListener() {
