@@ -29,10 +29,10 @@ public class Activity extends AppCompatActivity {
         // If a running game has been serialized (because it has been paused for
         // a long time, or because of an orientation change), recreate the Game
         // object from the serialized bundle.
-        if (savedInstanceState!=null && savedInstanceState.containsKey("game")) {
+        if (savedInstanceState != null && savedInstanceState.containsKey("game")) {
             game = (Game) savedInstanceState.getSerializable("game");
         } else {
-            Typeface pokemonfont = Typeface.createFromAsset(getAssets(),"pokemonfont.ttf");
+            Typeface pokemonfont = Typeface.createFromAsset(getAssets(), "pokemonfont.ttf");
             game = new Game(loadJSONFromAsset(), pokemonfont);
         }
 
@@ -50,20 +50,38 @@ public class Activity extends AppCompatActivity {
             }
         }));
 
-        findViewById(R.id.buttonUp).setOnTouchListener(new RepeatListener(10, 10, new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                game.getEntity(KeyEntity.class).onKeyPress("up");
-            }
-        }));
-//
-        findViewById(R.id.buttonDown).setOnTouchListener(new RepeatListener(10, 10, new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                game.getEntity(KeyEntity.class).onKeyPress("down");
-            }
-        }));
+        //Check if the ingame menu is open
+        if (game.getEntity(Menu.class).isIsmenuactive()) {
+            //Menu is open
+            findViewById(R.id.buttonUp).setOnTouchListener(new RepeatListener(500, 500, new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    game.getEntity(KeyEntity.class).onKeyPress("onMenuUp");
+                }
+            }));
 
+            findViewById(R.id.buttonDown).setOnTouchListener(new RepeatListener(500, 500, new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    game.getEntity(KeyEntity.class).onKeyPress("onMenuDown");
+                }
+            }));
+        } else {
+            //Menu is not open
+            findViewById(R.id.buttonUp).setOnTouchListener(new RepeatListener(10, 10, new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    game.getEntity(KeyEntity.class).onKeyPress("up");
+                }
+            }));
+//
+            findViewById(R.id.buttonDown).setOnTouchListener(new RepeatListener(10, 10, new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    game.getEntity(KeyEntity.class).onKeyPress("down");
+                }
+            }));
+        }
         findViewById(R.id.buttonMenu).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

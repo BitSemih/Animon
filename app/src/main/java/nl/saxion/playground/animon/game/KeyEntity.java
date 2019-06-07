@@ -38,6 +38,18 @@ public class KeyEntity extends Entity {
             }
         }
 
+        if (key.equals("onMenuUp")){
+            for (KeyListener keyListener: keyListeners){
+                keyListener.onMenuUpKey();
+            }
+        }
+
+        if (key.equals("onMenuDown")){
+            for (KeyListener keyListener: keyListeners){
+                keyListener.onMenuDownKey();
+            }
+        }
+
         if (key.equals("menu")){
             for (KeyListener keyListener: keyListeners){
                 keyListener.onMenuKey();

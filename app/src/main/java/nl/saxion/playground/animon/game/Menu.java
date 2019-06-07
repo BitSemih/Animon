@@ -2,11 +2,13 @@ package nl.saxion.playground.animon.game;
 
 import android.graphics.Bitmap;
 import android.util.Log;
+import android.view.MotionEvent;
 
 import java.util.ArrayList;
 
 import nl.saxion.playground.animon.R;
 import nl.saxion.playground.animon._lib.Entity;
+import nl.saxion.playground.animon._lib.GameModel;
 import nl.saxion.playground.animon._lib.GameView;
 
 public class Menu extends Entity implements KeyListener {
@@ -48,17 +50,27 @@ public class Menu extends Entity implements KeyListener {
     }
 
     @Override
-    public void onUpKey() {
-        if (currentSelector > 0){
+    public void onMenuUpKey() {
+        if (ismenuactive && currentSelector > 0){
             currentSelector--;
         }
     }
 
     @Override
-    public void onDownKey() {
-        if (currentSelector < menuItems.size()-1){
+    public void onMenuDownKey() {
+        if (ismenuactive && currentSelector < menuItems.size()-1){
             currentSelector++;
         }
+    }
+
+    @Override
+    public void onUpKey() {
+
+    }
+
+    @Override
+    public void onDownKey() {
+
     }
 
     @Override

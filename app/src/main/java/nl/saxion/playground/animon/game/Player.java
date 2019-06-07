@@ -111,6 +111,16 @@ public class Player extends Entity implements KeyListener {
         //nothing
     }
 
+    @Override
+    public void onMenuDownKey() {
+        //nothing
+    }
+
+    @Override
+    public void onMenuUpKey() {
+        //nothing
+    }
+
     /**
      *
      * @param x x to check
