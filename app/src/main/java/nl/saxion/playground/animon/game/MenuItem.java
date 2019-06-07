@@ -19,7 +19,9 @@ public abstract class MenuItem extends Entity {
     public MenuItem(String name, Game game, Typeface pokemonfont) {
         this.name = name;
         this.positionId = lastId;
+        //Set X position for each item; its always the same
         this.posX = game.getWidth()*0.75f;
+        //Calculate the Y position based on the initiated order
         this.posY = 1 + ((positionId + 1) * 2);
         this.pokemonfont = pokemonfont;
         this.game = game;
@@ -27,6 +29,7 @@ public abstract class MenuItem extends Entity {
         this.onscreenMenu = game.getEntity(Menu.class);
     }
 
+    //Drawing the text
     public void draw(GameView gv) {
         if (onscreenMenu.isIsmenuactive()){
             Paint p = new Paint();

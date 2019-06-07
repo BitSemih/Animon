@@ -4,6 +4,7 @@ import android.graphics.Typeface;
 
 public class SaveGame extends MenuItem {
 
+    //Logic for saving the game
     public SaveGame(String name, Game game, Typeface pokemonfont) {
         super(name, game, pokemonfont);
     }

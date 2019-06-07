@@ -51,6 +51,7 @@ public class Menu extends Entity implements KeyListener {
 
     @Override
     public void onMenuUpKey() {
+        //When menu is active and the arrow is not trying to get a index thats under 0
         if (ismenuactive && currentSelector > 0){
             currentSelector--;
         }
@@ -58,6 +59,7 @@ public class Menu extends Entity implements KeyListener {
 
     @Override
     public void onMenuDownKey() {
+        //When menu is active and the arrow is not above the array size of the menu items
         if (ismenuactive && currentSelector < menuItems.size()-1){
             currentSelector++;
         }
