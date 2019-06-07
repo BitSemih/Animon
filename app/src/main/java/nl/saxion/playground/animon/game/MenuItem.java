@@ -14,6 +14,7 @@ public abstract class MenuItem extends Entity {
     private float posX, posY;
     private Game game;
     private Typeface pokemonfont;
+    private Menu onscreenMenu;
 
     public MenuItem(String name, Game game, Typeface pokemonfont) {
         this.name = name;
@@ -23,17 +24,20 @@ public abstract class MenuItem extends Entity {
         this.pokemonfont = pokemonfont;
         this.game = game;
         lastId++;
+        this.onscreenMenu = game.getEntity(Menu.class);
     }
 
     public void draw(GameView gv) {
-        Paint p = new Paint();
-        p.setColor(Color.BLACK);
-        p.setTextSize(0.5f);
-        p.setTypeface(pokemonfont);
-        p.setAntiAlias(true);
-        p.setTextAlign(Paint.Align.CENTER);
-        p.setLinearText(true);
+        if (onscreenMenu.isIsmenuactive()){
+            Paint p = new Paint();
+            p.setColor(Color.BLACK);
+            p.setTextSize(0.5f);
+            p.setTypeface(pokemonfont);
+            p.setAntiAlias(true);
+            p.setTextAlign(Paint.Align.CENTER);
+            p.setLinearText(true);
 
-        gv.getCanvas().drawText(name, posX, posY, p);
+            gv.getCanvas().drawText(name, posX, posY, p);
+        }
     }
 }
