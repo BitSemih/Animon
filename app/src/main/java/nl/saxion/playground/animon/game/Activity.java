@@ -7,10 +7,13 @@ import android.view.View;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 import nl.saxion.playground.animon.R;
 import nl.saxion.playground.animon._lib.GameView;
 import nl.saxion.playground.animon._lib.RepeatListener;
+import nl.saxion.playground.animon.game.menu.Menu;
+import nl.saxion.playground.animon.game.menu.MenuItem;
 
 public class Activity extends AppCompatActivity {
 

@@ -50,6 +50,10 @@ public class Menu extends Entity implements KeyListener {
         this.menuItems.add(item);
     }
 
+    public int getCurrentSelector() {
+        return currentSelector;
+    }
+
     @Override
     public void onMenuUpKey() {
         //When menu is active and the arrow is not trying to get a index thats under 0
@@ -78,7 +82,25 @@ public class Menu extends Entity implements KeyListener {
 
     @Override
     public void onAKey() {
-
+        int menuOptionId = game.getEntity(Menu.class).getCurrentSelector();
+        switch(menuOptionId){
+            case 0:
+                game.getEntity(SaveGame.class);
+                System.out.println("SAVE GAME");
+                break;
+            case 1:
+                game.getEntity(LoadGame.class);
+                System.out.println("LOAD GAME");
+                break;
+            case 2:
+                game.getEntity(Inventory.class);
+                System.out.println("INVENTORY");
+                break;
+            case 3:
+                game.getEntity(Help.class);
+                System.out.println("HELP");
+                break;
+        }
     }
 
     @Override
