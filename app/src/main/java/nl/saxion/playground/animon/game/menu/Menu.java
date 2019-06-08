@@ -1,15 +1,16 @@
-package nl.saxion.playground.animon.game;
+package nl.saxion.playground.animon.game.menu;
 
 import android.graphics.Bitmap;
 import android.util.Log;
-import android.view.MotionEvent;
 
 import java.util.ArrayList;
 
 import nl.saxion.playground.animon.R;
 import nl.saxion.playground.animon._lib.Entity;
-import nl.saxion.playground.animon._lib.GameModel;
 import nl.saxion.playground.animon._lib.GameView;
+import nl.saxion.playground.animon.game.Game;
+import nl.saxion.playground.animon.game.KeyEntity;
+import nl.saxion.playground.animon.game.KeyListener;
 
 public class Menu extends Entity implements KeyListener {
 

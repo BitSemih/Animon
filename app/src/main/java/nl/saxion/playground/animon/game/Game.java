@@ -3,9 +3,12 @@ package nl.saxion.playground.animon.game;
 import android.graphics.Typeface;
 import android.util.Log;
 
-import java.util.ArrayList;
-
 import nl.saxion.playground.animon._lib.GameModel;
+import nl.saxion.playground.animon.game.menu.Help;
+import nl.saxion.playground.animon.game.menu.Inventory;
+import nl.saxion.playground.animon.game.menu.LoadGame;
+import nl.saxion.playground.animon.game.menu.Menu;
+import nl.saxion.playground.animon.game.menu.SaveGame;
 
 public class Game extends GameModel {
 

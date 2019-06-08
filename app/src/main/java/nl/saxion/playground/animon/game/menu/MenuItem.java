@@ -1,4 +1,4 @@
-package nl.saxion.playground.animon.game;
+package nl.saxion.playground.animon.game.menu;
 
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -6,6 +6,8 @@ import android.graphics.Typeface;
 
 import nl.saxion.playground.animon._lib.Entity;
 import nl.saxion.playground.animon._lib.GameView;
+import nl.saxion.playground.animon.game.Game;
+import nl.saxion.playground.animon.game.menu.Menu;
 
 public abstract class MenuItem extends Entity {
     protected String name;
