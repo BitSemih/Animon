@@ -20,7 +20,7 @@ public class Layer extends Entity {
 
     // The list of resource ids to draw each tile type with.
     static private final int[] spriteResourceIds = {0,
-            R.drawable.s_0002,    //1
+            R.drawable.sprite_0000,    //1
             R.drawable.s_0041,    //2
             R.drawable.s_0042,    //3
             R.drawable.s_0664,    //4
@@ -66,7 +66,7 @@ public class Layer extends Entity {
             R.drawable.s_0741,      //37
             R.drawable.s_0742,      //38
             R.drawable.s_0743,       //39
-            R.drawable.s_0744,  // 40
+            R.drawable.s_0744,       // 40
             R.drawable.s_0745,      //41
             R.drawable.s_0811,       //42
             R.drawable.s_0813,      //43
@@ -477,7 +477,7 @@ public class Layer extends Entity {
                     tiles[x][y] = 130;
 
                     //flora
-                } else if (number == 195)  {
+                } else if (number == 195) {
                     tiles[x][y] = 131;
 
                 } else {
