@@ -147,26 +147,37 @@ public class Layer extends Entity {
             R.drawable.sprite_0618, //105
             R.drawable.sprite_0619, //106
 
+            //big tree 1
+            R.drawable.sprite_0566, //107
+            R.drawable.sprite_0567, //108
+            R.drawable.sprite_0568, //109
+            R.drawable.sprite_0640, //110
+            R.drawable.sprite_0641, //111
+            R.drawable.sprite_0642, //112
+            R.drawable.sprite_0643, //113
+            R.drawable.sprite_0644, //114
+            R.drawable.sprite_0710, //115
+            R.drawable.sprite_0711, //116
+            R.drawable.sprite_0712, //117
+            R.drawable.sprite_0713, //118
+            R.drawable.sprite_0714, //119
+            R.drawable.sprite_0780, //120
+            R.drawable.sprite_0781, //121
+            R.drawable.sprite_0782, //122
+            R.drawable.sprite_0783, //123
+            R.drawable.sprite_0784, //124
+            R.drawable.sprite_0850, //125
+            R.drawable.sprite_0851, //125
+            R.drawable.sprite_0852, //125
 
+            //tree stump 2
+            R.drawable.sprite_0546, //126
+            R.drawable.sprite_0547, //127
+            R.drawable.sprite_0620, //128
+            R.drawable.sprite_0621, //129
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            //flora
+            R.drawable.sprite_0154, //130
     };
 
     public Layer(Game game, int width, int height, JSONArray jsonArray) {
@@ -411,47 +422,63 @@ public class Layer extends Entity {
                 } else if (number == 775) {
                     tiles[x][y] = 105;
 
+                    //big tree 1
+                } else if (number == 707) {
+                    tiles[x][y] = 106;
+                } else if (number == 708) {
+                    tiles[x][y] = 107;
+                } else if (number == 709) {
+                    tiles[x][y] = 108;
+                } else if (number == 800) {
+                    tiles[x][y] = 109;
+                } else if (number == 801) {
+                    tiles[x][y] = 110;
+                } else if (number == 802) {
+                    tiles[x][y] = 111;
+                } else if (number == 803) {
+                    tiles[x][y] = 112;
+                } else if (number == 804) {
+                    tiles[x][y] = 113;
+                } else if (number == 894) {
+                    tiles[x][y] = 114;
+                } else if (number == 895) {
+                    tiles[x][y] = 115;
+                } else if (number == 896) {
+                    tiles[x][y] = 116;
+                } else if (number == 897) {
+                    tiles[x][y] = 117;
+                } else if (number == 898) {
+                    tiles[x][y] = 118;
+                } else if (number == 988) {
+                    tiles[x][y] = 119;
+                } else if (number == 989) {
+                    tiles[x][y] = 120;
+                } else if (number == 990) {
+                    tiles[x][y] = 121;
+                } else if (number == 991) {
+                    tiles[x][y] = 122;
+                } else if (number == 992) {
+                    tiles[x][y] = 123;
+                } else if (number == 1083) {
+                    tiles[x][y] = 124;
+                } else if (number == 1084) {
+                    tiles[x][y] = 125;
+                } else if (number == 1085) {
+                    tiles[x][y] = 126;
 
+                    // tree stump 2
+                } else if (number == 682) {
+                    tiles[x][y] = 127;
+                } else if (number == 683) {
+                    tiles[x][y] = 128;
+                } else if (number == 776) {
+                    tiles[x][y] = 129;
+                } else if (number == 777) {
+                    tiles[x][y] = 130;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                    //flora
+                } else if (number == 195)  {
+                    tiles[x][y] = 131;
 
                 } else {
                     tiles[x][y] = 0;
