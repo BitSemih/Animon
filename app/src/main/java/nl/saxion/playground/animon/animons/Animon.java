@@ -11,7 +11,7 @@ public abstract class Animon extends Entity {
     protected int health;
     protected int level;
     protected int experience;
-    protected ArrayList<AttackMove> attackMoves;
+    protected ArrayList<AttackMove> attackMoves = new ArrayList<>();
 
     protected Game game;
 
