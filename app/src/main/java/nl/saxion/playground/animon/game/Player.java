@@ -20,9 +20,9 @@ public class Player extends Entity implements KeyListener {
     private int leftBoundary = 0;
     private int upperBoundary = 0;
     private int downBoundary = 0;
-    private float playerXPos;
-    private float playerYPos;
-    private float camYCenter;
+    private float playerOffsetX;
+    private float playerOffsetY;
+    private float cameraCenterY;
 
     static private final int[] spriteResourceIds = {0, R.drawable.s_player};
 
@@ -36,12 +36,12 @@ public class Player extends Entity implements KeyListener {
         this.game = game;
         this.collision = collision;
         this.game.getEntity(KeyEntity.class).addKeyListener(this);
-        this.playerXPos = 7;
-        this.playerYPos = (game.getHeight() / 2) + 1;
+        this.playerOffsetX = 7;
+        this.playerOffsetY = (game.getHeight() / 2) + 1;
         x = 7;
         y = (int) (game.getHeight() / 2) + 1;
 
-        camYCenter = (game.getHeight() / 2) + 1;
+        cameraCenterY = playerOffsetY;
 
         rightBoundary = Map.getWidth() - 10;
         leftBoundary = 7;
@@ -56,7 +56,7 @@ public class Player extends Entity implements KeyListener {
         //Draw the player sprite
         spriteBitmaps[1] = gv.getBitmapFromResource(spriteResourceIds[1]);
         //gv.drawBitmap(spriteBitmaps[1], 7,(int)(game.getHeight()/2) + 1, 1, 1);
-        gv.drawBitmap(spriteBitmaps[1], playerXPos, playerYPos, 1, 1);
+        gv.drawBitmap(spriteBitmaps[1], playerOffsetX, playerOffsetY, 1, 1);
     }
 
     @Override
@@ -64,9 +64,9 @@ public class Player extends Entity implements KeyListener {
         if (x > rightBoundary - 0.2f) {
             x = rightBoundary;
         }
-        if (x >= rightBoundary || playerXPos < 7) {
-            if (playerXPos < 14.8) {
-                playerXPos += 0.2;
+        if (x >= rightBoundary || playerOffsetX < 7) {
+            if (playerOffsetX < game.getWidth() - 1.2f) {
+                playerOffsetX += 0.2;
             }
         } else {
             if (!collision.checkForCollision(this.x + 0.4f, this.y, 0)) {
@@ -77,12 +77,12 @@ public class Player extends Entity implements KeyListener {
 
     @Override
     public void onLeftKey() {
-        if (playerXPos < 0.2f) {
-            playerXPos = 0;
+        if (playerOffsetX < 0.2f) {
+            playerOffsetX = 0;
         }
-        if (x == leftBoundary || playerXPos > 7) {
-            if (playerXPos > 0) {
-                playerXPos -= 0.2;
+        if (x <= leftBoundary || playerOffsetX > 7) {
+            if (playerOffsetX > 0) {
+                playerOffsetX -= 0.2;
             }
         } else {
             if (!collision.checkForCollision(this.x - 0.4f, this.y, 0)) {
@@ -93,13 +93,13 @@ public class Player extends Entity implements KeyListener {
 
     @Override
     public void onUpKey() {
-        if (playerYPos < 0.2f) {
-            playerYPos = 0;
+        if (playerOffsetY < 0.2f) {
+            playerOffsetY = 0;
         }
 
-        if (y == upperBoundary || playerYPos > camYCenter) {
-            if (playerYPos > 0) {
-                playerYPos -= 0.2;
+        if (y <= upperBoundary || playerOffsetY > cameraCenterY) {
+            if (playerOffsetY > 0) {
+                playerOffsetY -= 0.2;
             }
         } else {
             if (!collision.checkForCollision(this.x, this.y - 0.2f, 1)) {
@@ -110,13 +110,13 @@ public class Player extends Entity implements KeyListener {
 
     @Override
     public void onDownKey() {
-        if (playerYPos > game.getHeight() - 0.2f) {
-            playerYPos = game.getHeight();
+        if (playerOffsetY > game.getHeight() - 0.2f) {
+            playerOffsetY = game.getHeight();
         }
 
-        if (y >= downBoundary || playerYPos < camYCenter) {
-            if (playerYPos < game.getHeight() - 1.2f) {
-                playerYPos += 0.2;
+        if (y >= downBoundary || playerOffsetY < cameraCenterY) {
+            if (playerOffsetY < game.getHeight() - 1.2f) {
+                playerOffsetY += 0.2;
             }
         } else {
             if (!collision.checkForCollision(this.x, this.y + 1.1f, 1)) {
