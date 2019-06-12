@@ -18,6 +18,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, nl.saxion.playground.animon.game.Activity.class));
             }
         });
+
+        findViewById(R.id.buttonExit).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     @Override
