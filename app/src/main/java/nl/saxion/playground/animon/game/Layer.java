@@ -130,6 +130,24 @@ public class Layer extends Entity {
         int endY = (int) (startY + game.getHeight() + 1) + 1;
 
         int tile = 0;
+        if (startX < 0){
+            startX = 0;
+        }
+
+        if (endX >= tiles.length){
+            endX = tiles.length-1;
+        }
+
+        if (startY < 0){
+            startY = 0;
+        }
+
+        if (endY >= tiles.length){
+            endY = tiles.length-1;
+        }
+
+        System.out.println(startY);
+        System.out.println(startX);
         // Draw any visible tiles.
         for(int x = startX; x < endX; x++) {
             for (int y = startY; y < endY; y++) {

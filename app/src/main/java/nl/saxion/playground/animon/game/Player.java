@@ -43,10 +43,10 @@ public class Player extends Entity implements KeyListener {
 
         camYCenter = (game.getHeight() / 2) + 1;
 
-        rightBoundary = Map.getWidth() - 7;
+        rightBoundary = Map.getWidth() - 10;
         leftBoundary = 7;
         upperBoundary = (int) (game.getHeight() / 2) + 1;
-        downBoundary = Map.getHeight() - (int) (game.getHeight() / 2);
+        downBoundary = Map.getHeight() - (int) (game.getHeight() / 2) - 2;
     }
 
     @Override
@@ -61,8 +61,11 @@ public class Player extends Entity implements KeyListener {
 
     @Override
     public void onRightKey() {
-        if (x == rightBoundary || playerXPos < 7) {
-            if (playerXPos < 7){
+        if (x > rightBoundary - 0.2f) {
+            x = rightBoundary;
+        }
+        if (x >= rightBoundary || playerXPos < 7) {
+            if (playerXPos < 14.8) {
                 playerXPos += 0.2;
             }
         } else {
@@ -74,12 +77,11 @@ public class Player extends Entity implements KeyListener {
 
     @Override
     public void onLeftKey() {
-        if (playerXPos < 0.2f){
+        if (playerXPos < 0.2f) {
             playerXPos = 0;
         }
-
         if (x == leftBoundary || playerXPos > 7) {
-            if (playerXPos > 0){
+            if (playerXPos > 0) {
                 playerXPos -= 0.2;
             }
         } else {
@@ -91,7 +93,7 @@ public class Player extends Entity implements KeyListener {
 
     @Override
     public void onUpKey() {
-        if (playerYPos < 0.2f){
+        if (playerYPos < 0.2f) {
             playerYPos = 0;
         }
 
@@ -108,12 +110,12 @@ public class Player extends Entity implements KeyListener {
 
     @Override
     public void onDownKey() {
-        if (playerYPos > game.getHeight() - 0.2f){
+        if (playerYPos > game.getHeight() - 0.2f) {
             playerYPos = game.getHeight();
         }
 
-        if (y == downBoundary || playerYPos < camYCenter) {
-            if (playerYPos < camYCenter) {
+        if (y >= downBoundary || playerYPos < camYCenter) {
+            if (playerYPos < game.getHeight() - 1.2f) {
                 playerYPos += 0.2;
             }
         } else {
