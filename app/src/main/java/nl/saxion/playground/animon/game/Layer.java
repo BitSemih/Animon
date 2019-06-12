@@ -145,9 +145,6 @@ public class Layer extends Entity {
         if (endY >= tiles.length){
             endY = tiles.length-1;
         }
-
-        System.out.println(startY);
-        System.out.println(startX);
         // Draw any visible tiles.
         for(int x = startX; x < endX; x++) {
             for (int y = startY; y < endY; y++) {

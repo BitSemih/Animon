@@ -69,6 +69,9 @@ public class Player extends Entity implements KeyListener {
                 playerOffsetX += 0.2;
             }
         } else {
+            if (playerOffsetX != 7){
+                playerOffsetX = 7;
+            }
             if (!collision.checkForCollision(this.x + 0.4f, this.y, 0)) {
                 x += 0.2;
             }
@@ -85,6 +88,9 @@ public class Player extends Entity implements KeyListener {
                 playerOffsetX -= 0.2;
             }
         } else {
+            if (playerOffsetX != 7){
+                playerOffsetX = 7;
+            }
             if (!collision.checkForCollision(this.x - 0.4f, this.y, 0)) {
                 x -= 0.2;
             }
@@ -102,6 +108,9 @@ public class Player extends Entity implements KeyListener {
                 playerOffsetY -= 0.2;
             }
         } else {
+            if (playerOffsetY != cameraCenterY){
+                playerOffsetY = cameraCenterY;
+            }
             if (!collision.checkForCollision(this.x, this.y - 0.2f, 1)) {
                 y -= 0.2;
             }
@@ -119,6 +128,9 @@ public class Player extends Entity implements KeyListener {
                 playerOffsetY += 0.2;
             }
         } else {
+            if (playerOffsetY != cameraCenterY){
+                playerOffsetY = cameraCenterY;
+            }
             if (!collision.checkForCollision(this.x, this.y + 1.1f, 1)) {
                 y += 0.2;
             }
