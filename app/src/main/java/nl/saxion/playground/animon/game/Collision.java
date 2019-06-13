@@ -14,7 +14,7 @@ public class Collision extends Entity {
 
     public boolean checkForCollision(float x, float y, int action) {
         int X = Math.round(x);
-        int Y = Math.round(y);
+        int Y = Math.round(y+0.2f);
         int midY = Math.round(y + 0.5f);
         int botY = Math.round(y + 1f);
 

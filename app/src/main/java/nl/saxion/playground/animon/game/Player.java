@@ -48,7 +48,7 @@ public class Player extends Entity implements KeyListener {
         x = 14;
         y = (int) (game.getHeight() / 2) + 1;
 
-        cameraCenterY = playerOffsetY;
+        cameraCenterY = (int) playerOffsetY;
 
         rightBoundary = Map.getWidth() - 10;
         leftBoundary = 7;
@@ -83,7 +83,7 @@ public class Player extends Entity implements KeyListener {
             if (playerOffsetX != 7){
                 playerOffsetX = 7;
             }
-            if (!collision.checkForCollision(this.x + 0.4f, this.y, 0)) {
+            if (!collision.checkForCollision(this.x + 0.3f, this.y, 0)) {
                 x += 0.2;
             }
         }
@@ -102,7 +102,7 @@ public class Player extends Entity implements KeyListener {
             if (playerOffsetX != 7){
                 playerOffsetX = 7;
             }
-            if (!collision.checkForCollision(this.x - 0.4f, this.y, 0)) {
+            if (!collision.checkForCollision(this.x - 0.2f, this.y, 0)) {
                 x -= 0.2;
             }
         }
