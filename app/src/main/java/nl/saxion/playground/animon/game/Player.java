@@ -34,8 +34,6 @@ public class Player extends Entity implements KeyListener {
     // When resources are first used, the decoded Bitmap is written to this array, as a cache.
     static private Bitmap[] spriteBitmaps;
 
-    private Game game;
-
     private ArrayList<Animon> animonArrayList = new ArrayList<>();
 
     public Player(Game game, Collision collision) {
@@ -47,7 +45,7 @@ public class Player extends Entity implements KeyListener {
         this.game.getEntity(KeyEntity.class).addKeyListener(this);
         this.playerOffsetX = 7;
         this.playerOffsetY = (game.getHeight() / 2) + 1;
-        x = 7;
+        x = 14;
         y = (int) (game.getHeight() / 2) + 1;
 
         cameraCenterY = playerOffsetY;

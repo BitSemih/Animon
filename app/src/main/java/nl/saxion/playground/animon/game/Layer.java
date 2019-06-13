@@ -539,6 +539,7 @@ public class Layer extends Entity {
         if (endY >= tiles.length){
             endY = tiles.length-1;
         }
+
         // Draw any visible tiles.
         for(int x = startX; x < endX; x++) {
             for (int y = startY; y < endY; y++) {
@@ -549,6 +550,7 @@ public class Layer extends Entity {
                         // Load/decode bitmaps before we first draw them.
                         spriteBitmaps[tile] = gv.getBitmapFromResource(spriteResourceIds[tile]);
                     }
+                    gv.drawBitmap(spriteBitmaps[tile], x - game.getEntity(Player.class).getX() + 7,y - (game.getEntity(Player.class).getY() - (game.getHeight() /2)), 1, 1);
                 }
             }
         }
