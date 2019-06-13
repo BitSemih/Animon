@@ -2,9 +2,13 @@ package nl.saxion.playground.animon.game;
 
 import android.graphics.Bitmap;
 
+import java.util.ArrayList;
+
 import nl.saxion.playground.animon.R;
 import nl.saxion.playground.animon._lib.Entity;
 import nl.saxion.playground.animon._lib.GameView;
+import nl.saxion.playground.animon.animons.Animon;
+import nl.saxion.playground.animon.animons.*;
 
 public class Player extends Entity implements KeyListener {
 
@@ -24,10 +28,15 @@ public class Player extends Entity implements KeyListener {
     private float playerOffsetY;
     private float cameraCenterY;
 
+
     static private final int[] spriteResourceIds = {0, R.drawable.s_player};
 
     // When resources are first used, the decoded Bitmap is written to this array, as a cache.
     static private Bitmap[] spriteBitmaps;
+
+    private Game game;
+
+    private ArrayList<Animon> animonArrayList = new ArrayList<>();
 
     public Player(Game game, Collision collision) {
         //TODO check if the player already has an instance
@@ -45,8 +54,12 @@ public class Player extends Entity implements KeyListener {
 
         rightBoundary = Map.getWidth() - 10;
         leftBoundary = 7;
-        upperBoundary = (int) (game.getHeight() / 2) + 1;
-        downBoundary = Map.getHeight() - (int) (game.getHeight() / 2) - 2;
+        upperBoundary = (int) (game.getHeight()/2) + 1;
+        downBoundary = Map.getHeight() - (int) (game.getHeight()/2);
+
+        if (animonArrayList.size() < 1) {
+            animonArrayList.add(new Chicken(this.game, "Chicken wing", 50, 5, 0));
+        }
     }
 
     @Override
@@ -135,6 +148,31 @@ public class Player extends Entity implements KeyListener {
                 y += 0.2;
             }
         }
+    }
+
+    @Override
+    public void onMenuKey() {
+        //nothing
+    }
+
+    @Override
+    public void onAKey() {
+        //nothing
+    }
+
+    @Override
+    public void onBKey() {
+        //nothing
+    }
+
+    @Override
+    public void onMenuDownKey() {
+        //nothing
+    }
+
+    @Override
+    public void onMenuUpKey() {
+        //nothing
     }
 
     /**

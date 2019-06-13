@@ -6,5 +6,10 @@ public interface KeyListener {
     void onLeftKey();
     void onUpKey();
     void onDownKey();
+    void onMenuKey();
+    void onMenuDownKey();
+    void onMenuUpKey();
+    void onAKey();
+    void onBKey();
 
 }
