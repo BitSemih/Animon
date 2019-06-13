@@ -1,6 +1,8 @@
 package nl.saxion.playground.animon.game.menu;
 
+import android.content.Context;
 import android.graphics.Bitmap;
+import android.media.MediaPlayer;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -19,10 +21,12 @@ public class Menu extends Entity implements KeyListener {
     private Bitmap bitmapBackground, bitmapSelector;
     private ArrayList<MenuItem> menuItems = new ArrayList<>();
     private int currentSelector = 0;
+    private MediaPlayer selectorSound;
 
-    public Menu(Game game) {
+    public Menu(Game game, Context context) {
         this.game = game;
         this.game.getEntity(KeyEntity.class).addKeyListener(this);
+        this.selectorSound = MediaPlayer.create(context, R.raw.menu_selector);
     }
 
     @Override
@@ -58,6 +62,7 @@ public class Menu extends Entity implements KeyListener {
     public void onMenuUpKey() {
         //When menu is active and the arrow is not trying to get a index thats under 0
         if (ismenuactive && currentSelector > 0){
+            this.selectorSound.start();
             currentSelector--;
         }
     }
@@ -66,6 +71,7 @@ public class Menu extends Entity implements KeyListener {
     public void onMenuDownKey() {
         //When menu is active and the arrow is not above the array size of the menu items
         if (ismenuactive && currentSelector < menuItems.size()-1){
+            this.selectorSound.start();
             currentSelector++;
         }
     }
