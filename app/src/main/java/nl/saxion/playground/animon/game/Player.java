@@ -31,6 +31,7 @@ public class Player extends Entity implements KeyListener {
     private String walkDirection = "right";
     private int animationCount = 1;
     private boolean walking = false;
+    private float frame = 0;
 
     static private final int[] spriteResourceIds = {0, R.drawable.s_player, R.drawable.s_player_down, R.drawable.s_player_up, R.drawable.s_player_walk0, R.drawable.s_player_walk1, R.drawable.s_player_up_walk0, R.drawable.s_player_up_walk1, R.drawable.s_player_down_walk0, R.drawable.s_player_down_walk1};
 
@@ -58,6 +59,19 @@ public class Player extends Entity implements KeyListener {
 
         if (animonArrayList.size() < 1) {
             animonArrayList.add(new Chicken(this.game, "Chicken wing", 50, 5, 0));
+        }
+    }
+
+    //Set which animation the player has to use when walking
+    @Override
+    public void tick() {
+        if (walking){
+            frame += 0.03f;
+            if ((int) frame % 2 == 0){
+                animationCount = 0;
+            } else if ((int) frame % 2 == 1){
+                animationCount = 1;
+            }
         }
     }
 
@@ -101,12 +115,10 @@ public class Player extends Entity implements KeyListener {
                     gv.drawBitmap(bitmapFaceLeft, playerOffsetX, playerOffsetY, 1, 1);
                 } else {
                     //Walk animation
-                    if (animationCount == 1) {
+                    if (animationCount == 0) {
                         gv.drawBitmap(bitmapWalkLeft1, playerOffsetX, playerOffsetY, 1, 1);
-                        animationCount++;
                     } else {
                         gv.drawBitmap(bitmapWalkLeft2, playerOffsetX, playerOffsetY, 1, 1);
-                        animationCount--;
                     }
                 }
                 break;
@@ -116,12 +128,10 @@ public class Player extends Entity implements KeyListener {
                     gv.drawBitmap(bitmapFaceRight, playerOffsetX, playerOffsetY, 1, 1);
                 } else {
                     //Walk animation
-                    if (animationCount == 1) {
+                    if (animationCount == 0) {
                         gv.drawBitmap(bitmapWalkRight1, playerOffsetX, playerOffsetY, 1, 1);
-                        animationCount++;
                     } else {
                         gv.drawBitmap(bitmapWalkRight2, playerOffsetX, playerOffsetY, 1, 1);
-                        animationCount--;
                     }
                 }
                 break;
@@ -131,12 +141,10 @@ public class Player extends Entity implements KeyListener {
                     gv.drawBitmap(bitmapFaceUp, playerOffsetX, playerOffsetY, 1, 1);
                 } else {
                     //Walk animation
-                    if (animationCount == 1) {
+                    if (animationCount == 0) {
                         gv.drawBitmap(bitmapWalkUp1, playerOffsetX, playerOffsetY, 1, 1);
-                        animationCount++;
                     } else {
                         gv.drawBitmap(bitmapWalkUp2, playerOffsetX, playerOffsetY, 1, 1);
-                        animationCount--;
                     }
                 }
                 break;
@@ -146,12 +154,10 @@ public class Player extends Entity implements KeyListener {
                     gv.drawBitmap(bitmapFaceDown, playerOffsetX, playerOffsetY, 1, 1);
                 } else {
                     //Walk animation
-                    if (animationCount == 1) {
+                    if (animationCount == 0) {
                         gv.drawBitmap(bitmapWalkDown1, playerOffsetX, playerOffsetY, 1, 1);
-                        animationCount++;
                     } else {
                         gv.drawBitmap(bitmapWalkDown2, playerOffsetX, playerOffsetY, 1, 1);
-                        animationCount--;
                     }
                 }
                 break;
