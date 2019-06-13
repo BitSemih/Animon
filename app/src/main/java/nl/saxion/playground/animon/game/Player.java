@@ -1,6 +1,7 @@
 package nl.saxion.playground.animon.game;
 
 import android.graphics.Bitmap;
+import android.graphics.Matrix;
 
 import java.util.ArrayList;
 
@@ -27,18 +28,16 @@ public class Player extends Entity implements KeyListener {
     private float playerOffsetX;
     private float playerOffsetY;
     private float cameraCenterY;
-
+    private String walkDirection = "right";
 
     static private final int[] spriteResourceIds = {0, R.drawable.s_player};
 
     // When resources are first used, the decoded Bitmap is written to this array, as a cache.
-    static private Bitmap[] spriteBitmaps;
+    static private Bitmap bitmapWalkRight, bitmapWalkLeft;
 
     private ArrayList<Animon> animonArrayList = new ArrayList<>();
 
     public Player(Game game, Collision collision) {
-        //TODO check if the player already has an instance
-        spriteBitmaps = new Bitmap[spriteResourceIds.length];
 
         this.game = game;
         this.collision = collision;
@@ -65,9 +64,18 @@ public class Player extends Entity implements KeyListener {
         super.draw(gv);
 
         //Draw the player sprite
-        spriteBitmaps[1] = gv.getBitmapFromResource(spriteResourceIds[1]);
-        //gv.drawBitmap(spriteBitmaps[1], 7,(int)(game.getHeight()/2) + 1, 1, 1);
-        gv.drawBitmap(spriteBitmaps[1], playerOffsetX, playerOffsetY, 1, 1);
+        if (bitmapWalkLeft == null || bitmapWalkRight == null){
+            Matrix matrix = new Matrix();
+            matrix.preScale(-1.0f, 1.0f);
+            bitmapWalkRight = gv.getBitmapFromResource(spriteResourceIds[1]);
+            bitmapWalkLeft = Bitmap.createBitmap(bitmapWalkRight, 0, 0, bitmapWalkRight.getWidth(), bitmapWalkRight.getHeight(), matrix, true);
+        }
+
+        if (walkDirection.equals("left")){
+            gv.drawBitmap(bitmapWalkLeft, playerOffsetX, playerOffsetY, 1, 1);
+        } else {
+            gv.drawBitmap(bitmapWalkRight, playerOffsetX, playerOffsetY, 1, 1);
+        }
     }
 
     @Override
@@ -87,6 +95,7 @@ public class Player extends Entity implements KeyListener {
                 x += 0.2;
             }
         }
+        this.walkDirection = "right";
     }
 
     @Override
@@ -106,6 +115,7 @@ public class Player extends Entity implements KeyListener {
                 x -= 0.2;
             }
         }
+        this.walkDirection = "left";
     }
 
     @Override
