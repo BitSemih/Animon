@@ -204,9 +204,9 @@ public class Player extends Entity implements KeyListener {
             if (!collision.checkForCollision(this.x, this.y - 0.2f, 1)) {
                 y -= 0.1f;
             }
-            this.walkDirection = "up";
-            this.walking = true;
         }
+        this.walkDirection = "up";
+        this.walking = true;
     }
 
     @Override
@@ -226,9 +226,9 @@ public class Player extends Entity implements KeyListener {
             if (!collision.checkForCollision(this.x, this.y + 1.1f, 1)) {
                 y += 0.1f;
             }
-            this.walkDirection = "down";
-            this.walking = true;
         }
+        this.walkDirection = "down";
+        this.walking = true;
     }
 
     @Override
