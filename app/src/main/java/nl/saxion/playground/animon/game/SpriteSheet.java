@@ -41,12 +41,13 @@ public class SpriteSheet {
     public static SpriteSheet createSheetFromColumnsAndRows (Bitmap pBitmap, int pColumns, int pRows) {
         SpriteSheet spriteSheet = new SpriteSheet(pBitmap);
 
-        spriteSheet._tilesizeX = spriteSheet._width/pColumns;
-        spriteSheet._tilesizeY = spriteSheet._height/pColumns;
+        spriteSheet._tilesizeX = 69;
+        spriteSheet._tilesizeY = 69;
         spriteSheet._columns = pColumns;
         spriteSheet._rows = pRows;
         spriteSheet._frameCount = spriteSheet._rows * spriteSheet._columns;
-
+        System.out.println(spriteSheet._tilesizeX);
+        System.out.println(spriteSheet._tilesizeY);
         return spriteSheet;
     }
 

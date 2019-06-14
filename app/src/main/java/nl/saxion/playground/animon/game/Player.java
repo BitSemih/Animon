@@ -2,6 +2,7 @@ package nl.saxion.playground.animon.game;
 
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
+import android.graphics.RectF;
 
 import java.util.ArrayList;
 
@@ -63,32 +64,6 @@ public class Player extends Entity implements KeyListener {
         }
     }
 
-    /*
-    private float x = 0;
-    private float y = 0;
-    private float frame = 0;
-    private float fps = 12;
-
-    private SpriteSheet explosionSheet;
-
-    public MyTestEntity(GameModel game) {
-        explosionSheet = SpriteSheet.createSheetFromColumnsAndRows(game.getBitmapFromResource(R.drawable.spritesheet),6,6);
-        //run the animation at 12 fps
-        fps = 12.0f/game.ticksPerSecond();
-    }
-
-    @Override
-    public void tick() {
-        frame += fps;
-    }
-
-    @Override
-    public void draw(GameView gv) {
-        explosionSheet.drawFrame((int)frame, gv.getCanvas(), new RectF(x, y, x+50, y+50));
-    }
-     */
-
-    //Set which animation the player has to use when walking
     @Override
     public void tick() {
         if (walking) {
@@ -103,34 +78,10 @@ public class Player extends Entity implements KeyListener {
 
     @Override
     public void draw(GameView gv) {
-        super.draw(gv);
 
-        //Draw the player sprite
-        if (bitmapFaceRight == null) {
-            Matrix matrix = new Matrix();
-            matrix.preScale(-1.0f, 1.0f);
-
-            //Players stands still
-            bitmapFaceRight = gv.getBitmapFromResource(spriteResourceIds[1]);
-            bitmapFaceDown = gv.getBitmapFromResource(spriteResourceIds[2]);
-            bitmapFaceUp = gv.getBitmapFromResource(spriteResourceIds[3]);
-            bitmapFaceLeft = Bitmap.createBitmap(bitmapFaceRight, 0, 0, bitmapFaceRight.getWidth(), bitmapFaceRight.getHeight(), matrix, true);
-
-            //Walk right animation
-            bitmapWalkRight1 = gv.getBitmapFromResource(spriteResourceIds[4]);
-            bitmapWalkRight2 = gv.getBitmapFromResource(spriteResourceIds[5]);
-
-            //Walk left animation
-            bitmapWalkLeft1 = Bitmap.createBitmap(bitmapWalkRight1, 0, 0, bitmapFaceRight.getWidth(), bitmapFaceRight.getHeight(), matrix, true);
-            bitmapWalkLeft2 = Bitmap.createBitmap(bitmapWalkRight2, 0, 0, bitmapFaceRight.getWidth(), bitmapFaceRight.getHeight(), matrix, true);
-
-            //Walk up animation
-            bitmapWalkUp1 = gv.getBitmapFromResource(spriteResourceIds[6]);
-            bitmapWalkUp2 = gv.getBitmapFromResource(spriteResourceIds[7]);
-
-            //Walk down animation
-            bitmapWalkDown1 = gv.getBitmapFromResource(spriteResourceIds[8]);
-            bitmapWalkDown2 = gv.getBitmapFromResource(spriteResourceIds[9]);
+        if (player_sheet == null) {
+            //Load in player sheet
+            player_sheet = SpriteSheet.createSheetFromColumnsAndRows(gv.getBitmapFromResource(R.drawable.s_player_sheet), 12, 1);
         }
 
         //Look which direction the player is walking
@@ -138,52 +89,55 @@ public class Player extends Entity implements KeyListener {
             case "left":
                 if (!walking) {
                     //Standing still
-                    gv.drawBitmap(bitmapFaceLeft, playerOffsetX, playerOffsetY, 1, 1);
+                    player_sheet.drawFrame(9, gv.getCanvas(), new RectF(playerOffsetX, playerOffsetY, playerOffsetX + 1, playerOffsetY + 1));
                 } else {
                     //Walk animation
                     if (animationCount == 0) {
-                        gv.drawBitmap(bitmapWalkLeft1, playerOffsetX, playerOffsetY, 1, 1);
+                        player_sheet.drawFrame(10, gv.getCanvas(), new RectF(playerOffsetX, playerOffsetY, playerOffsetX + 1, playerOffsetY + 1));
                     } else {
-                        gv.drawBitmap(bitmapWalkLeft2, playerOffsetX, playerOffsetY, 1, 1);
+                        player_sheet.drawFrame(11, gv.getCanvas(), new RectF(playerOffsetX, playerOffsetY, playerOffsetX + 1, playerOffsetY + 1));
                     }
                 }
                 break;
             case "right":
                 if (!walking) {
                     //Standing still
-                    gv.drawBitmap(bitmapFaceRight, playerOffsetX, playerOffsetY, 1, 1);
+                    player_sheet.drawFrame(0, gv.getCanvas(), new RectF(playerOffsetX, playerOffsetY, playerOffsetX + 1, playerOffsetY + 1));
                 } else {
                     //Walk animation
                     if (animationCount == 0) {
-                        gv.drawBitmap(bitmapWalkRight1, playerOffsetX, playerOffsetY, 1, 1);
+                        player_sheet.drawFrame(1, gv.getCanvas(), new RectF(playerOffsetX, playerOffsetY, playerOffsetX + 1, playerOffsetY + 1));
                     } else {
-                        gv.drawBitmap(bitmapWalkRight2, playerOffsetX, playerOffsetY, 1, 1);
+                        player_sheet.drawFrame(2, gv.getCanvas(), new RectF(playerOffsetX, playerOffsetY, playerOffsetX + 1, playerOffsetY + 1));
                     }
                 }
                 break;
             case "up":
                 if (!walking) {
                     //Standing still
-                    gv.drawBitmap(bitmapFaceUp, playerOffsetX, playerOffsetY, 1, 1);
+                    player_sheet.drawFrame(6, gv.getCanvas(), new RectF(playerOffsetX, playerOffsetY, playerOffsetX + 1, playerOffsetY + 1));
+
                 } else {
                     //Walk animation
                     if (animationCount == 0) {
-                        gv.drawBitmap(bitmapWalkUp1, playerOffsetX, playerOffsetY, 1, 1);
+                        player_sheet.drawFrame(7, gv.getCanvas(), new RectF(playerOffsetX, playerOffsetY, playerOffsetX + 1, playerOffsetY + 1));
+
                     } else {
-                        gv.drawBitmap(bitmapWalkUp2, playerOffsetX, playerOffsetY, 1, 1);
+                        player_sheet.drawFrame(8, gv.getCanvas(), new RectF(playerOffsetX, playerOffsetY, playerOffsetX + 1, playerOffsetY + 1));
+
                     }
                 }
                 break;
             case "down":
                 if (!walking) {
                     //Standing still
-                    gv.drawBitmap(bitmapFaceDown, playerOffsetX, playerOffsetY, 1, 1);
+                    player_sheet.drawFrame(3, gv.getCanvas(), new RectF(playerOffsetX, playerOffsetY, playerOffsetX + 1, playerOffsetY + 1));
                 } else {
                     //Walk animation
                     if (animationCount == 0) {
-                        gv.drawBitmap(bitmapWalkDown1, playerOffsetX, playerOffsetY, 1, 1);
+                        player_sheet.drawFrame(4, gv.getCanvas(), new RectF(playerOffsetX, playerOffsetY, playerOffsetX + 1, playerOffsetY + 1));
                     } else {
-                        gv.drawBitmap(bitmapWalkDown2, playerOffsetX, playerOffsetY, 1, 1);
+                        player_sheet.drawFrame(5, gv.getCanvas(), new RectF(playerOffsetX, playerOffsetY, playerOffsetX + 1, playerOffsetY + 1));
                     }
                 }
                 break;
