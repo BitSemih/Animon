@@ -32,6 +32,7 @@ public class Player extends Entity implements KeyListener {
     private int animationCount = 1;
     private boolean walking = false;
     private float frame = 0;
+    private SpriteSheet player_sheet;
 
     static private final int[] spriteResourceIds = {0, R.drawable.s_player, R.drawable.s_player_down, R.drawable.s_player_up, R.drawable.s_player_walk0, R.drawable.s_player_walk1, R.drawable.s_player_up_walk0, R.drawable.s_player_up_walk1, R.drawable.s_player_down_walk0, R.drawable.s_player_down_walk1};
 
@@ -62,14 +63,39 @@ public class Player extends Entity implements KeyListener {
         }
     }
 
+    /*
+    private float x = 0;
+    private float y = 0;
+    private float frame = 0;
+    private float fps = 12;
+
+    private SpriteSheet explosionSheet;
+
+    public MyTestEntity(GameModel game) {
+        explosionSheet = SpriteSheet.createSheetFromColumnsAndRows(game.getBitmapFromResource(R.drawable.spritesheet),6,6);
+        //run the animation at 12 fps
+        fps = 12.0f/game.ticksPerSecond();
+    }
+
+    @Override
+    public void tick() {
+        frame += fps;
+    }
+
+    @Override
+    public void draw(GameView gv) {
+        explosionSheet.drawFrame((int)frame, gv.getCanvas(), new RectF(x, y, x+50, y+50));
+    }
+     */
+
     //Set which animation the player has to use when walking
     @Override
     public void tick() {
-        if (walking){
+        if (walking) {
             frame += 0.03f;
-            if ((int) frame % 2 == 0){
+            if ((int) frame % 2 == 0) {
                 animationCount = 0;
-            } else if ((int) frame % 2 == 1){
+            } else if ((int) frame % 2 == 1) {
                 animationCount = 1;
             }
         }
