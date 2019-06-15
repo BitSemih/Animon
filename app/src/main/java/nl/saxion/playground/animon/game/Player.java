@@ -89,13 +89,13 @@ public class Player extends Entity implements KeyListener {
             case "left":
                 if (!walking) {
                     //Standing still
-                    player_sheet.drawFrame(9, gv.getCanvas(), new RectF(playerOffsetX, playerOffsetY, playerOffsetX + 1, playerOffsetY + 1));
+                    player_sheet.drawFrame(11, gv.getCanvas(), new RectF(playerOffsetX, playerOffsetY, playerOffsetX + 1, playerOffsetY + 1));
                 } else {
                     //Walk animation
                     if (animationCount == 0) {
-                        player_sheet.drawFrame(10, gv.getCanvas(), new RectF(playerOffsetX, playerOffsetY, playerOffsetX + 1, playerOffsetY + 1));
+                        player_sheet.drawFrame(9, gv.getCanvas(), new RectF(playerOffsetX, playerOffsetY, playerOffsetX + 1, playerOffsetY + 1));
                     } else {
-                        player_sheet.drawFrame(11, gv.getCanvas(), new RectF(playerOffsetX, playerOffsetY, playerOffsetX + 1, playerOffsetY + 1));
+                        player_sheet.drawFrame(10, gv.getCanvas(), new RectF(playerOffsetX, playerOffsetY, playerOffsetX + 1, playerOffsetY + 1));
                     }
                 }
                 break;
