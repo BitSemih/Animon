@@ -11,13 +11,14 @@ import nl.saxion.playground.animon.animons.Animon;
 
 public class Battle extends Entity {
     private Animon playerAnimon, npcAnimon;
-    private int turn, background, battlePlatform, messageBox;
+    private int turn, background, battlePlatform, messageBox, count = 0, messageDelay;
     private Bitmap backgroundBitmap, platformBitmap, messageBoxBitmap;
     private Game game;
     private String welcomeMessage;
     private float frame;
     private Typeface pokemonfont;
     private Paint p;
+    private char[] welcomeMessageLetters;
 
     public Battle(int background, Game game, int battlePlatform, int messageBox, Typeface pokemonfont) {
         this.game = game;
@@ -33,6 +34,9 @@ public class Battle extends Entity {
         this.p.setAntiAlias(true);
         this.p.setTextAlign(Paint.Align.CENTER);
         this.p.setLinearText(true);
+        welcomeMessage = "";
+        String s = "A wild Mees appeared!";
+        this.welcomeMessageLetters = s.toCharArray();
     }
 
     public void startBattle(Animon playerAnimon, Animon npcAnimon) {
@@ -45,10 +49,14 @@ public class Battle extends Entity {
 
     @Override
     public void tick() {
-        frame += 0.01;
-        if ((int) frame % 2 == 0) {
+        frame += 0.05;
+        if ((int) frame % 2 == 1) {
             //do walk stuff
-            addLetterToWelcomeMessage(frame);
+            addLetterToWelcomeMessage();
+            frame = 0;
+            if (messageDelay < 10){
+                messageDelay++;
+            }
         }
     }
 
@@ -69,12 +77,17 @@ public class Battle extends Entity {
 
             gv.getCanvas().save();
             gv.getCanvas().scale(scaleFactor,scaleFactor);
-            gv.getCanvas().drawText("test-", 3/scaleFactor, (game.getHeight()-2.5f)/scaleFactor, p);
+            gv.getCanvas().drawText(welcomeMessage, 2+(welcomeMessage.length()*0.25f)/scaleFactor, (game.getHeight()-2.5f)/scaleFactor, p);
             gv.getCanvas().restore();
         }
     }
 
-    public void addLetterToWelcomeMessage(float frame){
-        System.out.println(frame);
+    public void addLetterToWelcomeMessage(){
+        if (messageDelay == 10){
+            if (count < welcomeMessageLetters.length){
+                welcomeMessage += welcomeMessageLetters[count];
+            }
+            count++;
+        }
     }
 }
