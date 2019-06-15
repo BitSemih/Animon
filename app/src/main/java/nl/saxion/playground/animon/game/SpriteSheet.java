@@ -18,13 +18,13 @@ public class SpriteSheet {
      * @param pTileSizeY
      * @return
      */
-    public static SpriteSheet createSheetFromTileSize (Bitmap pBitmap, int pTileSizeX, int pTileSizeY) {
+    public static SpriteSheet createSheetFromTileSize(Bitmap pBitmap, int pTileSizeX, int pTileSizeY) {
         SpriteSheet spriteSheet = new SpriteSheet(pBitmap);
 
         spriteSheet._tilesizeX = pTileSizeX;
         spriteSheet._tilesizeY = pTileSizeY;
-        spriteSheet._columns = spriteSheet._width/pTileSizeX;
-        spriteSheet._rows = spriteSheet._height/pTileSizeY;
+        spriteSheet._columns = spriteSheet._width / pTileSizeX;
+        spriteSheet._rows = spriteSheet._height / pTileSizeY;
         spriteSheet._frameCount = spriteSheet._rows * spriteSheet._columns;
 
         return spriteSheet;
@@ -38,16 +38,28 @@ public class SpriteSheet {
      * @param pRows
      * @return
      */
-    public static SpriteSheet createSheetFromColumnsAndRows (Bitmap pBitmap, int pColumns, int pRows) {
+    public static SpriteSheet createSheetFromColumnsAndRows(Bitmap pBitmap, int pColumns, int pRows) {
         SpriteSheet spriteSheet = new SpriteSheet(pBitmap);
 
-        spriteSheet._tilesizeX = 69;
-        spriteSheet._tilesizeY = 69;
+        spriteSheet._tilesizeX = spriteSheet._width / pColumns;
+        spriteSheet._tilesizeY = spriteSheet._height / pRows;
         spriteSheet._columns = pColumns;
         spriteSheet._rows = pRows;
         spriteSheet._frameCount = spriteSheet._rows * spriteSheet._columns;
         System.out.println(spriteSheet._tilesizeX);
         System.out.println(spriteSheet._tilesizeY);
+        return spriteSheet;
+    }
+
+    public static SpriteSheet createMapSheetFromColumsAndRows(Bitmap pBitmap, int pColumns, int pRows) {
+        SpriteSheet spriteSheet = new SpriteSheet(pBitmap);
+
+        spriteSheet._tilesizeX = 32;
+        spriteSheet._tilesizeY = 32;       //<----- deze lijn klopte niet
+        spriteSheet._columns = pColumns;
+        spriteSheet._rows = pRows;
+        spriteSheet._frameCount = spriteSheet._rows * spriteSheet._columns;
+
         return spriteSheet;
     }
 
@@ -63,7 +75,7 @@ public class SpriteSheet {
     private final Rect _srcRect = new Rect();
     private final Rect _dstRect = new Rect();
 
-    private SpriteSheet (Bitmap pBitmap) {
+    private SpriteSheet(Bitmap pBitmap) {
         _bitmap = pBitmap;
         _width = pBitmap.getWidth();
         _height = pBitmap.getHeight();
@@ -77,16 +89,16 @@ public class SpriteSheet {
      * @param pSource
      * @return
      */
-    public Rect getRect (int pFrame, Rect pSource) {
+    public Rect getRect(int pFrame, Rect pSource) {
         pFrame %= _frameCount;
         int column = pFrame % _columns;
         int row = pFrame / _columns;
 
-        pSource = pSource == null?new Rect():pSource;
-        pSource.left =  column * _tilesizeX;
-        pSource.right =  pSource.left + _tilesizeX;
-        pSource.top =  row * _tilesizeY;
-        pSource.bottom =  pSource.top + _tilesizeY;
+        pSource = pSource == null ? new Rect() : pSource;
+        pSource.left = column * _tilesizeX;
+        pSource.right = pSource.left + _tilesizeX;
+        pSource.top = row * _tilesizeY;
+        pSource.bottom = pSource.top + _tilesizeY;
 
         return pSource;
     }
@@ -98,7 +110,7 @@ public class SpriteSheet {
      * @param pCanvas
      * @param pTarget
      */
-    public void drawFrame (int pFrame, Canvas pCanvas, RectF pTarget) {
-        pCanvas.drawBitmap (_bitmap, getRect(pFrame, _srcRect), pTarget, null);
+    public void drawFrame(int pFrame, Canvas pCanvas, RectF pTarget) {
+        pCanvas.drawBitmap(_bitmap, getRect(pFrame, _srcRect), pTarget, null);
     }
 }

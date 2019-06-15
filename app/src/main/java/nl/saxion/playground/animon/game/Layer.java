@@ -1,6 +1,7 @@
 package nl.saxion.playground.animon.game;
 
 import android.graphics.Bitmap;
+import android.graphics.RectF;
 
 import org.json.JSONArray;
 
@@ -18,6 +19,8 @@ public class Layer extends Entity {
     private Game game;
 
     private String name;
+
+    private SpriteSheet map_sheet;
 
     // When resources are first used, the decoded Bitmap is written to this array, as a cache.
     static private Bitmap[] spriteBitmaps;
@@ -205,7 +208,7 @@ public class Layer extends Entity {
             for (int i = 0; i < jsonArray.length(); i++) {
                 int number = jsonArray.getInt(i);
                 if (number == 2) {
-                    tiles[x][y] = 1;
+                    tiles[x][y] = number;
                 } else if (number == 41) {
                     tiles[x][y] = 2;
                 } else if (number == 42) {
@@ -243,7 +246,7 @@ public class Layer extends Entity {
                 } else if (number == 13) {
                     tiles[x][y] = 18;
                 } else if (number == 14) {
-                    tiles[x][y] = 19;
+                    tiles[x][y] = number;
                 } else if (number == 15) {
                     tiles[x][y] = 20;
                 } else if (number == 107) {
@@ -514,46 +517,57 @@ public class Layer extends Entity {
         }
     }
 
+
     @Override
-    public void draw(GameView gv) {
-        // Calculate which treesTiles are visible at the current scroll position.
-        //float offset = game.getEntity(Movement.class).z;
-        int startX = (int) (game.getEntity(Player.class).getX() - 7);
-        int startY = (int) (game.getEntity(Player.class).getY() - (game.getHeight() /2));
-        int endX = startX + 18;
-        int endY = (int) (startY + game.getHeight() + 1) + 1;
+        public void draw (GameView gv){
+            // Calculate which treesTiles are visible at the current scroll position.
+            //float offset = game.getEntity(Movement.class).z;
+            int startX = (int) (game.getEntity(Player.class).getX() - 7);
+            int startY = (int) (game.getEntity(Player.class).getY() - (game.getHeight() / 2));
+            int endX = startX + 18;
+            int endY = (int) (startY + game.getHeight() + 1) + 1;
 
-        int tile = 0;
-        if (startX < 0){
-            startX = 0;
-        }
+            int tile = 0;
+            if (startX < 0) {
+                startX = 0;
+            }
 
-        if (endX >= tiles.length){
-            endX = tiles.length-1;
-        }
+            if (endX >= tiles.length) {
+                endX = tiles.length - 1;
+            }
 
-        if (startY < 0){
-            startY = 0;
-        }
+            if (startY < 0) {
+                startY = 0;
+            }
 
-        if (endY >= tiles.length){
-            endY = tiles.length-1;
-        }
+            if (endY >= tiles.length) {
+                endY = tiles.length - 1;
+            }
 
-        // Draw any visible tiles.
-        for(int x = startX; x < endX; x++) {
-            for (int y = startY; y < endY; y++) {
-                // Ground
-                tile = tiles[x][y];
-                if (tile != 0){
-                    if (spriteBitmaps[tile] == null) {
-                        // Load/decode bitmaps before we first draw them.
-                        spriteBitmaps[tile] = gv.getBitmapFromResource(spriteResourceIds[tile]);
+            if (map_sheet == null) {
+                map_sheet = SpriteSheet.createSheetFromTileSize(gv.getBitmapFromResource(R.drawable.tileset), 32, 32);
+            }
+
+            // Draw any visible tiles.
+            for (int x = startX; x < endX; x++) {
+                for (int y = startY; y < endY; y++) {
+                    // Ground
+                    tile = tiles[x][y];
+                    if (tile != 0) {
+
+                        if (tile == 2 || tile == 14) {
+                            map_sheet.drawFrame(tile-1, gv.getCanvas(), new RectF(x - game.getEntity(Player.class).getX() + 7, y - (game.getEntity(Player.class).getY() - (game.getHeight() / 2)), (x - game.getEntity(Player.class).getX() + 7) + 1, (y - (game.getEntity(Player.class).getY() - (game.getHeight() / 2))) + 1));
+                        } else {
+                            if (spriteBitmaps[tile] == null) {
+                                // Load/decode bitmaps before we first draw them.
+                                spriteBitmaps[tile] = gv.getBitmapFromResource(spriteResourceIds[tile]);
+                            }
+                            gv.drawBitmap(spriteBitmaps[tile], x - game.getEntity(Player.class).getX() + 7, y - (game.getEntity(Player.class).getY() - (game.getHeight() / 2)), 1, 1);
+                        }
                     }
-                    gv.drawBitmap(spriteBitmaps[tile], x - game.getEntity(Player.class).getX() + 7,y - (game.getEntity(Player.class).getY() - (game.getHeight() /2)), 1, 1);
                 }
             }
         }
     }
 
-}
+
