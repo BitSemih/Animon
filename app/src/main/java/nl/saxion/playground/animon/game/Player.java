@@ -57,10 +57,11 @@ public class Player extends Entity implements KeyListener {
     @Override
     public void draw(GameView gv) {
         super.draw(gv);
-
-        //Draw the player sprite
-        spriteBitmaps[1] = gv.getBitmapFromResource(spriteResourceIds[1]);
-        gv.drawBitmap(spriteBitmaps[1], 7,(int)(game.getHeight()/2) + 1, 1, 1);
+        if (state == 0){
+            //Draw the player sprite
+            spriteBitmaps[1] = gv.getBitmapFromResource(spriteResourceIds[1]);
+            gv.drawBitmap(spriteBitmaps[1], 7,(int)(game.getHeight()/2) + 1, 1, 1);
+        }
     }
 
     @Override

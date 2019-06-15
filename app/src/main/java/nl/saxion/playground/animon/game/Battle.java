@@ -34,7 +34,8 @@ public class Battle extends Entity {
                 platformBitmap = gv.getBitmapFromResource(battlePlatform);
             }
             gv.drawBitmap(backgroundBitmap, 0, 0, game.getWidth(), game.getHeight());
-            gv.drawBitmap(platformBitmap, 4, 5, 4, 1);
+            gv.drawBitmap(platformBitmap, game.getWidth()-7.5f, game.getHeight()*0.5f, 7, 2);
+            gv.drawBitmap(platformBitmap, 0.5f, game.getHeight()-5, 8, 2);
         }
     }
 }
