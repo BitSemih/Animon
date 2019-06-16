@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import org.json.JSONArray;
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 import nl.saxion.playground.animon.R;
 import nl.saxion.playground.animon._lib.Entity;
@@ -23,8 +24,19 @@ public class Layer extends Entity {
     static private Bitmap[] spriteBitmaps;
 
     // The list of resource ids to draw each tile type with.
+
+    static private HashMap<Integer, Integer> spriteMap = new HashMap<>();
+
+    static{
+        spriteMap.put(759,     R.drawable.s_0759);
+
+    }
+
+
     static private final int[] spriteResourceIds = {0,
+
             R.drawable.sprite_0000,    //1
+
             R.drawable.s_0041,    //2
             R.drawable.s_0042,    //3
             R.drawable.s_0664,    //4
@@ -63,6 +75,7 @@ public class Layer extends Entity {
             R.drawable.s_0163,       //33
             R.drawable.s_0164,      //34
             R.drawable.s_0165,       //35
+
 
 
             // grass road
@@ -184,6 +197,7 @@ public class Layer extends Entity {
             R.drawable.sprite_0154, //130
     };
 
+
     public int[][] getTiles() {
         return tiles;
     }
@@ -222,8 +236,8 @@ public class Layer extends Entity {
                     tiles[x][y] = 8;
                 } else if (number == 758) {
                     tiles[x][y] = 9;
-                } else if (number == 759) {
-                    tiles[x][y] = 10;
+//                } else if (number == 759) {
+//                    tiles[x][y] = 10;
                 } else if (number == 760) {
                     tiles[x][y] = 11;
                 } else if (number == 761) {
@@ -498,8 +512,10 @@ public class Layer extends Entity {
                     tiles[x][y] = 0;
                 }
 
+
                 if (name.equals("Trees") && number != 0 || name.equals("Buildings") && number != 0) {
                     collision.addCollisionTiles(x, y, number);
+
                 }
 
                 x++;

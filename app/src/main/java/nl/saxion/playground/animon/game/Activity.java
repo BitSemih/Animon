@@ -1,6 +1,7 @@
 package nl.saxion.playground.animon.game;
 
 import android.graphics.Typeface;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -19,6 +20,9 @@ public class Activity extends AppCompatActivity {
 
     Game game;
     GameView gameView;
+
+    private MediaPlayer overWorldTheme;
+    private int overworldLength = 0;
 
     private boolean ismenuactive;
 
@@ -41,13 +45,17 @@ public class Activity extends AppCompatActivity {
             game = new Game(loadJSONFromAsset(), pokemonfont, getApplicationContext());
         }
 
+        overWorldTheme = MediaPlayer.create(getApplicationContext(), R.raw.accumula_town_orchestraded);
+        overWorldTheme.start();
+        overWorldTheme.setLooping(true);
+
         menuButtonsToggle();
 
         findViewById(R.id.buttonMenu).setOnTouchListener(new RepeatListener(250, 250, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 game.getEntity(KeyEntity.class).onKeyPress("menu");
-                if (ismenuactive){
+                if (ismenuactive) {
                     ismenuactive = false;
                 } else {
                     ismenuactive = true;
@@ -71,8 +79,8 @@ public class Activity extends AppCompatActivity {
         });
     }
 
-    public void menuButtonsToggle(){
-        if (ismenuactive){
+    public void menuButtonsToggle() {
+        if (ismenuactive) {
             //When the menu is open assign up and down to menu control buttons
             findViewById(R.id.buttonUp).setOnTouchListener(new RepeatListener(500, 500, new View.OnClickListener() {
                 @Override
@@ -157,11 +165,16 @@ public class Activity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         gameView.setGame(game);
+        overWorldTheme.seekTo(overworldLength);
+        overWorldTheme.start();
+
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         gameView.setGame(null);
+        overWorldTheme.pause();
+        overworldLength = overWorldTheme.getCurrentPosition();
     }
 }
