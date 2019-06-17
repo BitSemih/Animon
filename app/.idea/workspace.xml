@@ -10,108 +10,12 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f4cd832c-2e18-4f98-9d72-8cd5e37da6d8" name="Default Changelist" comment="Reworked the buttons and started with making the walking fluid">
+    <list default="true" id="f4cd832c-2e18-4f98-9d72-8cd5e37da6d8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/game/Layer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/game/Layer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/s_0002.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/s_0011.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/s_0012.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/s_0013.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/s_0014.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/s_0015.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/s_0016.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/s_0041.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/s_0042.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/s_0077.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/s_0078.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/s_0079.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/s_0080.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/s_0081.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/s_0082.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/s_0135.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/s_0160.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/s_0161.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/s_0162.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/s_0163.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/s_0164.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/s_0165.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/s_0664.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/s_0665.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/s_0666.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/s_0667.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/s_0668.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/s_0741.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/s_0742.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/s_0743.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/s_0744.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/s_0745.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/s_0758.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/s_0759.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/s_0760.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/s_0761.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/s_0762.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/s_0811.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/s_0812.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/s_0813.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/s_0814.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/s_0815.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/s_0852.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/s_0853.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/s_0854.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/s_0876.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/s_0877.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/s_0878.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/sprite_0005.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/sprite_0017.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/sprite_0018.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/sprite_0019.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/sprite_0020.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/sprite_0021.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/sprite_0022.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/sprite_0026.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/sprite_0027.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/sprite_0028.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/sprite_0029.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/sprite_0030.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/sprite_0031.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/sprite_0083.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/sprite_0084.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/sprite_0085.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/sprite_0086.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/sprite_0087.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/sprite_0088.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/sprite_0092.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/sprite_0093.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/sprite_0094.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/sprite_0095.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/sprite_0096.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/sprite_0097.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/sprite_0166.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/sprite_0167.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/sprite_0168.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/sprite_0169.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/sprite_0170.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/sprite_0171.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/sprite_0175.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/sprite_0176.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/sprite_0177.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/sprite_0178.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/sprite_0179.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/sprite_0180.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/sprite_0837.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/sprite_0838.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/sprite_0839.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/sprite_0906.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/sprite_0907.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/sprite_0908.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/sprite_0909.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/sprite_0975.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/sprite_0976.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/sprite_0977.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/sprite_0978.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/sprite_1056.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/sprite_1057.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/sprite_1058.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/../.gradle/" />
     <ignored path="$PROJECT_DIR$/build/classes/" />
@@ -171,12 +75,22 @@
     </system>
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_main.xml">
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" column="45" selection-start-line="6" selection-start-column="45" selection-end-line="6" selection-end-column="45" />
+            </state>
+          </provider>
+          <provider selected="true" editor-type-id="android-designer2" />
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/game/Layer.java">
+        <entry file="file://$PROJECT_DIR$/src/main/res/values/strings.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="85">
-              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+              <caret line="5" column="31" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -211,21 +125,29 @@
         <option value="$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/game/Ground.java" />
         <option value="$PROJECT_DIR$/src/main/assets/tiles.json" />
         <option value="$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/_lib/RepeatListener.java" />
-        <option value="$PROJECT_DIR$/src/main/res/layout/activity_animon.xml" />
         <option value="$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/game/Animon.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/game/Movement.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/game/Tiles.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/game/Game.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/animons/AttackMove.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/animons/Animon.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/animons/Bear.java" />
         <option value="$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/game/Activity.java" />
         <option value="$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/game/Movement.java" />
         <option value="$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/game/Player.java" />
-        <option value="$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/game/Tiles.java" />
-        <option value="$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/game/Layer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/MainActivity.java" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/activity_animon.xml" />
+        <option value="$PROJECT_DIR$/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/activity_main.xml" />
+        <option value="$PROJECT_DIR$/src/main/res/values/strings.xml" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-11" />
-    <option name="y" value="-11" />
-    <option name="width" value="1460" />
-    <option name="height" value="791" />
+    <option name="x" value="-12" />
+    <option name="y" value="-12" />
+    <option name="width" value="1461" />
+    <option name="height" value="792" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -262,12 +184,22 @@
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
               <item name="animon" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="animons" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Animon" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="animon" type="cbb59c9e:AndroidPsiDirectoryNode" />
               <item name="game" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Animon" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="assets" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="animon" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="game" type="462c0819:PsiDirectoryNode" />
+              <item name="menu" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Animon" type="1abcf292:AndroidViewProjectNode" />
@@ -286,11 +218,14 @@
               <item name="res" type="d4f16f75:AndroidResFolderNode" />
               <item name="values" type="ddeffd01:AndroidResFolderTypeNode" />
             </path>
+            <path>
+              <item name="Animon" type="1abcf292:AndroidViewProjectNode" />
+              <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -330,10 +265,12 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
     <property name="device.picker.selection" value="Nexus_5X_API_28" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../12/app" />
   </component>
@@ -455,7 +392,14 @@
       <option name="project" value="LOCAL" />
       <updated>1558040236308</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Changed the startmenu and made the app portrait mode only">
+      <created>1560343434330</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1560343434330</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -472,12 +416,12 @@
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info id="Captures" order="8" side_tool="true" weight="0.25" />
       <window_info id="Capture Tool" order="9" />
-      <window_info anchor="bottom" id="Android Profiler" order="0" />
-      <window_info anchor="bottom" id="Logcat" order="1" weight="0.41495124" />
+      <window_info anchor="bottom" id="Android Profiler" order="0" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Logcat" order="1" weight="0.39127046" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.4582882" />
       <window_info anchor="bottom" id="Debug" order="3" />
       <window_info anchor="bottom" id="Terminal" order="4" />
-      <window_info anchor="bottom" id="Event Log" order="5" side_tool="true" />
+      <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.5002667" side_tool="true" weight="0.4171181" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Build" order="8" weight="0.4171181" />
@@ -496,52 +440,11 @@
     <MESSAGE value="Added collisions with trees" />
     <MESSAGE value="Reworked camera controls" />
     <MESSAGE value="Reworked the buttons and started with making the walking fluid" />
-    <option name="LAST_COMMIT_MESSAGE" value="Reworked the buttons and started with making the walking fluid" />
+    <MESSAGE value="Changed the startmenu and made the app portrait mode only" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed the startmenu and made the app portrait mode only" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/game/SwipeListener.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/game/SwipeEntity.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/s_0665.png" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/game/KeyListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/s_0041.png" />
-    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/s_0042.png" />
-    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_main.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/game/Trees.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/game/Ground.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/game/Path.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="19" column="9" selection-start-line="14" selection-start-column="57" selection-end-line="19" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/_lib/RepeatListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="742">
-          <caret line="59" column="5" selection-start-line="59" selection-start-column="5" selection-end-line="59" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#968#1461#0" expanded="true" />
-            <element signature="e#1460#1461#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/assets/tiles.json" />
-    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/button_up.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/button_right.png">
+    <entry file="file://$PROJECT_DIR$/src/main/res/mipmap-xhdpi/ic_launcher.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/res/drawable/button_down.png">
@@ -606,24 +509,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/game/Tiles.java" />
-    <entry file="file://$PROJECT_DIR$/../local.properties">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../settings.gradle">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_example.xml" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/game/KeyListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="11" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
+        <state relative-caret-position="187">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/game/KeyEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="807">
+          <caret line="54" column="37" selection-start-line="54" selection-start-column="37" selection-end-line="54" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/game/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="16" column="39" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
+        <state relative-caret-position="272">
+          <caret line="24" column="39" selection-start-line="24" selection-start-column="39" selection-end-line="24" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -631,7 +538,18 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/assets/map.json">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7667">
+          <caret line="25" column="9" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/animons/Chicken.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/game/Map.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -640,26 +558,102 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/s_0078.png" />
-    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/s_0080.png" />
-    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/s_0011.png" />
-    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/s_0162.png" />
-    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/s_0758.png" />
-    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/sprite_0005.png" />
-    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/sprite_0019.png" />
-    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/sprite_0026.png" />
-    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/s_0812.png" />
     <entry file="file://$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/game/Layer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+        <state relative-caret-position="2346">
+          <caret line="151" selection-start-line="151" selection-end-line="151" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/game/Collision.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/game/Activity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2176">
+          <caret line="147" column="5" selection-start-line="147" selection-start-column="5" selection-end-line="147" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="11" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="27" column="5" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="47" selection-start-line="15" selection-start-column="46" selection-end-line="15" selection-end-column="47" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-manifest" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/_lib/Entity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="38" column="58" selection-start-line="38" selection-start-column="58" selection-end-line="38" selection-end-column="58" />
+          <folding>
+            <element signature="e#590#591#0" expanded="true" />
+            <element signature="e#618#619#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/_lib/GameModel.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="82">
+          <caret line="17" column="19" lean-forward="true" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/animon_menu.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/menu_select_arrow.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/onscreen_menu_background.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/background.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_animon.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="55" selection-start-line="2" selection-start-column="55" selection-end-line="2" selection-end-column="55" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_main.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="45" selection-start-line="6" selection-start-column="45" selection-end-line="6" selection-end-column="45" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <caret line="5" column="31" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
         </state>
       </provider>
     </entry>
