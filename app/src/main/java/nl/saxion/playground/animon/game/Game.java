@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.util.Log;
 
+import nl.saxion.playground.animon.R;
 import nl.saxion.playground.animon._lib.GameModel;
 import nl.saxion.playground.animon.game.menu.Help;
 import nl.saxion.playground.animon.game.menu.Inventory;
@@ -52,6 +53,8 @@ public class Game extends GameModel {
         addEntity(loadGame);
         addEntity(inventory);
         addEntity(help);
+
+        addEntity(new Battle(R.drawable.s_battle_background, this, R.drawable.s_battle_platform, R.drawable.s_battle_message_box, pokemonfont));
 
 //        addEntity(new Bear(this, "Bear", 100, 2, 0));
 
