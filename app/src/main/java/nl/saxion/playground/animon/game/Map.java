@@ -10,8 +10,8 @@ import nl.saxion.playground.animon._lib.Entity;
 
 public class Map extends Entity {
 
-    private static final int width = 128;
-    private static final int height = 128;
+    private static final int width = 256;
+    private static final int height = 256;
 
     private static final String TAG = "Map";
 

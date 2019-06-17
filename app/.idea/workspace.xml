@@ -117,7 +117,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/game/KeyListener.java" />
         <option value="$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/game/SwipeEntity.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/game/KeyEntity.java" />
         <option value="$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/game/Path.java" />
         <option value="$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/game/Trees.java" />
         <option value="$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/game/Ground.java" />
@@ -131,8 +133,7 @@
         <option value="$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/animons/Animon.java" />
         <option value="$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/animons/Bear.java" />
         <option value="$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/game/Activity.java" />
-        <option value="$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/game/KeyListener.java" />
-        <option value="$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/game/KeyEntity.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/game/Movement.java" />
         <option value="$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/game/Player.java" />
         <option value="$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/MainActivity.java" />
         <option value="$PROJECT_DIR$/src/main/res/layout/activity_animon.xml" />
@@ -422,8 +423,8 @@
       <window_info anchor="bottom" id="Terminal" order="4" />
       <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.5002667" side_tool="true" weight="0.4171181" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32936078" />
-      <window_info anchor="bottom" id="Build" order="8" sideWeight="0.49973333" visible="true" weight="0.4171181" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Build" order="8" weight="0.4171181" />
       <window_info anchor="bottom" id="Find" order="9" weight="0.32936078" />
       <window_info anchor="right" id="Capture Analysis" order="0" />
       <window_info anchor="right" id="Gradle" order="1" />
@@ -432,7 +433,6 @@
       <window_info anchor="right" id="Device File Explorer" order="4" side_tool="true" />
       <window_info anchor="right" id="Preview" order="5" />
       <window_info anchor="right" id="Assistant" order="6" weight="0.3298887" />
-      <window_info anchor="right" id="PlantUML" order="7" />
     </layout>
   </component>
   <component name="VcsManagerConfiguration">
@@ -447,92 +447,65 @@
     <entry file="file://$PROJECT_DIR$/src/main/res/mipmap-xhdpi/ic_launcher.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" />
-    <entry file="file://$PROJECT_DIR$/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png">
+    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/button_down.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/mipmap-xxhdpi/ic_launcher_round.png">
+    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/background.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/mipmap-xhdpi/ic_launcher_round.png">
+    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/button_left.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/mipmap-xxhdpi/ic_launcher.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/mipmap-xxxhdpi/ic_launcher.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" />
-    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/s_0853.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/s_0852.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/s_0666.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/s_0759.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/s_0854.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/s_0015.png" />
-    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/s_0016.png" />
-    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/s_0041.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/s_0077.png" />
-    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/s_0078.png" />
-    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/s_0080.png" />
-    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/s_0011.png" />
-    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/s_0162.png" />
-    <entry file="file://$PROJECT_DIR$/src/main/res/mipmap-hdpi/ic_launcher_round.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/mipmap-hdpi/ic_launcher.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/mipmap-mdpi/ic_launcher_round.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/s_0758.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/animons/Elephant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_animon.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="1768">
+          <caret line="104" column="37" selection-start-line="104" selection-start-column="37" selection-end-line="104" selection-end-column="37" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/animons/AttackMove.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/_lib/GameView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="44" selection-start-column="44" selection-end-column="44" />
-          <folding>
-            <element signature="e#511#512#0" expanded="true" />
-            <element signature="e#547#548#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="844">
+          <caret line="125" column="16" selection-start-line="125" selection-start-column="16" selection-end-line="125" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/animons/Animon.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/game/Activity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="439">
-          <caret line="45" column="5" selection-start-line="45" selection-start-column="5" selection-end-line="45" selection-end-column="5" />
+        <state relative-caret-position="1054">
+          <caret line="79" column="5" selection-start-line="79" selection-start-column="5" selection-end-line="79" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/game/KeyEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="30" column="38" selection-start-line="30" selection-start-column="38" selection-end-line="30" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#291#292#0" expanded="true" />
+            <element signature="e#323#324#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/animons/Bear.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/game/Animon.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/game/Movement.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/game/Player.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="25" column="12" lean-forward="true" selection-start-line="25" selection-start-column="12" selection-end-line="25" selection-end-column="12" />
+        <state relative-caret-position="493">
+          <caret line="51" column="13" selection-start-line="51" selection-start-column="13" selection-end-line="51" selection-end-column="13" />
+          <folding>
+            <element signature="e#1107#1108#0" expanded="true" />
+            <element signature="e#1132#1133#0" expanded="true" />
+            <element signature="e#1393#1394#0" expanded="true" />
+            <element signature="e#1421#1422#0" expanded="true" />
+            <element signature="e#2276#2277#0" expanded="true" />
+            <element signature="e#2300#2301#0" expanded="true" />
+            <element signature="e#2325#2326#0" expanded="true" />
+            <element signature="e#2349#2350#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -642,7 +615,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/game/Player.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/_lib/GameModel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="82">
           <caret line="17" column="19" lean-forward="true" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
