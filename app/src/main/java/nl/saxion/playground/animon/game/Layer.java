@@ -1,11 +1,8 @@
 package nl.saxion.playground.animon.game;
 
-import android.graphics.Bitmap;
 import android.graphics.RectF;
 
 import org.json.JSONArray;
-
-import java.util.Arrays;
 
 import nl.saxion.playground.animon.R;
 import nl.saxion.playground.animon._lib.Entity;
@@ -40,11 +37,7 @@ public class Layer extends Entity {
             int y = 0;
             for (int i = 0; i < jsonArray.length(); i++) {
                 int number = jsonArray.getInt(i);
-                if (number != 0) {
-                    tiles[x][y] = number;
-                } else {
-                    tiles[x][y] = 0;
-                }
+                tiles[x][y] = number;
 
                 if (name.equals("Trees") && number != 0 || name.equals("Buildings") && number != 0) {
                     collision.addCollisionTiles(x, y, number);
