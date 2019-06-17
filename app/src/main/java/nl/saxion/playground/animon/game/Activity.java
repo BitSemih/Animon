@@ -93,6 +93,8 @@ public class Activity extends AppCompatActivity {
 
             findViewById(R.id.buttonLeft).setEnabled(false);
 
+            System.out.println("DISABLED");
+
         } else {
             //When menu is not open activated all buttons to movement
             findViewById(R.id.buttonUp).setOnTouchListener(new RepeatListener(10, 10, new View.OnClickListener() {
