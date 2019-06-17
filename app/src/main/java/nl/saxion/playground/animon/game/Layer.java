@@ -257,8 +257,15 @@ public class Layer extends Entity {
             }
 
             if (map_sheet == null) {
-                map_sheet = SpriteSheet.createSheetFromColumnsAndRows(gv.getBitmapFromResource(R.drawable.tileset), 94, 150);
+                Bitmap bitmap = gv.getBitmapFromResource(R.drawable.tileset);
+
+             //   int tileSize = (int) (16 * gv.getResources().getDisplayMetrics().density);
+            //    System.out.println(gv.getResources().getDisplayMetrics().density);
+                map_sheet = SpriteSheet.createSheetFromTileSize(gv.getBitmapFromResource(R.drawable.tileset), 16, 16);
+
             }
+
+
 
             // Draw any visible tiles.
             for (int x = startX; x < endX; x++) {

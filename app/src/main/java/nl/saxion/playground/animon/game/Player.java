@@ -81,7 +81,7 @@ public class Player extends Entity implements KeyListener {
 
         if (player_sheet == null) {
             //Load in player sheet
-            player_sheet = SpriteSheet.createSheetFromColumnsAndRows(gv.getBitmapFromResource(R.drawable.s_player_sheet), 12, 1);
+            player_sheet = SpriteSheet.createSheetFromColumnsAndRows(gv.getBitmapFromResource(R.drawable.s_player_sheet),12, 1);
         }
 
         //Look which direction the player is walking

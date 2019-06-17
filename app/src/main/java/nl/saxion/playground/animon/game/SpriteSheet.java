@@ -46,8 +46,8 @@ public class SpriteSheet {
         spriteSheet._columns = pColumns;
         spriteSheet._rows = pRows;
         spriteSheet._frameCount = spriteSheet._rows * spriteSheet._columns;
-        System.out.println(spriteSheet._tilesizeX);
-        System.out.println(spriteSheet._tilesizeY);
+        System.out.println("A:"+spriteSheet._tilesizeX);
+        System.out.println("B:"+spriteSheet._tilesizeY);
         return spriteSheet;
     }
 
