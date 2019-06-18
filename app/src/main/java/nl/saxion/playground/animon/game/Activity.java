@@ -45,7 +45,7 @@ public class Activity extends AppCompatActivity {
             game = new Game(loadJSONFromAsset(), pokemonfont, getApplicationContext());
         }
 
-        overWorldTheme = MediaPlayer.create(getApplicationContext(), R.raw.accumula_town_orchestraded);
+        overWorldTheme = MediaPlayer.create(getApplicationContext(), R.raw.map_music);
         overWorldTheme.start();
         overWorldTheme.setLooping(true);
 

@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mainMenuTheme = MediaPlayer.create(getApplicationContext(),R.raw.main_menu_theme);
+        mainMenuTheme = MediaPlayer.create(getApplicationContext(),R.raw.title_screen);
         mainMenuTheme.start();
         mainMenuTheme.setLooping(true);
 
