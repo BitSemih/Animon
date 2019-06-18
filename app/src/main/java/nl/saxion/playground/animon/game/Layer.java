@@ -17,7 +17,13 @@ public class Layer extends Entity {
 
     private String name;
 
-    private SpriteSheet map_sheet;
+    private float frame;
+
+    private int grassAnimationCount = 0;
+
+    private SpriteSheet map_sheet, grass_sheet;
+
+    private boolean onGrass = false;
 
     public int[][] getTiles() {
         return tiles;
@@ -55,6 +61,17 @@ public class Layer extends Entity {
         }
     }
 
+    @Override
+    public void tick() {
+        frame += 0.02f;
+        if ((int) frame % 2 == 1) {
+            grassAnimationCount++;
+            frame = 0;
+            if (grassAnimationCount == 14) {
+                grassAnimationCount = 0;
+            }
+        }
+    }
 
     @Override
     public void draw(GameView gv) {
@@ -81,18 +98,22 @@ public class Layer extends Entity {
             endY = tiles.length - 1;
         }
 
-        if (map_sheet == null) {
+        if (map_sheet == null || grass_sheet == null) {
             map_sheet = SpriteSheet.createSheetFromTileSize(gv.getBitmapFromResource(R.drawable.tileset), 16, 16);
+            grass_sheet = SpriteSheet.createSheetFromTileSize(gv.getBitmapFromResource(R.drawable.grass_tileset), 16, 16);
         }
 
-
+        float playerX = game.getEntity(Player.class).getX();
+        float playerY = game.getEntity(Player.class).getY();
         // Draw any visible tiles.
         for (int x = startX; x < endX; x++) {
             for (int y = startY; y < endY; y++) {
                 // Ground
                 tile = tiles[x][y];
-                if (tile != 0) {
-                    map_sheet.drawFrame(tile - 1, gv.getCanvas(), new RectF(x - game.getEntity(Player.class).getX() + 7, y - (game.getEntity(Player.class).getY() - (game.getHeight() / 2)), (x - game.getEntity(Player.class).getX() + 7) + 1, (y - (game.getEntity(Player.class).getY() - (game.getHeight() / 2))) + 1));
+                if (tile != 0 && tile != 7) {
+                    map_sheet.drawFrame(tile - 1, gv.getCanvas(), new RectF(x - playerX + 7, y - (playerY - (game.getHeight() / 2)), (x - playerX + 7) + 1, (y - (playerY - (game.getHeight() / 2))) + 1));
+                } else if (tile == 7) {
+                    grass_sheet.drawFrame(grassAnimationCount, gv.getCanvas(), new RectF(x - playerX + 7, y - (playerY - (game.getHeight() / 2)), (x - playerX + 7) + 1, (y - (playerY - (game.getHeight() / 2))) + 1));
                 }
             }
         }
