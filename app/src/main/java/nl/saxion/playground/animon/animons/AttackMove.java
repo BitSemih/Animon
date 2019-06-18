@@ -1,8 +1,6 @@
 package nl.saxion.playground.animon.animons;
 
-import java.io.Serializable;
-
-public class AttackMove implements Serializable {
+public class AttackMove{
     private String moveName;
     private int damage;
     private double succeedChance;

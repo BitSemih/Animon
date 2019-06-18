@@ -32,7 +32,7 @@ public abstract class MenuItem extends Entity {
 
         this.p = new Paint();
         this.p.setColor(Color.BLACK);
-        this.p.setTextSize(1);
+        this.p.setTextSize(0.5f);
         this.p.setTypeface(pokemonfont);
         this.p.setAntiAlias(true);
         this.p.setTextAlign(Paint.Align.CENTER);
@@ -42,12 +42,7 @@ public abstract class MenuItem extends Entity {
     //Drawing the text
     public void draw(GameView gv) {
         if (onscreenMenu.isIsmenuactive()){
-
-            float scaleFactor = 0.5f;
-            gv.getCanvas().save();
-            gv.getCanvas().scale(scaleFactor,scaleFactor);
-            gv.getCanvas().drawText(name, posX/scaleFactor, posY/scaleFactor, p);
-            gv.getCanvas().restore();
+            gv.getCanvas().drawText(name, posX, posY, p);
         }
     }
 }
