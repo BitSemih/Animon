@@ -4,6 +4,9 @@ import android.graphics.RectF;
 
 import org.json.JSONArray;
 
+import java.util.Arrays;
+import java.util.HashMap;
+
 import nl.saxion.playground.animon.R;
 import nl.saxion.playground.animon._lib.Entity;
 import nl.saxion.playground.animon._lib.GameView;
@@ -25,6 +28,7 @@ public class Layer extends Entity {
 
     private boolean onGrass = false;
 
+
     public int[][] getTiles() {
         return tiles;
     }
@@ -45,8 +49,10 @@ public class Layer extends Entity {
                 int number = jsonArray.getInt(i);
                 tiles[x][y] = number;
 
+
                 if (name.equals("Trees") && number != 0 || name.equals("Buildings") && number != 0) {
                     collision.addCollisionTiles(x, y, number);
+
                 }
 
                 x++;
