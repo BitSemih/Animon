@@ -1,7 +1,5 @@
 package nl.saxion.playground.animon.game;
 
-import android.graphics.Bitmap;
-import android.graphics.Matrix;
 import android.graphics.RectF;
 
 import java.util.ArrayList;
@@ -34,11 +32,6 @@ public class Player extends Entity implements KeyListener {
     private boolean walking = false;
     private float frame = 0;
     private SpriteSheet player_sheet;
-
-    static private final int[] spriteResourceIds = {0, R.drawable.s_player, R.drawable.s_player_down, R.drawable.s_player_up, R.drawable.s_player_walk0, R.drawable.s_player_walk1, R.drawable.s_player_up_walk0, R.drawable.s_player_up_walk1, R.drawable.s_player_down_walk0, R.drawable.s_player_down_walk1};
-
-    // When resources are first used, the decoded Bitmap is written to this array, as a cache.
-    static private Bitmap bitmapFaceRight, bitmapWalkRight1, bitmapWalkRight2, bitmapFaceLeft, bitmapWalkLeft1, bitmapWalkLeft2, bitmapFaceUp, bitmapFaceDown, bitmapWalkUp1, bitmapWalkUp2, bitmapWalkDown1, bitmapWalkDown2;
 
     private ArrayList<Animon> animonArrayList = new ArrayList<>();
 
