@@ -135,7 +135,6 @@
         <option value="$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/game/Animon.java" />
         <option value="$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/game/Activity.java" />
         <option value="$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/game/Movement.java" />
-        <option value="$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/game/Player.java" />
         <option value="$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/game/Tiles.java" />
         <option value="$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/game/Layer.java" />
         <option value="$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/MainActivity.java" />
@@ -143,10 +142,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-11" />
-    <option name="y" value="-11" />
-    <option name="width" value="1460" />
-    <option name="height" value="791" />
+    <option name="x" value="-12" />
+    <option name="y" value="-12" />
+    <option name="width" value="1461" />
+    <option name="height" value="792" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -371,7 +370,7 @@
     <frame x="-7" y="-7" width="1935" height="1055" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18613334" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18613334" />
       <window_info id="Structure" order="1" side_tool="true" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -381,7 +380,7 @@
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info id="Captures" order="8" side_tool="true" weight="0.25" />
       <window_info id="Capture Tool" order="9" />
-      <window_info anchor="bottom" id="Android Profiler" order="0" />
+      <window_info anchor="bottom" id="Android Profiler" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Logcat" order="1" weight="0.41495124" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.4582882" />
       <window_info anchor="bottom" id="Debug" order="3" />
@@ -390,7 +389,8 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" visible="true" weight="0.32936078" />
       <window_info anchor="bottom" id="Build" order="8" weight="0.4171181" />
-      <window_info anchor="bottom" id="Find" order="9" weight="0.32936078" />
+      <window_info active="true" anchor="bottom" id="Find" order="9" visible="true" weight="0.32936078" />
+      <window_info anchor="right" id="PlantUML" />
       <window_info anchor="right" id="Capture Analysis" order="0" />
       <window_info anchor="right" id="Gradle" order="1" />
       <window_info anchor="right" id="Theme Preview" order="2" />
@@ -467,13 +467,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="844">
           <caret line="125" column="16" selection-start-line="125" selection-start-column="16" selection-end-line="125" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nl/saxion/playground/animon/game/Activity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1054">
-          <caret line="79" column="5" selection-start-line="79" selection-start-column="5" selection-end-line="79" selection-end-column="5" />
         </state>
       </provider>
     </entry>
