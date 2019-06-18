@@ -38,7 +38,7 @@ public class Activity extends AppCompatActivity {
             game = (Game) savedInstanceState.getSerializable("game");
         } else {
             Typeface pokemonfont = Typeface.createFromAsset(getAssets(), "pokemonfont.ttf");
-            game = new Game(loadJSONFromAsset(), pokemonfont);
+            game = new Game(loadJSONFromAsset(), pokemonfont, getApplicationContext());
         }
 
         menuButtonsToggle();

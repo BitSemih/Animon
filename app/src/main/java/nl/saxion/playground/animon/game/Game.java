@@ -1,5 +1,6 @@
 package nl.saxion.playground.animon.game;
 
+import android.content.Context;
 import android.graphics.Typeface;
 import android.util.Log;
 
@@ -14,10 +15,12 @@ public class Game extends GameModel {
 
     private String jsonString =  "";
     private Typeface pokemonfont;
+    private Context context;
 
-    public Game(String jsonString, Typeface pokemonfont) {
+    public Game(String jsonString, Typeface pokemonfont, Context context) {
         this.jsonString = jsonString;
         this.pokemonfont = pokemonfont;
+        this.context = context;
     }
 
     @Override
@@ -29,7 +32,7 @@ public class Game extends GameModel {
 
         addEntity(new Player(this, collision));
 
-        Menu menu = new Menu(this);
+        Menu menu = new Menu(this, this.context);
 
         addEntity(menu);
 
