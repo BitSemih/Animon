@@ -10,6 +10,7 @@ import nl.saxion.playground.animon.R;
 import nl.saxion.playground.animon._lib.Entity;
 import nl.saxion.playground.animon._lib.GameView;
 import nl.saxion.playground.animon.animons.Animon;
+import nl.saxion.playground.animon.animons.AttackMove;
 import nl.saxion.playground.animon.animons.Bear;
 import nl.saxion.playground.animon.animons.Chicken;
 
@@ -26,7 +27,7 @@ public class Battle extends Entity implements KeyListener {
     private char[] welcomeMessageLetters;
     private boolean nextMessageTrigger = false;
     private Bitmap menuSelectorBitmap;
-    private float[] menuSelectorPositions = new float[3];
+    private float[] menuSelectorPositions = new float[3], attackMovesXPositions = new float[4];
     private boolean isBattleActive = false;
     private boolean isBattleOngoing = false;
 
@@ -73,7 +74,7 @@ public class Battle extends Entity implements KeyListener {
             //do walk stuff
             addLetterToWelcomeMessage();
             frame = 0;
-            if (messageDelay < 10){
+            if (messageDelay < 10) {
                 messageDelay++;
             }
         }
@@ -93,54 +94,72 @@ public class Battle extends Entity implements KeyListener {
             gv.drawBitmap(backgroundBitmap, 0, 0, game.getWidth(), game.getHeight());
             gv.drawBitmap(platformBitmap, game.getWidth() - 7.5f, game.getHeight() * 0.5f, 7, 2);
             gv.drawBitmap(platformBitmap, 0.5f, game.getHeight() - 5, 8, 2);
-            if (!isBattleOngoing){
+            if (!isBattleOngoing) {
                 gv.drawBitmap(messageBoxBitmap, 0, game.getHeight() - 4, game.getWidth(), 4);
             }
 
             float scaleFactor = 0.5f;
 
             gv.getCanvas().save();
-            gv.getCanvas().scale(scaleFactor,scaleFactor);
+            gv.getCanvas().scale(scaleFactor, scaleFactor);
             //scale the whole gameview to 50%
 
-            if (!nextMessageTrigger || messageDelay < 10){
+            if (!nextMessageTrigger || messageDelay < 10) {
                 //Display the welcome message to a battle
-                gv.getCanvas().drawText(welcomeMessage, 2+(welcomeMessage.length()*0.25f)/scaleFactor, (game.getHeight()-2.5f)/scaleFactor, p);
+                gv.getCanvas().drawText(welcomeMessage, 2 + (welcomeMessage.length() * 0.25f) / scaleFactor, (game.getHeight() - 2.5f) / scaleFactor, p);
             } else if (!isBattleOngoing) {
-                // when the welcome message is over display the selector and battle options
-                if (fightX == 0 || animonsX == 0 || runX == 0){
-                    fightX = 2.5f/scaleFactor;
-                    animonsX = (game.getWidth()/2)/scaleFactor;
-                    runX = (game.getWidth()-2.5f)/scaleFactor;
+                // Player is presented with options after welcome message
+                if (fightX == 0 || animonsX == 0 || runX == 0) {
+                    fightX = 2.5f / scaleFactor;
+                    animonsX = (game.getWidth() / 2) / scaleFactor;
+                    runX = (game.getWidth() - 2.5f) / scaleFactor;
                     menuSelectorPositions[0] = 1;
-                    menuSelectorPositions[1] = animonsX-5f;
-                    menuSelectorPositions[2] = runX-3;
+                    menuSelectorPositions[1] = animonsX - 5f;
+                    menuSelectorPositions[2] = runX - 3;
                 }
-                gv.getCanvas().drawText("FIGHT", fightX, (game.getHeight()-2.5f)/scaleFactor, p);
-                gv.getCanvas().drawText("ANIMONS", animonsX, (game.getHeight()-2.5f)/scaleFactor, p);
-                gv.getCanvas().drawText("RUN", runX, (game.getHeight()-2.5f)/scaleFactor, p);
-                gv.drawBitmap(menuSelectorBitmap, menuSelectorPositions[currentSelector], (game.getHeight()*2)-6, 1,1);
-            } else if (isBattleOngoing){
-                System.out.println("battle started");
-                gv.drawBitmap(whatWillPlayerDoBitmap, 0, (game.getHeight() - 4)/scaleFactor , game.getWidth()-4, 8);
-                gv.getCanvas().drawText("What will", 3.5f/scaleFactor , (game.getHeight()-2.5f)/scaleFactor, p);
-                gv.getCanvas().drawText(" you do ?", 3/scaleFactor , (game.getHeight()-1.5f)/scaleFactor, p);
-                gv.drawBitmap(attackMoveBoxBitmap, game.getWidth()-4, (game.getHeight() - 4)/scaleFactor , game.getWidth()+4, 8);
-                gv.getCanvas().drawText(playerAnimon.getAttackMoves().get(0).getMoveName(), game.getWidth()+1, (game.getHeight() - 2.5f)/scaleFactor, p);
-                gv.getCanvas().drawText(playerAnimon.getAttackMoves().get(1).getMoveName(), game.getWidth()+1, (game.getHeight() - 1.5f)/scaleFactor, p);
-                gv.getCanvas().drawText(playerAnimon.getAttackMoves().get(2).getMoveName(), game.getWidth()*2 - 5, (game.getHeight() - 2.5f)/scaleFactor, p);
-                gv.getCanvas().drawText(playerAnimon.getAttackMoves().get(3).getMoveName(), game.getWidth()*2 - 5, (game.getHeight() - 1.5f)/scaleFactor, p);
+                gv.getCanvas().drawText("FIGHT", fightX, (game.getHeight() - 2.5f) / scaleFactor, p);
+                gv.getCanvas().drawText("ANIMONS", animonsX, (game.getHeight() - 2.5f) / scaleFactor, p);
+                gv.getCanvas().drawText("RUN", runX, (game.getHeight() - 2.5f) / scaleFactor, p);
+                gv.drawBitmap(menuSelectorBitmap, menuSelectorPositions[currentSelector], (game.getHeight() * 2) - 6, 1, 1);
+            } else if (isBattleOngoing) {
+                //When player has selected FIGHT! option
+
+                //if attackmovespositions is not filled with the positions of the attack move options for the selector
+                if (attackMovesXPositions[0] == 0) {
+                    attackMovesXPositions[0] = game.getWidth() - 3;
+                    attackMovesXPositions[1] = game.getWidth() - 3;
+                    attackMovesXPositions[2] = game.getWidth() + 6;
+                    attackMovesXPositions[3] = game.getWidth() + 6;
+                }
+
+                gv.drawBitmap(whatWillPlayerDoBitmap, 0, (game.getHeight() - 4) / scaleFactor, game.getWidth() - 4, 8);
+                gv.getCanvas().drawText("What will", 3.5f / scaleFactor, (game.getHeight() - 2.5f) / scaleFactor, p);
+                gv.getCanvas().drawText(" you do ?", 3 / scaleFactor, (game.getHeight() - 1.5f) / scaleFactor, p);
+                gv.drawBitmap(attackMoveBoxBitmap, game.getWidth() - 4, (game.getHeight() - 4) / scaleFactor, game.getWidth() + 4, 8);
+
+                //Draw attackmove options for the player
+                gv.getCanvas().drawText(playerAnimon.getAttackMoves().get(0).getMoveName(), game.getWidth() + 1, (game.getHeight() - 2.5f) / scaleFactor, p);
+                gv.getCanvas().drawText(playerAnimon.getAttackMoves().get(1).getMoveName(), game.getWidth() + 1, (game.getHeight() - 1.5f) / scaleFactor, p);
+                gv.getCanvas().drawText(playerAnimon.getAttackMoves().get(2).getMoveName(), game.getWidth() * 2 - 5, (game.getHeight() - 2.5f) / scaleFactor, p);
+                gv.getCanvas().drawText(playerAnimon.getAttackMoves().get(3).getMoveName(), game.getWidth() * 2 - 5, (game.getHeight() - 1.5f) / scaleFactor, p);
+
+                //Check where the selector is positioned
+                if (currentSelector == 0 || currentSelector == 2) {
+                    gv.drawBitmap(menuSelectorBitmap, attackMovesXPositions[currentSelector], (game.getHeight() - 3) / scaleFactor, 1, 1);
+                } else if (currentSelector == 1 || currentSelector == 3) {
+                    gv.drawBitmap(menuSelectorBitmap, attackMovesXPositions[currentSelector], (game.getHeight() - 2) / scaleFactor, 1, 1);
+                }
             }
             gv.getCanvas().restore();
         }
     }
 
-    public void addLetterToWelcomeMessage(){
+    public void addLetterToWelcomeMessage() {
         //Add a letter to the welcome message every 50 ms
-        if (messageDelay == 10){
-            if (count < welcomeMessageLetters.length){
+        if (messageDelay == 10) {
+            if (count < welcomeMessageLetters.length) {
                 welcomeMessage += welcomeMessageLetters[count];
-            } else if(!nextMessageTrigger) {
+            } else if (!nextMessageTrigger) {
                 nextMessageTrigger = true;
                 messageDelay = 0;
             }
@@ -150,7 +169,6 @@ public class Battle extends Entity implements KeyListener {
 
     @Override
     public void onMenuUpKey() {
-        Log.i(TAG, "onLeftKey: ");
 
     }
 
@@ -161,18 +179,31 @@ public class Battle extends Entity implements KeyListener {
 
     @Override
     public void onUpKey() {
-
+        if (state == 1 && isBattleOngoing && currentSelector == 1){
+            currentSelector = 0;
+        } else if (state == 1 && isBattleOngoing && currentSelector == 3){
+            currentSelector = 2;
+        }
     }
 
     @Override
     public void onDownKey() {
-
+        if (state == 1 && isBattleOngoing && currentSelector == 0){
+            currentSelector = 1;
+        } else if (state == 1 && isBattleOngoing && currentSelector == 2){
+            currentSelector = 3;
+        }
     }
 
     @Override
     public void onAKey() {
-        if (currentSelector == 0 && !isBattleOngoing){
+        System.out.println(count);
+        if (currentSelector == 0 && !isBattleOngoing && nextMessageTrigger) {
             isBattleOngoing = true;
+        }
+        if (isBattleOngoing){
+            // Perform selected attack move
+            performAttackMove(currentSelector);
         }
     }
 
@@ -183,22 +214,38 @@ public class Battle extends Entity implements KeyListener {
 
     @Override
     public void onRightKey() {
-        if (state == 1 && currentSelector < 2){
+        if (state == 1 && !isBattleOngoing && currentSelector < 2) {
+            //Battle options menu
             currentSelector++;
+        } else if (state == 1 && isBattleOngoing && currentSelector == 0){
+            //Attack moves menu
+            currentSelector = 2;
+        } else if (state == 1 && isBattleOngoing && currentSelector == 1){
+            //Attack moves menu
+            currentSelector = 3;
         }
-        Log.i(TAG, "onRightKey: ");
     }
 
     @Override
     public void onLeftKey() {
-        if (state == 1 && currentSelector > 0){
+        if (state == 1 && currentSelector > 0 && !isBattleOngoing) {
             currentSelector--;
+        } else if (state == 1 && isBattleOngoing && currentSelector == 2){
+            //Attack moves menu
+            currentSelector = 0;
+        } else if (state == 1 && isBattleOngoing && currentSelector == 3){
+            //Attack moves menu
+            currentSelector = 1;
         }
-        Log.i(TAG, "onLeftKey: ");
     }
 
     @Override
     public void onMenuKey() {
 
+    }
+
+    public void performAttackMove(int attackMoveNumber){
+        //player or npc doesnt matter
+        AttackMove currentAttackMove = playerAnimon.getAttackMoves().get(attackMoveNumber);
     }
 }

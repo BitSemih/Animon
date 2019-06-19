@@ -97,9 +97,8 @@ public class Activity extends AppCompatActivity {
 
             System.out.println("DISABLED");
 
-        } else if(game.getState() == 0){
-            //When a battle is active
-            System.out.println("battle is active");
+        } else if(isBattleActive){
+            //When a battle is active assign keys with higher intervals
             findViewById(R.id.buttonLeft).setOnTouchListener(new RepeatListener(500, 500, new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -114,11 +113,21 @@ public class Activity extends AppCompatActivity {
                 }
             }));
 
-            //Disable left and right buttons
-            findViewById(R.id.buttonUp).setEnabled(false);
+            findViewById(R.id.buttonUp).setOnTouchListener(new RepeatListener(500, 500, new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    game.getEntity(KeyEntity.class).onKeyPress("up");
+                }
+            }));
 
-            findViewById(R.id.buttonDown).setEnabled(false);
+            findViewById(R.id.buttonDown).setOnTouchListener(new RepeatListener(500, 500, new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    game.getEntity(KeyEntity.class).onKeyPress("down");
+                }
+            }));
 
+            //Disable menu button
             findViewById(R.id.buttonMenu).setEnabled(false);
 
         } else {
@@ -143,10 +152,6 @@ public class Activity extends AppCompatActivity {
             findViewById(R.id.buttonLeft).setEnabled(true);
 
             findViewById(R.id.buttonMenu).setEnabled(true);
-
-            findViewById(R.id.buttonDown).setEnabled(true);
-
-            findViewById(R.id.buttonUp).setEnabled(true);
 
             findViewById(R.id.buttonRight).setOnTouchListener(new RepeatListener(10, 10, new View.OnClickListener() {
                 @Override
