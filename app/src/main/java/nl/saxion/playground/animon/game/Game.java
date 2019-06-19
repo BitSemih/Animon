@@ -6,6 +6,8 @@ import android.util.Log;
 
 import nl.saxion.playground.animon.R;
 import nl.saxion.playground.animon._lib.GameModel;
+import nl.saxion.playground.animon.animons.Bear;
+import nl.saxion.playground.animon.animons.Chicken;
 import nl.saxion.playground.animon.game.menu.Help;
 import nl.saxion.playground.animon.game.menu.Inventory;
 import nl.saxion.playground.animon.game.menu.LoadGame;
@@ -55,9 +57,13 @@ public class Game extends GameModel {
         addEntity(inventory);
         addEntity(help);
 
+        addEntity(new Chicken(this, "Chicken", 100, 1, 0));
+
+        addEntity(new Bear(this, "Bear", 100, 2, 0));
+
+
         addEntity(new Battle(R.drawable.s_battle_background, this, R.drawable.s_battle_platform, R.drawable.s_battle_message_box, pokemonfont));
 
-//        addEntity(new Bear(this, "Bear", 100, 2, 0));
 
         Log.i("Game virtual size:", getWidth() + " / " + getHeight());
         Log.i("Game actual size:", actualWidth + " / " + actualHeight);
