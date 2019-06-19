@@ -23,7 +23,6 @@ public class Player extends Entity implements KeyListener {
     private int upperBoundary = 0;
     private int downBoundary = 0;
 
-
     static private final int[] spriteResourceIds = {0, R.drawable.s_player};
 
     // When resources are first used, the decoded Bitmap is written to this array, as a cache.

@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.util.Log;
 
 import nl.saxion.playground.animon.R;
 import nl.saxion.playground.animon._lib.Entity;
@@ -11,6 +12,7 @@ import nl.saxion.playground.animon._lib.GameView;
 import nl.saxion.playground.animon.animons.Animon;
 
 public class Battle extends Entity implements KeyListener {
+    private static final String TAG = "keys";
     private Animon playerAnimon, npcAnimon;
     private int turn, background, battlePlatform, messageBox, count = 0, messageDelay, currentSelector = 0;
     private Bitmap backgroundBitmap, platformBitmap, messageBoxBitmap;
@@ -23,6 +25,7 @@ public class Battle extends Entity implements KeyListener {
     private boolean nextMessageTrigger = false;
     private Bitmap menuSelectorBitmap;
     private float[] menuSelectorPositions = new float[3];
+    private boolean isBattleActive = false;
 
     public Battle(int background, Game game, int battlePlatform, int messageBox, Typeface pokemonfont) {
         this.game = game;
@@ -41,6 +44,12 @@ public class Battle extends Entity implements KeyListener {
         welcomeMessage = "";
         String s = "A wild Mees appeared!";
         this.welcomeMessageLetters = s.toCharArray();
+
+        this.game.getEntity(KeyEntity.class).addKeyListener(this);
+
+        isBattleActive = true;
+
+        this.game.setState(state);
     }
 
     public void startBattle(Animon playerAnimon, Animon npcAnimon) {
@@ -89,14 +98,14 @@ public class Battle extends Entity implements KeyListener {
                     fightX = 2.5f/scaleFactor;
                     animonsX = (game.getWidth()/2)/scaleFactor;
                     runX = (game.getWidth()-2.5f)/scaleFactor;
-                    menuSelectorPositions[0] = fightX-1f;
-                    menuSelectorPositions[1] = animonsX-1f;
-                    menuSelectorPositions[2] = runX-1f;
+                    menuSelectorPositions[0] = 1;
+                    menuSelectorPositions[1] = animonsX-5f;
+                    menuSelectorPositions[2] = runX-3;
                 }
-                gv.getCanvas().drawText("Fight", fightX, (game.getHeight()-2.5f)/scaleFactor, p);
-                gv.getCanvas().drawText("Animons", animonsX, (game.getHeight()-2.5f)/scaleFactor, p);
-                gv.getCanvas().drawText("Run", runX, (game.getHeight()-2.5f)/scaleFactor, p);
-                gv.drawBitmap(menuSelectorBitmap, menuSelectorPositions[currentSelector], game.getHeight()-2.5f, 1,1);
+                gv.getCanvas().drawText("FIGHT", fightX, (game.getHeight()-2.5f)/scaleFactor, p);
+                gv.getCanvas().drawText("ANIMONS", animonsX, (game.getHeight()-2.5f)/scaleFactor, p);
+                gv.getCanvas().drawText("RUN", runX, (game.getHeight()-2.5f)/scaleFactor, p);
+                gv.drawBitmap(menuSelectorBitmap, menuSelectorPositions[currentSelector], (game.getHeight()*2)-6, 1,1);
             }
             gv.getCanvas().restore();
         }
@@ -116,6 +125,7 @@ public class Battle extends Entity implements KeyListener {
 
     @Override
     public void onMenuUpKey() {
+        Log.i(TAG, "onLeftKey: ");
 
     }
 
@@ -146,18 +156,18 @@ public class Battle extends Entity implements KeyListener {
 
     @Override
     public void onRightKey() {
-        if (state == 1 && currentSelector > 0){
-            currentSelector--;
+        if (state == 1 && currentSelector < 2){
+            currentSelector++;
         }
-        System.out.println("right key");
+        Log.i(TAG, "onRightKey: ");
     }
 
     @Override
     public void onLeftKey() {
-        if (state == 1 && currentSelector < 2){
-            currentSelector++;
+        if (state == 1 && currentSelector > 0){
+            currentSelector--;
         }
-        System.out.println("left key");
+        Log.i(TAG, "onLeftKey: ");
     }
 
     @Override

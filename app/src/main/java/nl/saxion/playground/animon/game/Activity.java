@@ -10,6 +10,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 import nl.saxion.playground.animon.R;
+import nl.saxion.playground.animon._lib.Entity;
 import nl.saxion.playground.animon._lib.GameView;
 import nl.saxion.playground.animon._lib.RepeatListener;
 import nl.saxion.playground.animon.game.menu.Menu;
@@ -19,8 +20,9 @@ public class Activity extends AppCompatActivity {
 
     Game game;
     GameView gameView;
+    private int state;
 
-    private boolean ismenuactive;
+    private boolean ismenuactive, isBattleActive = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +43,7 @@ public class Activity extends AppCompatActivity {
             game = new Game(loadJSONFromAsset(), pokemonfont, getApplicationContext());
         }
 
-        menuButtonsToggle();
+        actionButtonsToggle();
 
         findViewById(R.id.buttonMenu).setOnTouchListener(new RepeatListener(250, 250, new View.OnClickListener() {
             @Override
@@ -52,7 +54,7 @@ public class Activity extends AppCompatActivity {
                 } else {
                     ismenuactive = true;
                 }
-                menuButtonsToggle();
+                actionButtonsToggle();
             }
         }));
 
@@ -71,7 +73,7 @@ public class Activity extends AppCompatActivity {
         });
     }
 
-    public void menuButtonsToggle(){
+    public void actionButtonsToggle(){
         if (ismenuactive){
             //When the menu is open assign up and down to menu control buttons
             findViewById(R.id.buttonUp).setOnTouchListener(new RepeatListener(500, 500, new View.OnClickListener() {
@@ -95,6 +97,30 @@ public class Activity extends AppCompatActivity {
 
             System.out.println("DISABLED");
 
+        } else if(game.getState() == 0){
+            //When a battle is active
+            System.out.println("battle is active");
+            findViewById(R.id.buttonLeft).setOnTouchListener(new RepeatListener(500, 500, new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    game.getEntity(KeyEntity.class).onKeyPress("left");
+                }
+            }));
+
+            findViewById(R.id.buttonRight).setOnTouchListener(new RepeatListener(500, 500, new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    game.getEntity(KeyEntity.class).onKeyPress("right");
+                }
+            }));
+
+            //Disable left and right buttons
+            findViewById(R.id.buttonUp).setEnabled(false);
+
+            findViewById(R.id.buttonDown).setEnabled(false);
+
+            findViewById(R.id.buttonMenu).setEnabled(false);
+
         } else {
             //When menu is not open activated all buttons to movement
             findViewById(R.id.buttonUp).setOnTouchListener(new RepeatListener(10, 10, new View.OnClickListener() {
@@ -115,6 +141,12 @@ public class Activity extends AppCompatActivity {
             findViewById(R.id.buttonRight).setEnabled(true);
 
             findViewById(R.id.buttonLeft).setEnabled(true);
+
+            findViewById(R.id.buttonMenu).setEnabled(true);
+
+            findViewById(R.id.buttonDown).setEnabled(true);
+
+            findViewById(R.id.buttonUp).setEnabled(true);
 
             findViewById(R.id.buttonRight).setOnTouchListener(new RepeatListener(10, 10, new View.OnClickListener() {
                 @Override

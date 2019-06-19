@@ -17,6 +17,7 @@ public class Game extends GameModel {
     private String jsonString =  "";
     private Typeface pokemonfont;
     private Context context;
+    private int state;
 
     public Game(String jsonString, Typeface pokemonfont, Context context) {
         this.jsonString = jsonString;
@@ -72,5 +73,13 @@ public class Game extends GameModel {
     public float getHeight() {
         // Height fills actual screen size, but is based on width scaling.
         return actualHeight/actualWidth * getWidth();
+    }
+
+    public void setState(int state){
+        this.state = state;
+    }
+
+    public int getState(){
+        return state;
     }
 }
