@@ -144,8 +144,9 @@ public class Player extends Entity implements KeyListener {
         if (x > rightBoundary - 0.2f) {
             x = rightBoundary;
         }
+
         if (x >= rightBoundary || playerOffsetX < 7) {
-            if (playerOffsetX < game.getWidth() - 1.2f && !collision.checkForCollision(playerOffsetX + 0.1f, playerOffsetY, 0)) {
+            if (playerOffsetX < game.getWidth() - 1.2f && !collision.checkForCollision(playerOffsetX + 0.1f, playerOffsetY, 0) || x <= leftBoundary && !collision.checkForCollision(playerOffsetX + 0.1f, y, 0)) {
                 playerOffsetX += 0.1f;
             }
         } else {
@@ -166,6 +167,7 @@ public class Player extends Entity implements KeyListener {
         if (playerOffsetX < 0.2f) {
             playerOffsetX = 0;
         }
+
         if (x <= leftBoundary || playerOffsetX > 7) {
             if (playerOffsetX > 0) {
                 playerOffsetX -= 0.1f;
