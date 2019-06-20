@@ -1,6 +1,7 @@
 package nl.saxion.playground.animon.game;
 
 import android.graphics.RectF;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -74,7 +75,7 @@ public class Player extends Entity implements KeyListener {
 
         if (player_sheet == null) {
             //Load in player sheet
-            player_sheet = SpriteSheet.createSheetFromColumnsAndRows(gv.getBitmapFromResource(R.drawable.s_player_sheet),12, 1);
+            player_sheet = SpriteSheet.createSheetFromColumnsAndRows(gv.getBitmapFromResource(R.drawable.s_player_sheet), 12, 1);
         }
 
         //Look which direction the player is walking
@@ -144,17 +145,18 @@ public class Player extends Entity implements KeyListener {
             x = rightBoundary;
         }
         if (x >= rightBoundary || playerOffsetX < 7) {
-            if (playerOffsetX < game.getWidth() - 1.2f) {
+            if (playerOffsetX < game.getWidth() - 1.2f && !collision.checkForCollision(playerOffsetX + 0.1f, playerOffsetY, 0)) {
                 playerOffsetX += 0.1f;
             }
         } else {
             if (playerOffsetX != 7) {
                 playerOffsetX = 7;
             }
-            if (!collision.checkForCollision(this.x + 0.3f, this.y, 0)) {
+            if (!collision.checkForCollision(this.x + 0.3f, this.y, 0) || y <= upperBoundary && !collision.checkForCollision(this.x + 0.1f, playerOffsetY, 0) || y >= downBoundary) {
                 x += 0.1f;
             }
         }
+
         this.walkDirection = "right";
         this.walking = true;
     }
@@ -172,10 +174,11 @@ public class Player extends Entity implements KeyListener {
             if (playerOffsetX != 7) {
                 playerOffsetX = 7;
             }
-            if (!collision.checkForCollision(this.x - 0.2f, this.y, 0)) {
+            if (!collision.checkForCollision(this.x - 0.2f, this.y, 0) || y <= upperBoundary && !collision.checkForCollision(this.x - 0.2f, playerOffsetY, 0) || y >= downBoundary) {
                 x -= 0.1f;
             }
         }
+
         this.walkDirection = "left";
         this.walking = true;
     }
@@ -187,17 +190,18 @@ public class Player extends Entity implements KeyListener {
         }
 
         if (y <= upperBoundary || playerOffsetY > cameraCenterY) {
-            if (playerOffsetY > 0) {
+            if (playerOffsetY > 0 && !collision.checkForCollision(this.x, playerOffsetY-0.2f,1) || x <= leftBoundary && !collision.checkForCollision(playerOffsetX, playerOffsetY-0.2f,1) ) {
                 playerOffsetY -= 0.1f;
             }
         } else {
             if (playerOffsetY != cameraCenterY) {
                 playerOffsetY = cameraCenterY;
             }
-            if (!collision.checkForCollision(this.x, this.y - 0.2f, 1)) {
+            if (!collision.checkForCollision(this.x, this.y - 0.2f, 1) || x <= leftBoundary && !collision.checkForCollision(playerOffsetX, y - 0.1f, 1)) {
                 y -= 0.1f;
             }
         }
+
         this.walkDirection = "up";
         this.walking = true;
     }
@@ -209,17 +213,22 @@ public class Player extends Entity implements KeyListener {
         }
 
         if (y >= downBoundary || playerOffsetY < cameraCenterY) {
-            if (playerOffsetY < game.getHeight() - 1.2f) {
+            if (playerOffsetY < game.getHeight() - 1.2f && !collision.checkForCollision(this.x, playerOffsetY + 1.1f, 1) || x <= leftBoundary && !collision.checkForCollision(playerOffsetX, playerOffsetY+1.1f, 1)) {
                 playerOffsetY += 0.1f;
             }
         } else {
             if (playerOffsetY != cameraCenterY) {
                 playerOffsetY = cameraCenterY;
             }
-            if (!collision.checkForCollision(this.x, this.y + 1.1f, 1)) {
+            if (x <= leftBoundary){
+                if(!collision.checkForCollision(playerOffsetX, y + 1.1f, 1)) {
+                    y += 0.1f;
+                }
+            } else if (!collision.checkForCollision(this.x, this.y + 1.1f, 1) && x > leftBoundary){
                 y += 0.1f;
             }
         }
+
         this.walkDirection = "down";
         this.walking = true;
     }
