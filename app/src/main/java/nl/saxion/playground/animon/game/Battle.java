@@ -109,7 +109,7 @@ public class Battle extends Entity implements KeyListener {
         playerTurn = false;
 
         if (calculateChance(attackMove.getSucceedChance())) {
-            int npcHealth = npcAnimon.getHealth() - attackMove.getDamage();
+            int npcHealth = (int) npcAnimon.getHealth() - attackMove.getDamage();
             npcAnimon.setHealth(npcHealth);
             Log.d("npcHealth", String.valueOf(npcHealth));
         }
@@ -128,7 +128,7 @@ public class Battle extends Entity implements KeyListener {
         AttackMove attackMove = npcAttackMoves.get(randMove);
 
         if (calculateChance(attackMove.getSucceedChance())) {
-            int playerHealth = playerAnimon.getHealth() - attackMove.getDamage();
+            int playerHealth = (int) playerAnimon.getHealth() - attackMove.getDamage();
             playerAnimon.setHealth(playerHealth);
             Log.d("playerHealth", String.valueOf(playerHealth));
         }
@@ -175,7 +175,7 @@ public class Battle extends Entity implements KeyListener {
             gv.drawBitmap(platformBitmap, w - 7.5f, h * 0.3f, 7, 2);
             gv.drawBitmap(platformBitmap, 0.5f, h * 0.75f, 8, 2);
             if (!isBattleOngoing) {
-                gv.drawBitmap(messageBoxBitmap, 0, h * 0.80f, w, h*0.2f);
+                gv.drawBitmap(messageBoxBitmap, 0, h * 0.80f, w, h * 0.2f);
             }
 
             float scaleFactor = 0.5f;
@@ -213,12 +213,12 @@ public class Battle extends Entity implements KeyListener {
                 }
 
                 //What will player do? message box
-                gv.drawBitmap(whatWillPlayerDoBitmap, 0, (h * 0.8f) / scaleFactor, w - 4, h*0.4f);
+                gv.drawBitmap(whatWillPlayerDoBitmap, 0, (h * 0.8f) / scaleFactor, w - 4, h * 0.4f);
                 gv.getCanvas().drawText("What will", 3.5f / scaleFactor, (h * 0.88f) / scaleFactor, p);
                 gv.getCanvas().drawText(" you do ?", 3 / scaleFactor, (h * 0.93f) / scaleFactor, p);
 
                 //Attack move option box
-                gv.drawBitmap(attackMoveBoxBitmap, w - 4, (h * 0.8f) / scaleFactor, w + 4, h*0.4f);
+                gv.drawBitmap(attackMoveBoxBitmap, w - 4, (h * 0.8f) / scaleFactor, w + 4, h * 0.4f);
 
                 //Draw attackmove options for the player
                 gv.getCanvas().drawText(playerAttackMoves.get(0).getMoveName(), w + 1, (h * 0.88f) / scaleFactor, p);
@@ -227,28 +227,28 @@ public class Battle extends Entity implements KeyListener {
                 gv.getCanvas().drawText(playerAttackMoves.get(3).getMoveName(), w * 2 - 5, (h * 0.93f) / scaleFactor, p);
 
                 //draw the NPC stats
-                gv.drawBitmap(statNpcBitmap, 1, h*0.3f, w*1.1f, h * 0.3f);
+                gv.drawBitmap(statNpcBitmap, 1, h * 0.3f, w * 1.1f, h * 0.3f);
                 gv.getCanvas().drawText(npcAnimon.getName().toUpperCase(), 5, h * 0.4f, p);
-                gv.getCanvas().drawText("Lv" + npcAnimon.getLevel(), w-3, h * 0.4f, p);
+                gv.getCanvas().drawText("Lv" + npcAnimon.getLevel(), w - 3, h * 0.4f, p);
 
                 //draw health stats for npc
-                gv.drawBitmap(statHpBar, 3.5f, h*0.45f, w-3f, 1);
-                gv.drawBitmap(statHpBarFiller, 6.6f, h*0.465f, 9.5f * (npcAnimon.getHealth()/npcAnimon.getMaxHealth()), 0.4f);
+                gv.drawBitmap(statHpBar, 3.5f, h * 0.45f, w - 3f, 1);
+                gv.drawBitmap(statHpBarFiller, 6.6f, h * 0.465f, 9.5f * (npcAnimon.getHealth() / npcAnimon.getMaxHealth()), 0.4f);
 
                 //draw the player stats
-                gv.drawBitmap(statPlayerBitmap,w*0.9f ,  h* 1.2f, w*1.1f, h * 0.3f);
-                gv.getCanvas().drawText(playerAnimon.getName().toUpperCase(), w* 1.3f, h*1.3f, p);
-                gv.getCanvas().drawText("Lv" + playerAnimon.getLevel(), w* 1.7f, h*1.3f, p);
+                gv.drawBitmap(statPlayerBitmap, w * 0.9f, h * 1.2f, w * 1.1f, h * 0.3f);
+                gv.getCanvas().drawText(playerAnimon.getName().toUpperCase(), w * 1.3f, h * 1.3f, p);
+                gv.getCanvas().drawText("Lv" + playerAnimon.getLevel(), w * 1.7f, h * 1.3f, p);
 
 
                 //draw health stats for player
-                gv.drawBitmap(statHpBar, w + 1.6f, h * 1.32f, w-3f, 1);
-                gv.drawBitmap(statHpBarFiller, w + 4.7f, h * 1.335f, 9.5f * (playerAnimon.getHealth()/playerAnimon.getMaxHealth()), 0.37f);
+                gv.drawBitmap(statHpBar, w + 1.6f, h * 1.32f, w - 3f, 1);
+                gv.drawBitmap(statHpBarFiller, w + 4.7f, h * 1.335f, 9.5f * (playerAnimon.getHealth() / playerAnimon.getMaxHealth()), 0.37f);
                 gv.getCanvas().drawText((int) playerAnimon.getHealth() + "/" + (int) playerAnimon.getMaxHealth(), w * 1.65f, h * 0.72f / scaleFactor, p);
 
                 //Draw animon bitmaps
-                gv.drawBitmap(npcAnimon.getBitmap(), w*1.31f, h*0.4f, h*0.4f,h*0.4f);
-                gv.drawBitmap(playerAnimon.getBitmap(), 5, h*1.2f, h*0.4f,h*0.4f);
+                gv.drawBitmap(npcAnimon.getBitmap(), w * 1.31f, h * 0.4f, h * 0.4f, h * 0.4f);
+                gv.drawBitmap(playerAnimon.getBitmap(), 5, h * 1.2f, h * 0.4f, h * 0.4f);
 
                 //Check where the selector is positioned
                 if (currentSelector == 0 || currentSelector == 2) {
@@ -349,10 +349,5 @@ public class Battle extends Entity implements KeyListener {
     @Override
     public void onMenuKey() {
 
-    }
-
-    public void performAttackMove(int attackMoveNumber) {
-        //player or npc doesnt matter
-        AttackMove currentAttackMove = playerAnimon.getAttackMoves().get(attackMoveNumber);
     }
 }
