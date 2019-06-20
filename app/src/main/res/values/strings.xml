@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Animon</string>
     <string name="play">Play</string>
+    <string name="exit">Exit</string>
+    <string name="new_game">New Game</string>
+    <string name="continue_game">Continue</string>
 </resources>

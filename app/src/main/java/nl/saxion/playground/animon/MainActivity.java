@@ -12,10 +12,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        findViewById(R.id.buttonPlay).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.buttonNewGame).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, nl.saxion.playground.animon.game.Activity.class));
+            }
+        });
+
+        findViewById(R.id.buttonExit).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }
