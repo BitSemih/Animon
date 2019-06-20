@@ -21,8 +21,8 @@ public class Chicken extends Animon {
     @Override
     public void draw(GameView gv) {
         super.draw(gv);
-
-        bitmap = gv.getBitmapFromResource(R.drawable.a_chicken);
-        gv.drawBitmap(bitmap, 3,3,3,3);
+        if (super.bitmap == null){
+            super.bitmap = gv.getBitmapFromResource(R.drawable.a_chicken);
+        }
     }
 }

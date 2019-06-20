@@ -1,5 +1,7 @@
 package nl.saxion.playground.animon.animons;
 
+import android.graphics.Bitmap;
+
 import java.util.ArrayList;
 
 import nl.saxion.playground.animon._lib.Entity;
@@ -12,6 +14,7 @@ public abstract class Animon extends Entity {
     protected int level;
     protected int experience;
     protected ArrayList<AttackMove> attackMoves = new ArrayList<>();
+    protected Bitmap bitmap;
 
     protected Game game;
 
@@ -22,6 +25,10 @@ public abstract class Animon extends Entity {
         this.level = level;
         this.experience = experience;
         this.maxHealth = health;
+    }
+
+    public Bitmap getBitmap() {
+        return bitmap;
     }
 
     public String getName() {

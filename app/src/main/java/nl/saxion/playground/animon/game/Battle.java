@@ -164,7 +164,10 @@ public class Battle extends Entity implements KeyListener {
                 //draw health stats for player
                 gv.drawBitmap(statHpBar, game.getWidth() + 1.6f, game.getHeight() * 1.32f, game.getWidth()-3f, 1);
                 gv.drawBitmap(statHpBarFiller, game.getWidth() + 4.7f, game.getHeight() * 1.335f, 9.5f * (playerAnimon.getHealth()/playerAnimon.getMaxHealth()), 0.37f);
-                gv.getCanvas().drawText(playerAnimon.getHealth() + "/" + playerAnimon.getMaxHealth(), game.getWidth() * 1.65f, game.getHeight()* 1.42f, p);
+                gv.getCanvas().drawText((int) playerAnimon.getHealth() + "/" + (int) playerAnimon.getMaxHealth(), game.getWidth() * 1.65f, game.getHeight()* 1.42f, p);
+
+                gv.drawBitmap(npcAnimon.getBitmap(), game.getWidth()*1.31f, game.getHeight()-4, 6,6);
+                gv.drawBitmap(playerAnimon.getBitmap(), 5, game.getHeight()*1.3f, 6,6);
 
                 //Check where the selector is positioned
                 if (currentSelector == 0 || currentSelector == 2) {
@@ -173,6 +176,7 @@ public class Battle extends Entity implements KeyListener {
                     gv.drawBitmap(menuSelectorBitmap, attackMovesXPositions[currentSelector], (game.getHeight() - 2) / scaleFactor, 1, 1);
                 }
             }
+
 
             gv.getCanvas().restore();
         }
