@@ -3,6 +3,8 @@ package nl.saxion.playground.animon.game;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.util.Log;
 
@@ -82,6 +84,21 @@ public class Battle extends Entity implements KeyListener {
 
     @Override
     public void draw(GameView gv) {
+
+        messageBoxBitmap = gv.getBitmapFromResource(messageBox);
+
+
+        gv.drawBitmap(messageBoxBitmap, 0, 0, 1, 1);
+
+        gv.drawBitmap(messageBoxBitmap, game.getWidth() - 1, 0, 1, 1);
+
+        gv.drawBitmap(messageBoxBitmap, 0, game.getHeight() - 1, 1, 1);
+
+        gv.drawBitmap(messageBoxBitmap, game.getWidth() / 2 - 0.5f, game.getHeight() / 2 - 0.5f, 1,1);
+
+        gv.drawBitmap(messageBoxBitmap, game.getWidth() - 1, game.getHeight() - 1, 1, 1);
+
+        /*
         if (state == 1) {
             if (backgroundBitmap == null || platformBitmap == null) {
                 backgroundBitmap = gv.getBitmapFromResource(background);
@@ -128,6 +145,9 @@ public class Battle extends Entity implements KeyListener {
             } else if (isBattleOngoing) {
                 //When player has selected FIGHT! option
 
+
+
+                /*
                 //if attackmovespositions is not filled with the positions of the attack move options for the selector
                 if (attackMovesXPositions[0] == 0) {
                     attackMovesXPositions[0] = game.getWidth() - 3;
@@ -136,9 +156,12 @@ public class Battle extends Entity implements KeyListener {
                     attackMovesXPositions[3] = game.getWidth() + 6;
                 }
 
+                //What will player do? message box
                 gv.drawBitmap(whatWillPlayerDoBitmap, 0, (game.getHeight() - 4) / scaleFactor, game.getWidth() - 4, 8);
                 gv.getCanvas().drawText("What will", 3.5f / scaleFactor, (game.getHeight() - 2.5f) / scaleFactor, p);
                 gv.getCanvas().drawText(" you do ?", 3 / scaleFactor, (game.getHeight() - 1.5f) / scaleFactor, p);
+
+                //Attack move option box
                 gv.drawBitmap(attackMoveBoxBitmap, game.getWidth() - 4, (game.getHeight() - 4) / scaleFactor, game.getWidth() + 4, 8);
 
                 //Draw attackmove options for the player
@@ -149,23 +172,25 @@ public class Battle extends Entity implements KeyListener {
 
                 //draw the NPC stats
                 gv.drawBitmap(statNpcBitmap, 1, game.getHeight()*0.6f, game.getWidth()*1.1f, 6);
+                gv.getCanvas().drawText(npcAnimon.getName().toUpperCase(), 5, game.getHeight() * 0.7f, p);
+                gv.getCanvas().drawText("Lv" + npcAnimon.getLevel(), game.getWidth()-3, game.getHeight() * 0.7f, p);
 
                 //draw health stats for npc
                 gv.drawBitmap(statHpBar, 3.5f, game.getHeight()*0.78f, game.getWidth()-3f, 1);
                 gv.drawBitmap(statHpBarFiller, 6.6f, game.getHeight()*0.795f, 9.5f * (npcAnimon.getHealth()/npcAnimon.getMaxHealth()), 0.4f);
-                gv.getCanvas().drawText(npcAnimon.getName().toUpperCase(), 5, game.getHeight() * 0.7f, p);
-                gv.getCanvas().drawText("Lv" + String.valueOf(npcAnimon.getLevel()), game.getWidth()-3, game.getHeight() * 0.7f, p);
 
                 //draw the player stats
                 gv.drawBitmap(statPlayerBitmap,game.getWidth()*0.9f ,  game.getHeight()* 1.2f, game.getWidth()*1.1f, 6);
                 gv.getCanvas().drawText(playerAnimon.getName().toUpperCase(), game.getWidth()* 1.3f, game.getHeight()*1.3f, p);
                 gv.getCanvas().drawText("Lv" + playerAnimon.getLevel(), game.getWidth()* 1.7f, game.getHeight()*1.3f, p);
 
+
                 //draw health stats for player
                 gv.drawBitmap(statHpBar, game.getWidth() + 1.6f, game.getHeight() * 1.32f, game.getWidth()-3f, 1);
                 gv.drawBitmap(statHpBarFiller, game.getWidth() + 4.7f, game.getHeight() * 1.335f, 9.5f * (playerAnimon.getHealth()/playerAnimon.getMaxHealth()), 0.37f);
                 gv.getCanvas().drawText((int) playerAnimon.getHealth() + "/" + (int) playerAnimon.getMaxHealth(), game.getWidth() * 1.65f, game.getHeight()* 1.42f, p);
 
+                //Draw animon bitmaps
                 gv.drawBitmap(npcAnimon.getBitmap(), game.getWidth()*1.31f, game.getHeight()-4, 6,6);
                 gv.drawBitmap(playerAnimon.getBitmap(), 5, game.getHeight()*1.3f, 6,6);
 
@@ -176,10 +201,9 @@ public class Battle extends Entity implements KeyListener {
                     gv.drawBitmap(menuSelectorBitmap, attackMovesXPositions[currentSelector], (game.getHeight() - 2) / scaleFactor, 1, 1);
                 }
             }
-
-
             gv.getCanvas().restore();
         }
+        */
     }
 
     public void addLetterToWelcomeMessage() {
@@ -207,18 +231,18 @@ public class Battle extends Entity implements KeyListener {
 
     @Override
     public void onUpKey() {
-        if (state == 1 && isBattleOngoing && currentSelector == 1){
+        if (state == 1 && isBattleOngoing && currentSelector == 1) {
             currentSelector = 0;
-        } else if (state == 1 && isBattleOngoing && currentSelector == 3){
+        } else if (state == 1 && isBattleOngoing && currentSelector == 3) {
             currentSelector = 2;
         }
     }
 
     @Override
     public void onDownKey() {
-        if (state == 1 && isBattleOngoing && currentSelector == 0){
+        if (state == 1 && isBattleOngoing && currentSelector == 0) {
             currentSelector = 1;
-        } else if (state == 1 && isBattleOngoing && currentSelector == 2){
+        } else if (state == 1 && isBattleOngoing && currentSelector == 2) {
             currentSelector = 3;
         }
     }
@@ -229,7 +253,7 @@ public class Battle extends Entity implements KeyListener {
         if (currentSelector == 0 && !isBattleOngoing && nextMessageTrigger) {
             isBattleOngoing = true;
         }
-        if (isBattleOngoing){
+        if (isBattleOngoing) {
             // Perform selected attack move
             performAttackMove(currentSelector);
         }
@@ -245,10 +269,10 @@ public class Battle extends Entity implements KeyListener {
         if (state == 1 && !isBattleOngoing && currentSelector < 2) {
             //Battle options menu
             currentSelector++;
-        } else if (state == 1 && isBattleOngoing && currentSelector == 0){
+        } else if (state == 1 && isBattleOngoing && currentSelector == 0) {
             //Attack moves menu
             currentSelector = 2;
-        } else if (state == 1 && isBattleOngoing && currentSelector == 1){
+        } else if (state == 1 && isBattleOngoing && currentSelector == 1) {
             //Attack moves menu
             currentSelector = 3;
         }
@@ -258,10 +282,10 @@ public class Battle extends Entity implements KeyListener {
     public void onLeftKey() {
         if (state == 1 && currentSelector > 0 && !isBattleOngoing) {
             currentSelector--;
-        } else if (state == 1 && isBattleOngoing && currentSelector == 2){
+        } else if (state == 1 && isBattleOngoing && currentSelector == 2) {
             //Attack moves menu
             currentSelector = 0;
-        } else if (state == 1 && isBattleOngoing && currentSelector == 3){
+        } else if (state == 1 && isBattleOngoing && currentSelector == 3) {
             //Attack moves menu
             currentSelector = 1;
         }
@@ -272,7 +296,7 @@ public class Battle extends Entity implements KeyListener {
 
     }
 
-    public void performAttackMove(int attackMoveNumber){
+    public void performAttackMove(int attackMoveNumber) {
         //player or npc doesnt matter
         AttackMove currentAttackMove = playerAnimon.getAttackMoves().get(attackMoveNumber);
     }
