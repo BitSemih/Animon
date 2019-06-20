@@ -8,7 +8,7 @@ import nl.saxion.playground.animon.game.Game;
 public abstract class Animon extends Entity {
 
     protected String name;
-    protected int health;
+    protected float health, maxHealth;
     protected int level;
     protected int experience;
     protected ArrayList<AttackMove> attackMoves = new ArrayList<>();
@@ -21,14 +21,19 @@ public abstract class Animon extends Entity {
         this.health = health;
         this.level = level;
         this.experience = experience;
+        this.maxHealth = health;
     }
 
     public String getName() {
         return name;
     }
 
-    public int getHealth() {
+    public float getHealth() {
         return health;
+    }
+
+    public float getMaxHealth(){
+        return maxHealth;
     }
 
     public int getLevel() {

@@ -18,7 +18,7 @@ public class Battle extends Entity implements KeyListener {
     private static final String TAG = "keys";
     private Animon playerAnimon, npcAnimon;
     private int turn, background, battlePlatform, messageBox, count = 0, messageDelay, currentSelector = 0;
-    private Bitmap backgroundBitmap, platformBitmap, messageBoxBitmap, whatWillPlayerDoBitmap, attackMoveBoxBitmap;
+    private Bitmap backgroundBitmap, platformBitmap, messageBoxBitmap, whatWillPlayerDoBitmap, attackMoveBoxBitmap, statHpBar, statHpBarFiller, statPlayerBitmap, statNpcBitmap;
     private Game game;
     private String welcomeMessage;
     private float frame, fightX, animonsX, runX;
@@ -90,6 +90,10 @@ public class Battle extends Entity implements KeyListener {
                 menuSelectorBitmap = gv.getBitmapFromResource(R.drawable.menu_select_arrow);
                 whatWillPlayerDoBitmap = gv.getBitmapFromResource(R.drawable.s_whatwillplayerdo_background);
                 attackMoveBoxBitmap = gv.getBitmapFromResource(R.drawable.s_attackmove_background);
+                statHpBar = gv.getBitmapFromResource(R.drawable.s_battle_hp_bar);
+                statHpBarFiller = gv.getBitmapFromResource(R.drawable.s_battle_hp_bar_filler);
+                statPlayerBitmap = gv.getBitmapFromResource(R.drawable.s_battle_stat_player_background);
+                statNpcBitmap = gv.getBitmapFromResource(R.drawable.s_battle_stat_npc_background);
             }
             gv.drawBitmap(backgroundBitmap, 0, 0, game.getWidth(), game.getHeight());
             gv.drawBitmap(platformBitmap, game.getWidth() - 7.5f, game.getHeight() * 0.5f, 7, 2);
@@ -143,6 +147,25 @@ public class Battle extends Entity implements KeyListener {
                 gv.getCanvas().drawText(playerAnimon.getAttackMoves().get(2).getMoveName(), game.getWidth() * 2 - 5, (game.getHeight() - 2.5f) / scaleFactor, p);
                 gv.getCanvas().drawText(playerAnimon.getAttackMoves().get(3).getMoveName(), game.getWidth() * 2 - 5, (game.getHeight() - 1.5f) / scaleFactor, p);
 
+                //draw the NPC stats
+                gv.drawBitmap(statNpcBitmap, 1, game.getHeight()*0.6f, game.getWidth()*1.1f, 6);
+
+                //draw health stats for npc
+                gv.drawBitmap(statHpBar, 3.5f, game.getHeight()*0.78f, game.getWidth()-3f, 1);
+                gv.drawBitmap(statHpBarFiller, 6.6f, game.getHeight()*0.795f, 9.5f * (npcAnimon.getHealth()/npcAnimon.getMaxHealth()), 0.4f);
+                gv.getCanvas().drawText(npcAnimon.getName().toUpperCase(), 5, game.getHeight() * 0.7f, p);
+                gv.getCanvas().drawText("Lv" + String.valueOf(npcAnimon.getLevel()), game.getWidth()-3, game.getHeight() * 0.7f, p);
+
+                //draw the player stats
+                gv.drawBitmap(statPlayerBitmap,game.getWidth()*0.9f ,  game.getHeight()* 1.2f, game.getWidth()*1.1f, 6);
+                gv.getCanvas().drawText(playerAnimon.getName().toUpperCase(), game.getWidth()* 1.3f, game.getHeight()*1.3f, p);
+                gv.getCanvas().drawText("Lv" + playerAnimon.getLevel(), game.getWidth()* 1.7f, game.getHeight()*1.3f, p);
+
+                //draw health stats for player
+                gv.drawBitmap(statHpBar, game.getWidth() + 1.6f, game.getHeight() * 1.32f, game.getWidth()-3f, 1);
+                gv.drawBitmap(statHpBarFiller, game.getWidth() + 4.7f, game.getHeight() * 1.335f, 9.5f * (playerAnimon.getHealth()/playerAnimon.getMaxHealth()), 0.37f);
+                gv.getCanvas().drawText(playerAnimon.getHealth() + "/" + playerAnimon.getMaxHealth(), game.getWidth() * 1.65f, game.getHeight()* 1.42f, p);
+
                 //Check where the selector is positioned
                 if (currentSelector == 0 || currentSelector == 2) {
                     gv.drawBitmap(menuSelectorBitmap, attackMovesXPositions[currentSelector], (game.getHeight() - 3) / scaleFactor, 1, 1);
@@ -150,6 +173,7 @@ public class Battle extends Entity implements KeyListener {
                     gv.drawBitmap(menuSelectorBitmap, attackMovesXPositions[currentSelector], (game.getHeight() - 2) / scaleFactor, 1, 1);
                 }
             }
+
             gv.getCanvas().restore();
         }
     }
