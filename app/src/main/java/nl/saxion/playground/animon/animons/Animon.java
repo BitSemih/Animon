@@ -43,4 +43,15 @@ public abstract class Animon extends Entity {
         return attackMoves;
     }
 
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public void setExperience(int experience) {
+        this.experience = experience;
+    }
 }

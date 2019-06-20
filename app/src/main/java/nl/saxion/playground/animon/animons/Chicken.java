@@ -25,4 +25,6 @@ public class Chicken extends Animon {
         bitmap = gv.getBitmapFromResource(R.drawable.a_chicken);
         gv.drawBitmap(bitmap, 3,3,3,3);
     }
+
+
 }

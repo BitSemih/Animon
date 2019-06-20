@@ -6,10 +6,15 @@ import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 import nl.saxion.playground.animon.R;
 import nl.saxion.playground.animon._lib.Entity;
 import nl.saxion.playground.animon._lib.GameView;
 import nl.saxion.playground.animon.animons.Animon;
+import nl.saxion.playground.animon.animons.AttackMove;
+import nl.saxion.playground.animon.animons.Chicken;
 import nl.saxion.playground.animon.animons.AttackMove;
 import nl.saxion.playground.animon.animons.Bear;
 import nl.saxion.playground.animon.animons.Chicken;
@@ -25,11 +30,19 @@ public class Battle extends Entity implements KeyListener {
     private Typeface pokemonfont;
     private Paint p;
     private char[] welcomeMessageLetters;
+    private boolean playerTurn = true;
+
+    private boolean gameEnded = false;
+    private int counter = 0;
+    private ArrayList<AttackMove> playerAttackMoves;
+    private ArrayList<AttackMove> npcAttackMoves;
+
     private boolean nextMessageTrigger = false;
     private Bitmap menuSelectorBitmap;
     private float[] menuSelectorPositions = new float[3], attackMovesXPositions = new float[4];
     private boolean isBattleActive = false;
     private boolean isBattleOngoing = false;
+    private AttackMove attackMove;
 
     public Battle(int background, Game game, int battlePlatform, int messageBox, Typeface pokemonfont) {
         this.game = game;
@@ -53,6 +66,8 @@ public class Battle extends Entity implements KeyListener {
 
         this.playerAnimon = game.getEntity(Chicken.class);
         this.npcAnimon = game.getEntity(Bear.class);
+        this.playerAttackMoves = playerAnimon.getAttackMoves();
+        this.npcAttackMoves = npcAnimon.getAttackMoves();
 
         isBattleActive = true;
 
@@ -64,7 +79,61 @@ public class Battle extends Entity implements KeyListener {
     }
 
     public void endBattle() {
+        state = 0;
+    }
 
+    public boolean calculateChance(double attackMoveChance) {
+        double randomDouble = Math.random();
+        randomDouble = randomDouble * 100 + 1;
+        int randomInt = (int) randomDouble;
+
+        int chance = (int) (attackMoveChance * 100);
+
+        if (randomInt <= chance) {
+            return true;
+        } else return false;
+    }
+
+    public void isPlayerTurn() {
+        if (playerTurn) {
+            playerMove(attackMove);
+        } else npcMove();
+
+    }
+
+    public void playerMove(AttackMove attackMove) {
+        playerTurn = false;
+
+        if (calculateChance(attackMove.getSucceedChance())) {
+            int npcHealth = npcAnimon.getHealth() - attackMove.getDamage();
+            npcAnimon.setHealth(npcHealth);
+            Log.d("npcHealth", String.valueOf(npcHealth));
+        }
+
+        this.attackMove = null;
+        if (npcAnimon.getHealth() <= 0) {
+            endBattle();
+        } else {
+            npcMove();
+        }
+
+    }
+
+    public void npcMove() {
+        int randMove = (int) (Math.random() * 4);
+        AttackMove attackMove = npcAttackMoves.get(randMove);
+
+        if (calculateChance(attackMove.getSucceedChance())) {
+            int playerHealth = playerAnimon.getHealth() - attackMove.getDamage();
+            playerAnimon.setHealth(playerHealth);
+            Log.d("playerHealth", String.valueOf(playerHealth));
+        }
+
+        if (playerAnimon.getHealth() <= 0) {
+            endBattle();
+        } else {
+            playerTurn = true;
+        }
     }
 
     @Override
@@ -77,6 +146,9 @@ public class Battle extends Entity implements KeyListener {
             if (messageDelay < 10) {
                 messageDelay++;
             }
+        }
+        if (playerTurn && attackMove != null) {
+            playerMove(attackMove);
         }
     }
 
@@ -101,6 +173,8 @@ public class Battle extends Entity implements KeyListener {
             float scaleFactor = 0.5f;
 
             gv.getCanvas().save();
+            gv.getCanvas().scale(scaleFactor, scaleFactor);
+            gv.getCanvas().drawText(welcomeMessage, 2 + (welcomeMessage.length() * 0.25f) / scaleFactor, (game.getHeight() - 2.5f) / scaleFactor, p);
             gv.getCanvas().scale(scaleFactor, scaleFactor);
             //scale the whole gameview to 50%
 
@@ -154,6 +228,7 @@ public class Battle extends Entity implements KeyListener {
         }
     }
 
+
     public void addLetterToWelcomeMessage() {
         //Add a letter to the welcome message every 50 ms
         if (messageDelay == 10) {
@@ -179,18 +254,18 @@ public class Battle extends Entity implements KeyListener {
 
     @Override
     public void onUpKey() {
-        if (state == 1 && isBattleOngoing && currentSelector == 1){
+        if (state == 1 && isBattleOngoing && currentSelector == 1) {
             currentSelector = 0;
-        } else if (state == 1 && isBattleOngoing && currentSelector == 3){
+        } else if (state == 1 && isBattleOngoing && currentSelector == 3) {
             currentSelector = 2;
         }
     }
 
     @Override
     public void onDownKey() {
-        if (state == 1 && isBattleOngoing && currentSelector == 0){
+        if (state == 1 && isBattleOngoing && currentSelector == 0) {
             currentSelector = 1;
-        } else if (state == 1 && isBattleOngoing && currentSelector == 2){
+        } else if (state == 1 && isBattleOngoing && currentSelector == 2) {
             currentSelector = 3;
         }
     }
@@ -201,9 +276,9 @@ public class Battle extends Entity implements KeyListener {
         if (currentSelector == 0 && !isBattleOngoing && nextMessageTrigger) {
             isBattleOngoing = true;
         }
-        if (isBattleOngoing){
+        if (isBattleOngoing) {
             // Perform selected attack move
-            performAttackMove(currentSelector);
+            attackMove = playerAnimon.getAttackMoves().get(currentSelector);
         }
     }
 
@@ -217,10 +292,10 @@ public class Battle extends Entity implements KeyListener {
         if (state == 1 && !isBattleOngoing && currentSelector < 2) {
             //Battle options menu
             currentSelector++;
-        } else if (state == 1 && isBattleOngoing && currentSelector == 0){
+        } else if (state == 1 && isBattleOngoing && currentSelector == 0) {
             //Attack moves menu
             currentSelector = 2;
-        } else if (state == 1 && isBattleOngoing && currentSelector == 1){
+        } else if (state == 1 && isBattleOngoing && currentSelector == 1) {
             //Attack moves menu
             currentSelector = 3;
         }
@@ -230,10 +305,10 @@ public class Battle extends Entity implements KeyListener {
     public void onLeftKey() {
         if (state == 1 && currentSelector > 0 && !isBattleOngoing) {
             currentSelector--;
-        } else if (state == 1 && isBattleOngoing && currentSelector == 2){
+        } else if (state == 1 && isBattleOngoing && currentSelector == 2) {
             //Attack moves menu
             currentSelector = 0;
-        } else if (state == 1 && isBattleOngoing && currentSelector == 3){
+        } else if (state == 1 && isBattleOngoing && currentSelector == 3) {
             //Attack moves menu
             currentSelector = 1;
         }
@@ -244,7 +319,7 @@ public class Battle extends Entity implements KeyListener {
 
     }
 
-    public void performAttackMove(int attackMoveNumber){
+    public void performAttackMove(int attackMoveNumber) {
         //player or npc doesnt matter
         AttackMove currentAttackMove = playerAnimon.getAttackMoves().get(attackMoveNumber);
     }
