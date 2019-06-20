@@ -3,13 +3,9 @@ package nl.saxion.playground.animon.game;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.RectF;
 import android.graphics.Typeface;
-import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 import nl.saxion.playground.animon.R;
 import nl.saxion.playground.animon._lib.Entity;
@@ -20,7 +16,6 @@ import nl.saxion.playground.animon.animons.Bear;
 import nl.saxion.playground.animon.animons.Chicken;
 
 public class Battle extends Entity implements KeyListener {
-    private static final String TAG = "keys";
     private Animon playerAnimon, npcAnimon;
     private int turn, background, battlePlatform, messageBox, count = 0, messageDelay, currentSelector = 0;
     private Bitmap backgroundBitmap, platformBitmap, messageBoxBitmap, whatWillPlayerDoBitmap, attackMoveBoxBitmap, statHpBar, statHpBarFiller, statPlayerBitmap, statNpcBitmap;
@@ -42,7 +37,7 @@ public class Battle extends Entity implements KeyListener {
     private boolean isBattleActive = false;
     private boolean isBattleOngoing = false;
     private AttackMove attackMove;
-    private ArrayList<AttackMove> playerAttackMoves = new ArrayList<>();
+    private ArrayList<AttackMove> playerAttackMoves;
 
     public Battle(int background, Game game, int battlePlatform, int messageBox, Typeface pokemonfont) {
         this.game = game;
@@ -95,14 +90,9 @@ public class Battle extends Entity implements KeyListener {
 
         if (randomInt <= chance) {
             return true;
-        } else return false;
-    }
-
-    public void isPlayerTurn() {
-        if (playerTurn) {
-            playerMove(attackMove);
-        } else npcMove();
-
+        } else {
+            return false;
+        }
     }
 
     public void playerMove(AttackMove attackMove) {
@@ -111,7 +101,6 @@ public class Battle extends Entity implements KeyListener {
         if (calculateChance(attackMove.getSucceedChance())) {
             int npcHealth = (int) npcAnimon.getHealth() - attackMove.getDamage();
             npcAnimon.setHealth(npcHealth);
-            Log.d("npcHealth", String.valueOf(npcHealth));
         }
 
         this.attackMove = null;
@@ -130,7 +119,6 @@ public class Battle extends Entity implements KeyListener {
         if (calculateChance(attackMove.getSucceedChance())) {
             int playerHealth = (int) playerAnimon.getHealth() - attackMove.getDamage();
             playerAnimon.setHealth(playerHealth);
-            Log.d("playerHealth", String.valueOf(playerHealth));
         }
 
         if (playerAnimon.getHealth() <= 0) {
@@ -159,6 +147,8 @@ public class Battle extends Entity implements KeyListener {
     @Override
     public void draw(GameView gv) {
         if (state == 1) {
+
+            //When bitmaps are not set
             if (backgroundBitmap == null || platformBitmap == null) {
                 backgroundBitmap = gv.getBitmapFromResource(background);
                 platformBitmap = gv.getBitmapFromResource(battlePlatform);
@@ -171,6 +161,7 @@ public class Battle extends Entity implements KeyListener {
                 statPlayerBitmap = gv.getBitmapFromResource(R.drawable.s_battle_stat_player_background);
                 statNpcBitmap = gv.getBitmapFromResource(R.drawable.s_battle_stat_npc_background);
             }
+
             gv.drawBitmap(backgroundBitmap, 0, 0, w, h);
             gv.drawBitmap(platformBitmap, w - 7.5f, h * 0.3f, 7, 2);
             gv.drawBitmap(platformBitmap, 0.5f, h * 0.75f, 8, 2);
@@ -304,10 +295,20 @@ public class Battle extends Entity implements KeyListener {
 
     @Override
     public void onAKey() {
-        System.out.println(count);
         if (currentSelector == 0 && !isBattleOngoing && nextMessageTrigger) {
+            //When player picks FIGHT option
             isBattleOngoing = true;
         }
+
+        if (currentSelector == 1 && !isBattleOngoing && nextMessageTrigger){
+            //When player chooses inventory option
+        }
+
+        if (currentSelector == 2 && !isBattleOngoing && nextMessageTrigger) {
+            //When player wants to run from battle
+            state = 0;
+        }
+
         if (isBattleOngoing) {
             // Perform selected attack move
             attackMove = playerAnimon.getAttackMoves().get(currentSelector);
