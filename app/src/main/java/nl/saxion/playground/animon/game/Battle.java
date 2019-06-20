@@ -149,7 +149,7 @@ public class Battle extends Entity implements KeyListener {
                 gv.getCanvas().drawText("FIGHT", fightX, h * 0.9f / scaleFactor, p);
                 gv.getCanvas().drawText("ANIMONS", animonsX, h * 0.9f / scaleFactor, p);
                 gv.getCanvas().drawText("RUN", runX, h * 0.9f / scaleFactor, p);
-                gv.drawBitmap(menuSelectorBitmap, menuSelectorPositions[currentSelector], h * 0.865f / scaleFactor, h * 0.07f, h * 0.07f);
+                gv.drawBitmap(menuSelectorBitmap, menuSelectorPositions[currentSelector], h * 0.875f / scaleFactor, h * 0.05f, h * 0.05f);
             } else if (isBattleOngoing) {
                 //When player has selected FIGHT! option
 
