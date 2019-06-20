@@ -3,13 +3,17 @@ package nl.saxion.playground.animon.game;
 import nl.saxion.playground.animon._lib.Entity;
 
 public class Collision extends Entity {
-    private int[][] collisionTiles = new int[512][512];
+    private int[][] collisionTiles = new int[512][512], waterTiles = new int[512][512];
 
     public Collision() {
     }
 
     public void addCollisionTiles(int x, int y, int number) {
         this.collisionTiles[x][y] = number;
+    }
+
+    public void addWaterTiles(int x, int y, int number){
+        this.waterTiles[x][y] = number;
     }
 
     public boolean checkForCollision(float x, float y, int action) {
@@ -33,5 +37,12 @@ public class Collision extends Entity {
                 return false;
             }
         }
+    }
+
+    public boolean checkForWater(int x, int y){
+        if (this.waterTiles[x][y] != 0){
+            return true;
+        }
+        return false;
     }
 }
