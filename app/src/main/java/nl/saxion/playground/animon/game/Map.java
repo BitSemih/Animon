@@ -40,4 +40,7 @@ public class Map extends Entity {
         return height;
     }
 
+    public int getState() {
+        return state;
+    }
 }
