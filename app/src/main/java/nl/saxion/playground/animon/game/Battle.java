@@ -56,6 +56,7 @@ public class Battle extends Entity implements KeyListener {
     }
 
     public void startBattle(Animon npcAnimon) {
+        game.startBattleMusic();
         //Set welcome message
         String s = "A wild " + npcAnimon.getName() + " appeared!";
 
@@ -88,9 +89,11 @@ public class Battle extends Entity implements KeyListener {
         //Add full healing to animons
         npcAnimon.setHealth((int)npcAnimon.getMaxHealth());
         playerAnimon.setHealth((int)playerAnimon.getMaxHealth());
+
     }
 
     public void endBattle() {
+        game.endBattleMusic();
         state = MAP_STATE;
         startBattle = false;
     }

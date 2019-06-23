@@ -1,7 +1,9 @@
 package nl.saxion.playground.animon.game;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.media.MediaPlayer;
 import android.util.Log;
 
 import nl.saxion.playground.animon.R;
@@ -28,6 +30,9 @@ public class Game extends GameModel {
     private String jsonString = "";
     private Typeface pokemonfont;
     private Context context;
+    private MediaPlayer mapMusic;
+    private MediaPlayer battleMusic;
+    private int musicPos = 0;
     private int state;
 
     public Game(String jsonString, Typeface pokemonfont, Context context) {
@@ -48,6 +53,13 @@ public class Game extends GameModel {
         Menu menu = new Menu(this, this.context);
 
         addEntity(menu);
+
+        mapMusic = MediaPlayer.create(context.getApplicationContext(), R.raw.map_music);
+        mapMusic.start();
+        mapMusic.setLooping(true);
+
+        battleMusic = MediaPlayer.create(context.getApplicationContext(),R.raw.battle_music);
+        battleMusic.setLooping(true);
 
         //Adding menu items
         SaveGame saveGame = new SaveGame("SAVE GAME", this, pokemonfont);
@@ -102,5 +114,29 @@ public class Game extends GameModel {
 
     public int getState() {
         return state;
+    }
+
+    public void resumeMusic() {
+        if (mapMusic != null){
+            mapMusic.start();
+        }
+    }
+
+    public void pauseMusic() {
+        if (mapMusic != null){
+            mapMusic.pause();
+        }
+        battleMusic.pause();
+    }
+
+    public void endBattleMusic() {
+        battleMusic.pause();
+        mapMusic.start();
+    }
+
+    public void startBattleMusic() {
+        mapMusic.pause();
+        battleMusic.seekTo(0);
+        battleMusic.start();
     }
 }

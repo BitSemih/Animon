@@ -28,8 +28,6 @@ public class Activity extends AppCompatActivity {
     private int state;
 
     private boolean ismenuactive, isBattleActive = false;
-    private MediaPlayer overWorldTheme;
-    private int overworldLength = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,10 +50,6 @@ public class Activity extends AppCompatActivity {
 
 
         actionButtonsToggle();
-
-        overWorldTheme = MediaPlayer.create(getApplicationContext(), R.raw.map_music);
-        overWorldTheme.start();
-        overWorldTheme.setLooping(true);
 
         findViewById(R.id.buttonMenu).setOnTouchListener(new RepeatListener(250, 250, new View.OnClickListener() {
             @Override
@@ -219,16 +213,13 @@ public class Activity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         gameView.setGame(game);
-        overWorldTheme.seekTo(overworldLength);
-        overWorldTheme.start();
-
+        game.resumeMusic();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         gameView.setGame(null);
-        overWorldTheme.pause();
-        overworldLength = overWorldTheme.getCurrentPosition();
+        game.pauseMusic();
     }
 }
