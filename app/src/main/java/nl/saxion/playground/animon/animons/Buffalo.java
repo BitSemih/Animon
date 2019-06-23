@@ -10,7 +10,7 @@ public class Buffalo extends Animon {
     public Buffalo(Game game, String name, int health, int level, int experience) {
         super(game, name, health, level, experience);
 
-        this.attackMoves.add(new AttackMove("Horn ram", 6, 0.8));
+        this.attackMoves.add(new AttackMove("Horn", 6, 0.8));
         this.attackMoves.add(new AttackMove("Trample", 8, 0.8));
         this.attackMoves.add(new AttackMove("Kick", 5, 0.8));
         this.attackMoves.add(new AttackMove("Poop", 6, 0.8));

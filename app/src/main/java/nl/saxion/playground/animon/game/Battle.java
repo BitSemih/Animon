@@ -6,6 +6,7 @@ import android.graphics.Paint;
 import android.graphics.Typeface;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import nl.saxion.playground.animon.R;
 import nl.saxion.playground.animon._lib.Entity;
@@ -48,9 +49,6 @@ public class Battle extends Entity implements KeyListener {
 
         this.game.getEntity(KeyEntity.class).addKeyListener(this);
 
-        this.playerAnimon = game.getEntity(Chicken.class);
-
-        this.playerAttackMoves = playerAnimon.getAttackMoves();
 
 
         this.w = game.getWidth();
@@ -58,18 +56,26 @@ public class Battle extends Entity implements KeyListener {
     }
 
     public void startBattle(Animon npcAnimon) {
+        //Set welcome message
         String s = "A wild " + npcAnimon.getName() + " appeared!";
 
         this.welcomeMessageLetters = null;
         welcomeMessage = "";
         this.welcomeMessageLetters = s.toCharArray();
 
+        ArrayList<Animon> animons = game.getEntities(Animon.class);
+        double randAnimon = new Random().nextInt(animons.size());
+
         this.npcAnimon = npcAnimon;
         this.npcAttackMoves = npcAnimon.getAttackMoves();
+        this.playerAnimon = animons.get((int)randAnimon);
+        this.playerAttackMoves = playerAnimon.getAttackMoves();
+
 
         this.game.setState(1);
         state = BATTLE_STATE;
 
+        //Reset booleans and vars
         this.startBattle = true;
         this.playerCanAttack = false;
         this.isBattleOngoing = false;
@@ -79,8 +85,9 @@ public class Battle extends Entity implements KeyListener {
         this.playerTurn = true;
         this.currentSelector = 0;
 
-        npcAnimon.setHealth(100);
-        playerAnimon.setHealth(100);
+        //Add full healing to animons
+        npcAnimon.setHealth((int)npcAnimon.getMaxHealth());
+        playerAnimon.setHealth((int)playerAnimon.getMaxHealth());
     }
 
     public void endBattle() {
@@ -171,10 +178,12 @@ public class Battle extends Entity implements KeyListener {
                 statNpcBitmap = gv.getBitmapFromResource(R.drawable.s_battle_stat_npc_background);
             }
 
+            //Draw the backgrounds of the battle
             gv.drawBitmap(backgroundBitmap, 0, 0, w, h);
             gv.drawBitmap(platformBitmap, w - 7.5f, h * 0.3f, 7, 2);
             gv.drawBitmap(platformBitmap, 0.5f, h * 0.75f, 8, 2);
             if (!isBattleOngoing) {
+                //Draw the white message box background
                 gv.drawBitmap(messageBoxBitmap, 0, h * 0.80f, w, h * 0.2f);
             }
 
@@ -228,7 +237,7 @@ public class Battle extends Entity implements KeyListener {
 
                 //draw the NPC stats
                 gv.drawBitmap(statNpcBitmap, 1, h * 0.3f, w * 1.1f, h * 0.3f);
-                gv.getCanvas().drawText(npcAnimon.getName().toUpperCase(), 5, h * 0.4f, p);
+                gv.getCanvas().drawText(npcAnimon.getName().toUpperCase(), 6, h * 0.4f, p);
                 gv.getCanvas().drawText("Lv" + npcAnimon.getLevel(), w - 3, h * 0.4f, p);
 
                 //draw health stats for npc
@@ -286,6 +295,7 @@ public class Battle extends Entity implements KeyListener {
 
     @Override
     public void onUpKey() {
+        //Check if the battle state is on and ongoing
         if (state == BATTLE_STATE && isBattleOngoing && currentSelector == 1) {
             currentSelector = 0;
         } else if (state == BATTLE_STATE && isBattleOngoing && currentSelector == 3) {
@@ -295,6 +305,7 @@ public class Battle extends Entity implements KeyListener {
 
     @Override
     public void onDownKey() {
+        //Check if the battle state is on and ongoing
         if (state == BATTLE_STATE && isBattleOngoing && currentSelector == 0) {
             currentSelector = 1;
         } else if (state == BATTLE_STATE && isBattleOngoing && currentSelector == 2) {

@@ -10,9 +10,9 @@ public class Walrus extends Animon {
     public Walrus(Game game, String name, int health, int level, int experience) {
         super(game, name, health, level, experience);
 
-        this.attackMoves.add(new AttackMove("Bubble gun", 4, 1));
-        this.attackMoves.add(new AttackMove("Tail Slap", 5, 0.9));
-        this.attackMoves.add(new AttackMove("Water board", 9, 0.35));
+        this.attackMoves.add(new AttackMove("Bubbles", 4, 1));
+        this.attackMoves.add(new AttackMove("Slap", 5, 0.9));
+        this.attackMoves.add(new AttackMove("Wave", 9, 0.35));
         this.attackMoves.add(new AttackMove("Bite", 6, 0.8));
     }
 

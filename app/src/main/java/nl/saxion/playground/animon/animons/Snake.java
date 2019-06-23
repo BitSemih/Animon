@@ -12,7 +12,7 @@ public class Snake extends Animon {
 
         this.attackMoves.add(new AttackMove("Poison", 4, 1));
         this.attackMoves.add(new AttackMove("Strangle", 7, 0.6));
-        this.attackMoves.add(new AttackMove("Tail Slap", 5, 0.9));
+        this.attackMoves.add(new AttackMove("Slap", 5, 0.9));
         this.attackMoves.add(new AttackMove("Bite", 4, 1));
     }
 

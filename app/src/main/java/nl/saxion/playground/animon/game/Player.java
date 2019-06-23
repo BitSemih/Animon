@@ -4,6 +4,7 @@ import android.graphics.RectF;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import nl.saxion.playground.animon.R;
 import nl.saxion.playground.animon._lib.Entity;
@@ -87,7 +88,7 @@ public class Player extends Entity implements KeyListener {
         //Look which direction the player is walking
         switch (walkDirection) {
             case "left":
-                if (!checkBoundary() && collision.checkForWater((int) x, (int) y) || checkBoundary() && collision.checkForWater((int) x, (int) playerOffsetY)){
+                if (!checkBoundary() && collision.checkForWater((int) x, (int) y) || checkBoundary() && collision.checkForWater((int) x, (int) playerOffsetY)) {
                     player_sheet_swimming.drawFrame(1, gv.getCanvas(), new RectF(playerOffsetX, playerOffsetY, playerOffsetX + 1, playerOffsetY + 1));
                 } else {
                     if (!walking) {
@@ -104,7 +105,7 @@ public class Player extends Entity implements KeyListener {
                 }
                 break;
             case "right":
-                if (!checkBoundary() && collision.checkForWater((int) x, (int) y) || checkBoundary() && collision.checkForWater((int) x, (int) playerOffsetY)){
+                if (!checkBoundary() && collision.checkForWater((int) x, (int) y) || checkBoundary() && collision.checkForWater((int) x, (int) playerOffsetY)) {
                     player_sheet_swimming.drawFrame(0, gv.getCanvas(), new RectF(playerOffsetX, playerOffsetY, playerOffsetX + 1, playerOffsetY + 1));
                 } else {
                     if (!walking) {
@@ -121,7 +122,7 @@ public class Player extends Entity implements KeyListener {
                 }
                 break;
             case "up":
-                if (!checkBoundary() && collision.checkForWater((int) x, (int) y) || checkBoundary() && collision.checkForWater((int) x, (int) playerOffsetY)){
+                if (!checkBoundary() && collision.checkForWater((int) x, (int) y) || checkBoundary() && collision.checkForWater((int) x, (int) playerOffsetY)) {
                     player_sheet_swimming.drawFrame(3, gv.getCanvas(), new RectF(playerOffsetX, playerOffsetY, playerOffsetX + 1, playerOffsetY + 1));
                 } else {
                     if (!walking) {
@@ -141,7 +142,7 @@ public class Player extends Entity implements KeyListener {
                 }
                 break;
             case "down":
-                if (!checkBoundary() && collision.checkForWater((int) x, (int) y) || checkBoundary() && collision.checkForWater((int) x, (int) playerOffsetY)){
+                if (!checkBoundary() && collision.checkForWater((int) x, (int) y) || checkBoundary() && collision.checkForWater((int) x, (int) playerOffsetY)) {
                     player_sheet_swimming.drawFrame(2, gv.getCanvas(), new RectF(playerOffsetX, playerOffsetY, playerOffsetX + 1, playerOffsetY + 1));
                 } else {
                     if (!walking) {
@@ -169,10 +170,12 @@ public class Player extends Entity implements KeyListener {
 
         if (collision.checkForAnimons(this.x, this.y, 0) && state == MAP_STATE) {
             double rand = Math.random();
-            if (rand < triggerChance){
+            if (rand < triggerChance) {
                 Log.i(TAG, "Battle" + rand);
-                Animon npcAnimon = game.getEntity(Bear.class);
-                this.game.getEntity(Battle.class).startBattle(npcAnimon);
+                ArrayList<Animon> animons = game.getEntities(Animon.class);
+                double randAnimon = new Random().nextInt(animons.size());
+
+                this.game.getEntity(Battle.class).startBattle(animons.get((int)randAnimon));
                 return;
             }
         }
@@ -186,7 +189,7 @@ public class Player extends Entity implements KeyListener {
                 playerOffsetX = 7;
             }
             if (y <= upperBoundary) {
-                if (!collision.checkForCollision(this.x + 0.2f, playerOffsetY, 0)){
+                if (!collision.checkForCollision(this.x + 0.2f, playerOffsetY, 0)) {
                     x += 0.1f;
                 }
             } else {
@@ -208,17 +211,19 @@ public class Player extends Entity implements KeyListener {
 
         if (collision.checkForAnimons(this.x, this.y, 0) && state == MAP_STATE) {
             double rand = Math.random();
-            if (rand < triggerChance){
+            if (rand < triggerChance) {
                 Log.i(TAG, "Battle" + rand);
-                Animon npcAnimon = game.getEntity(Bear.class);
-                this.game.getEntity(Battle.class).startBattle(npcAnimon);
+                ArrayList<Animon> animons = game.getEntities(Animon.class);
+                double randAnimon = new Random().nextInt(animons.size());
+
+                this.game.getEntity(Battle.class).startBattle(animons.get((int)randAnimon));
                 return;
             }
         }
 
         if (x <= leftBoundary || playerOffsetX > 7) {
-            if (y <= upperBoundary){
-                if (playerOffsetX > 0 && !collision.checkForCollision(this.playerOffsetX - 0.2f, playerOffsetY, 0)){
+            if (y <= upperBoundary) {
+                if (playerOffsetX > 0 && !collision.checkForCollision(this.playerOffsetX - 0.2f, playerOffsetY, 0)) {
                     playerOffsetX -= 0.1f;
                 }
             } else {
@@ -249,16 +254,18 @@ public class Player extends Entity implements KeyListener {
 
         if (collision.checkForAnimons(this.x, this.y, 0) && state == MAP_STATE) {
             double rand = Math.random();
-            if (rand < triggerChance){
+            if (rand < triggerChance) {
                 Log.i(TAG, "Battle" + rand);
-                Animon npcAnimon = game.getEntity(Bear.class);
-                this.game.getEntity(Battle.class).startBattle(npcAnimon);
+                ArrayList<Animon> animons = game.getEntities(Animon.class);
+                double randAnimon = new Random().nextInt(animons.size());
+
+                this.game.getEntity(Battle.class).startBattle(animons.get((int)randAnimon));
                 return;
             }
         }
 
         if (y <= upperBoundary || playerOffsetY > cameraCenterY) {
-            if (playerOffsetY > 0 && !collision.checkForCollision(this.x, playerOffsetY-0.2f,1) || x <= leftBoundary && !collision.checkForCollision(playerOffsetX, playerOffsetY-0.2f,1) ) {
+            if (playerOffsetY > 0 && !collision.checkForCollision(this.x, playerOffsetY - 0.2f, 1) || x <= leftBoundary && !collision.checkForCollision(playerOffsetX, playerOffsetY - 0.2f, 1)) {
                 playerOffsetY -= 0.1f;
             }
         } else {
@@ -282,27 +289,29 @@ public class Player extends Entity implements KeyListener {
 
         if (collision.checkForAnimons(this.x, this.y, 0) && state == MAP_STATE) {
             double rand = Math.random();
-            if (rand < triggerChance){
+            if (rand < triggerChance) {
                 Log.i(TAG, "Battle" + rand);
-                Animon npcAnimon = game.getEntity(Bear.class);
-                this.game.getEntity(Battle.class).startBattle(npcAnimon);
+                ArrayList<Animon> animons = game.getEntities(Animon.class);
+                double randAnimon = new Random().nextInt(animons.size());
+
+                this.game.getEntity(Battle.class).startBattle(animons.get((int)randAnimon));
                 return;
             }
         }
 
         if (y >= downBoundary || playerOffsetY < cameraCenterY) {
-            if (playerOffsetY < game.getHeight() - 1.2f && !collision.checkForCollision(this.x, playerOffsetY + 1.1f, 1) || x <= leftBoundary && !collision.checkForCollision(playerOffsetX, playerOffsetY+1.1f, 1)) {
+            if (playerOffsetY < game.getHeight() - 1.2f && !collision.checkForCollision(this.x, playerOffsetY + 1.1f, 1) || x <= leftBoundary && !collision.checkForCollision(playerOffsetX, playerOffsetY + 1.1f, 1)) {
                 playerOffsetY += 0.1f;
             }
         } else {
             if (playerOffsetY != cameraCenterY) {
                 playerOffsetY = cameraCenterY;
             }
-            if (x <= leftBoundary){
-                if(!collision.checkForCollision(playerOffsetX, y + 1.1f, 1)) {
+            if (x <= leftBoundary) {
+                if (!collision.checkForCollision(playerOffsetX, y + 1.1f, 1)) {
                     y += 0.1f;
                 }
-            } else if (!collision.checkForCollision(this.x, this.y + 1.1f, 1) && x > leftBoundary){
+            } else if (!collision.checkForCollision(this.x, this.y + 1.1f, 1) && x > leftBoundary) {
                 y += 0.1f;
             }
         }

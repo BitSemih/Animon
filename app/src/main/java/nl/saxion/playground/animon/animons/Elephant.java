@@ -12,7 +12,7 @@ public class Elephant extends Animon {
 
         this.attackMoves.add(new AttackMove("Trample", 9, 0.5));
         this.attackMoves.add(new AttackMove("Charge", 6, 0.8));
-        this.attackMoves.add(new AttackMove("Ear slap", 5, 0.9));
+        this.attackMoves.add(new AttackMove("Slap", 5, 0.9));
         this.attackMoves.add(new AttackMove("Bite", 4, 1));
     }
 

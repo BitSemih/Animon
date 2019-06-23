@@ -7,7 +7,16 @@ import android.util.Log;
 import nl.saxion.playground.animon.R;
 import nl.saxion.playground.animon._lib.GameModel;
 import nl.saxion.playground.animon.animons.Bear;
+import nl.saxion.playground.animon.animons.Buffalo;
 import nl.saxion.playground.animon.animons.Chicken;
+import nl.saxion.playground.animon.animons.Elephant;
+import nl.saxion.playground.animon.animons.Horse;
+import nl.saxion.playground.animon.animons.Mees;
+import nl.saxion.playground.animon.animons.Pig;
+import nl.saxion.playground.animon.animons.Sloth;
+import nl.saxion.playground.animon.animons.Snake;
+import nl.saxion.playground.animon.animons.Walrus;
+import nl.saxion.playground.animon.animons.Whale;
 import nl.saxion.playground.animon.game.menu.Help;
 import nl.saxion.playground.animon.game.menu.Inventory;
 import nl.saxion.playground.animon.game.menu.LoadGame;
@@ -16,7 +25,7 @@ import nl.saxion.playground.animon.game.menu.SaveGame;
 
 public class Game extends GameModel {
 
-    private String jsonString =  "";
+    private String jsonString = "";
     private Typeface pokemonfont;
     private Context context;
     private int state;
@@ -57,13 +66,19 @@ public class Game extends GameModel {
         addEntity(inventory);
         addEntity(help);
 
-        addEntity(new Chicken(this, "Chicken", 100, 12, 0));
-
-        addEntity(new Bear(this, "Bear", 100, 15, 0));
-
+        addEntity(new Chicken(this, "Chicken", 101, 12, 0));
+        addEntity(new Bear(this, "Bear", 97, 15, 0));
+        addEntity(new Buffalo(this, "Buffalo", 105, 14, 0));
+        addEntity(new Elephant(this, "Elephant", 134, 12, 0));
+        addEntity(new Horse(this, "Horse", 121, 11, 0));
+        addEntity(new Pig(this, "Pig", 104, 16, 0));
+        addEntity(new Mees(this, "Mees", 9999, 69, 0));
+        addEntity(new Sloth(this, "Sloth", 89, 10, 0));
+        addEntity(new Snake(this, "Snake", 115, 15, 0));
+        addEntity(new Walrus(this, "Walrus", 124, 14, 0));
+        addEntity(new Whale(this, "Whale", 147, 21, 0));
 
         addEntity(new Battle(R.drawable.s_battle_background, this, R.drawable.s_battle_platform, R.drawable.s_battle_message_box, pokemonfont));
-
 
         Log.i("Game virtual size:", getWidth() + " / " + getHeight());
         Log.i("Game actual size:", actualWidth + " / " + actualHeight);
@@ -78,14 +93,14 @@ public class Game extends GameModel {
     @Override
     public float getHeight() {
         // Height fills actual screen size, but is based on width scaling.
-        return actualHeight/actualWidth * getWidth();
+        return actualHeight / actualWidth * getWidth();
     }
 
-    public void setState(int state){
+    public void setState(int state) {
         this.state = state;
     }
 
-    public int getState(){
+    public int getState() {
         return state;
     }
 }
