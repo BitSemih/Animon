@@ -69,12 +69,14 @@ public class Battle extends Entity implements KeyListener {
     }
 
     public void startBattle(Animon playerAnimon, Animon npcAnimon) {
-        state = 1;
         this.game.setState(1);
+        state = BATTLE_STATE;
+        this.playerAnimon = playerAnimon;
+        this.npcAnimon = npcAnimon;
     }
 
     public void endBattle() {
-        state = 0;
+        state = MAP_STATE;
     }
 
     public boolean calculateChance(double attackMoveChance) {
@@ -141,7 +143,7 @@ public class Battle extends Entity implements KeyListener {
 
     @Override
     public void draw(GameView gv) {
-        if (state == 1) {
+        if (state == BATTLE_STATE) {
 
             //When bitmaps are not set
             if (backgroundBitmap == null || platformBitmap == null) {
@@ -272,18 +274,18 @@ public class Battle extends Entity implements KeyListener {
 
     @Override
     public void onUpKey() {
-        if (state == 1 && isBattleOngoing && currentSelector == 1) {
+        if (state == BATTLE_STATE && isBattleOngoing && currentSelector == 1) {
             currentSelector = 0;
-        } else if (state == 1 && isBattleOngoing && currentSelector == 3) {
+        } else if (state == BATTLE_STATE && isBattleOngoing && currentSelector == 3) {
             currentSelector = 2;
         }
     }
 
     @Override
     public void onDownKey() {
-        if (state == 1 && isBattleOngoing && currentSelector == 0) {
+        if (state == BATTLE_STATE && isBattleOngoing && currentSelector == 0) {
             currentSelector = 1;
-        } else if (state == 1 && isBattleOngoing && currentSelector == 2) {
+        } else if (state == BATTLE_STATE && isBattleOngoing && currentSelector == 2) {
             currentSelector = 3;
         }
     }
@@ -301,7 +303,7 @@ public class Battle extends Entity implements KeyListener {
 
         if (currentSelector == 2 && !isBattleOngoing && nextMessageTrigger) {
             //When player wants to run from battle
-            state = 0;
+            state = MAP_STATE;
         }
 
         if (isBattleOngoing) {
@@ -317,13 +319,13 @@ public class Battle extends Entity implements KeyListener {
 
     @Override
     public void onRightKey() {
-        if (state == 1 && !isBattleOngoing && currentSelector < 2) {
+        if (state == BATTLE_STATE && !isBattleOngoing && currentSelector < 2) {
             //Battle options menu
             currentSelector++;
-        } else if (state == 1 && isBattleOngoing && currentSelector == 0) {
+        } else if (state == BATTLE_STATE && isBattleOngoing && currentSelector == 0) {
             //Attack moves menu
             currentSelector = 2;
-        } else if (state == 1 && isBattleOngoing && currentSelector == 1) {
+        } else if (state == BATTLE_STATE && isBattleOngoing && currentSelector == 1) {
             //Attack moves menu
             currentSelector = 3;
         }
@@ -331,12 +333,12 @@ public class Battle extends Entity implements KeyListener {
 
     @Override
     public void onLeftKey() {
-        if (state == 1 && currentSelector > 0 && !isBattleOngoing) {
+        if (state == BATTLE_STATE && currentSelector > 0 && !isBattleOngoing) {
             currentSelector--;
-        } else if (state == 1 && isBattleOngoing && currentSelector == 2) {
+        } else if (state == BATTLE_STATE && isBattleOngoing && currentSelector == 2) {
             //Attack moves menu
             currentSelector = 0;
-        } else if (state == 1 && isBattleOngoing && currentSelector == 3) {
+        } else if (state == BATTLE_STATE && isBattleOngoing && currentSelector == 3) {
             //Attack moves menu
             currentSelector = 1;
         }
