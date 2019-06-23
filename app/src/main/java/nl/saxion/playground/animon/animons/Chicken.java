@@ -11,7 +11,7 @@ public class Chicken extends Animon {
         super(game, name, health, level, experience);
 
         this.attackMoves.add(new AttackMove("Pick", 6, 0.8));
-        this.attackMoves.add(new AttackMove("Slap Wings", 5, 0.95));
+        this.attackMoves.add(new AttackMove("Slap", 5, 0.95));
         this.attackMoves.add(new AttackMove("Poop", 6, 0.8));
         this.attackMoves.add(new AttackMove("Scratch", 4, 1));
     }
@@ -21,8 +21,10 @@ public class Chicken extends Animon {
     @Override
     public void draw(GameView gv) {
         super.draw(gv);
-
-        bitmap = gv.getBitmapFromResource(R.drawable.a_chicken);
-        gv.drawBitmap(bitmap, 3,3,3,3);
+        if (super.bitmap == null){
+            super.bitmap = gv.getBitmapFromResource(R.drawable.a_chicken);
+        }
     }
+
+
 }
