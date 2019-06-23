@@ -34,7 +34,6 @@ public class Battle extends Entity implements KeyListener {
     private boolean nextMessageTrigger = false;
     private Bitmap menuSelectorBitmap;
     private float[] menuSelectorPositions = new float[3], attackMovesXPositions = new float[4];
-    private boolean isBattleActive = false;
     private boolean isBattleOngoing = false;
     private AttackMove attackMove;
     private ArrayList<AttackMove> playerAttackMoves;
@@ -65,16 +64,13 @@ public class Battle extends Entity implements KeyListener {
         String s = "A wild " + npcAnimon.getName() + " appeared!";
         this.welcomeMessageLetters = s.toCharArray();
 
-        isBattleActive = true;
-
-        this.game.setState(state);
-
         this.w = game.getWidth();
         this.h = game.getHeight();
     }
 
     public void startBattle(Animon playerAnimon, Animon npcAnimon) {
-
+        state = 1;
+        this.game.setState(1);
     }
 
     public void endBattle() {
@@ -109,7 +105,6 @@ public class Battle extends Entity implements KeyListener {
         } else {
             npcMove();
         }
-
     }
 
     public void npcMove() {
