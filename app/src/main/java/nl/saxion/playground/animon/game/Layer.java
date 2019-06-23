@@ -55,6 +55,8 @@ public class Layer extends Entity {
                     if (number == 3015){
                         collision.addWaterTiles(x, y, number);
                     }
+                } else if (name.equals("Animon") && number != 0){
+                    collision.addAnimonTiles(x, y, number);
                 }
 
                 x++;

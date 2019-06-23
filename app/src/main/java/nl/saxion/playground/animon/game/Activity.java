@@ -4,6 +4,7 @@ import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import java.io.IOException;
@@ -21,12 +22,12 @@ import nl.saxion.playground.animon.game.menu.MenuItem;
 
 public class Activity extends AppCompatActivity {
 
+    private static final String TAG = "Activity";
     Game game;
     GameView gameView;
     private int state;
 
-
-    private boolean ismenuactive, isBattleActive = true;
+    private boolean ismenuactive, isBattleActive = false;
     private MediaPlayer overWorldTheme;
     private int overworldLength = 0;
 
@@ -90,6 +91,7 @@ public class Activity extends AppCompatActivity {
             @Override
             public void run() {
                 state = game.getState();
+                Log.i(TAG, "run: " + state);
             }
         }, 0, 1000);
     }
@@ -118,7 +120,7 @@ public class Activity extends AppCompatActivity {
 
             System.out.println("DISABLED");
 
-        } else if (isBattleActive) {
+        } else if (state == 1) {
             //When a battle is active assign keys with higher intervals
             findViewById(R.id.buttonLeft).setOnTouchListener(new RepeatListener(500, 500, new View.OnClickListener() {
                 @Override

@@ -68,7 +68,7 @@ public class Battle extends Entity implements KeyListener {
         this.h = game.getHeight();
     }
 
-    public void startBattle(Animon playerAnimon, Animon npcAnimon) {
+    public void startBattle(Animon npcAnimon) {
         this.game.setState(1);
         state = BATTLE_STATE;
         this.playerAnimon = playerAnimon;

@@ -33,11 +33,12 @@ public class Player extends Entity implements KeyListener {
     private boolean walking = false, swimming;
     private float frame = 0;
     private SpriteSheet player_sheet, player_sheet_swimming;
+    private double triggerChance = 0.03;
+    private Animon playerAnimon;
 
     private ArrayList<Animon> animonArrayList = new ArrayList<>();
 
     public Player(Game game, Collision collision) {
-
         this.game = game;
         this.collision = collision;
         this.game.getEntity(KeyEntity.class).addKeyListener(this);
@@ -166,6 +167,16 @@ public class Player extends Entity implements KeyListener {
             x = rightBoundary;
         }
 
+        if (collision.checkForAnimons(this.x, this.y, 0)) {
+            double rand = Math.random();
+            if (rand < triggerChance){
+                Log.i(TAG, "Battle" + rand);
+                Animon npcAnimon = game.getEntity(Bear.class);
+                this.game.getEntity(Battle.class).startBattle(npcAnimon);
+                return;
+            }
+        }
+
         if (x >= rightBoundary || playerOffsetX < 7) {
             if (playerOffsetX < game.getWidth() - 1.2f && !collision.checkForCollision(playerOffsetX + 0.1f, playerOffsetY, 0) || x <= leftBoundary && !collision.checkForCollision(playerOffsetX + 0.1f, y, 0)) {
                 playerOffsetX += 0.1f;
@@ -183,7 +194,6 @@ public class Player extends Entity implements KeyListener {
                     x += 0.1f;
                 }
             }
-
         }
 
         this.walkDirection = "right";
@@ -194,6 +204,16 @@ public class Player extends Entity implements KeyListener {
     public void onLeftKey() {
         if (playerOffsetX < 0.2f) {
             playerOffsetX = 0;
+        }
+
+        if (collision.checkForAnimons(this.x, this.y, 0)) {
+            double rand = Math.random();
+            if (rand < triggerChance){
+                Log.i(TAG, "Battle" + rand);
+                Animon npcAnimon = game.getEntity(Bear.class);
+                this.game.getEntity(Battle.class).startBattle(npcAnimon);
+                return;
+            }
         }
 
         if (x <= leftBoundary || playerOffsetX > 7) {
@@ -211,6 +231,7 @@ public class Player extends Entity implements KeyListener {
             if (playerOffsetX != 7) {
                 playerOffsetX = 7;
             }
+
             if (!collision.checkForCollision(this.x - 0.2f, this.y, 0) || y <= upperBoundary && !collision.checkForCollision(this.x - 0.2f, playerOffsetY, 0) || y >= downBoundary) {
                 x -= 0.1f;
             }
@@ -224,6 +245,16 @@ public class Player extends Entity implements KeyListener {
     public void onUpKey() {
         if (playerOffsetY < 0.2f) {
             playerOffsetY = 0;
+        }
+
+        if (collision.checkForAnimons(this.x, this.y, 0)) {
+            double rand = Math.random();
+            if (rand < triggerChance){
+                Log.i(TAG, "Battle" + rand);
+                Animon npcAnimon = game.getEntity(Bear.class);
+                this.game.getEntity(Battle.class).startBattle(npcAnimon);
+                return;
+            }
         }
 
         if (y <= upperBoundary || playerOffsetY > cameraCenterY) {
@@ -247,6 +278,16 @@ public class Player extends Entity implements KeyListener {
     public void onDownKey() {
         if (playerOffsetY > game.getHeight() - 0.2f) {
             playerOffsetY = game.getHeight();
+        }
+
+        if (collision.checkForAnimons(this.x, this.y, 0)) {
+            double rand = Math.random();
+            if (rand < triggerChance){
+                Log.i(TAG, "Battle" + rand);
+                Animon npcAnimon = game.getEntity(Bear.class);
+                this.game.getEntity(Battle.class).startBattle(npcAnimon);
+                return;
+            }
         }
 
         if (y >= downBoundary || playerOffsetY < cameraCenterY) {
