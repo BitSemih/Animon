@@ -17,26 +17,19 @@ import nl.saxion.playground.animon.animons.Chicken;
 
 public class Battle extends Entity implements KeyListener {
     private Animon playerAnimon, npcAnimon;
-    private int turn, background, battlePlatform, messageBox, count = 0, messageDelay, currentSelector = 0;
-    private Bitmap backgroundBitmap, platformBitmap, messageBoxBitmap, whatWillPlayerDoBitmap, attackMoveBoxBitmap, statHpBar, statHpBarFiller, statPlayerBitmap, statNpcBitmap;
+    private int background, battlePlatform, messageBox, count = 0, messageDelay, currentSelector = 0;
+    private Bitmap backgroundBitmap, platformBitmap, messageBoxBitmap, whatWillPlayerDoBitmap, attackMoveBoxBitmap, statHpBar, statHpBarFiller, statPlayerBitmap, statNpcBitmap, menuSelectorBitmap;
     private Game game;
     private String welcomeMessage;
     private float frame, fightX, animonsX, runX, w, h;
     private Typeface pokemonfont;
     private Paint p;
     private char[] welcomeMessageLetters;
-    private boolean playerTurn = true;
 
-    private boolean gameEnded = false;
-    private int counter = 0;
-    private ArrayList<AttackMove> npcAttackMoves;
-
-    private boolean nextMessageTrigger = false;
-    private Bitmap menuSelectorBitmap;
+    private boolean nextMessageTrigger, startBattle, playerTurn, playerCanAttack, isBattleOngoing;
     private float[] menuSelectorPositions = new float[3], attackMovesXPositions = new float[4];
-    private boolean isBattleOngoing = false;
     private AttackMove attackMove;
-    private ArrayList<AttackMove> playerAttackMoves;
+    private ArrayList<AttackMove> playerAttackMoves, npcAttackMoves;
 
     public Battle(int background, Game game, int battlePlatform, int messageBox, Typeface pokemonfont) {
         this.game = game;
@@ -56,27 +49,42 @@ public class Battle extends Entity implements KeyListener {
         this.game.getEntity(KeyEntity.class).addKeyListener(this);
 
         this.playerAnimon = game.getEntity(Chicken.class);
-        this.npcAnimon = game.getEntity(Bear.class);
-        this.playerAttackMoves = playerAnimon.getAttackMoves();
-        this.npcAttackMoves = npcAnimon.getAttackMoves();
 
-        welcomeMessage = "";
-        String s = "A wild " + npcAnimon.getName() + " appeared!";
-        this.welcomeMessageLetters = s.toCharArray();
+        this.playerAttackMoves = playerAnimon.getAttackMoves();
+
 
         this.w = game.getWidth();
         this.h = game.getHeight();
     }
 
     public void startBattle(Animon npcAnimon) {
+        String s = "A wild " + npcAnimon.getName() + " appeared!";
+
+        this.welcomeMessageLetters = null;
+        welcomeMessage = "";
+        this.welcomeMessageLetters = s.toCharArray();
+
+        this.npcAnimon = npcAnimon;
+        this.npcAttackMoves = npcAnimon.getAttackMoves();
+
         this.game.setState(1);
         state = BATTLE_STATE;
-        this.playerAnimon = playerAnimon;
-        this.npcAnimon = npcAnimon;
+
+        this.startBattle = true;
+        this.playerCanAttack = false;
+        this.isBattleOngoing = false;
+        this.nextMessageTrigger = false;
+        this.messageDelay = 0;
+        this.count = 0;
+        this.playerTurn = true;
+
+        npcAnimon.setHealth(100);
+        playerAnimon.setHealth(100);
     }
 
     public void endBattle() {
         state = MAP_STATE;
+        startBattle = false;
     }
 
     public boolean calculateChance(double attackMoveChance) {
@@ -127,17 +135,23 @@ public class Battle extends Entity implements KeyListener {
 
     @Override
     public void tick() {
-        frame += 0.05;
-        if ((int) frame % 2 == 1) {
-            //do walk stuff
-            addLetterToWelcomeMessage();
-            frame = 0;
-            if (messageDelay < 10) {
-                messageDelay++;
+        if (startBattle) {
+            frame += 0.05;
+            if ((int) frame % 2 == 1) {
+                //do walk stuff
+                addLetterToWelcomeMessage();
+                frame = 0;
+                if (messageDelay < 10) {
+                    messageDelay++;
+                }
             }
-        }
-        if (playerTurn && attackMove != null) {
-            playerMove(attackMove);
+            System.out.println(playerTurn);
+            System.out.println(attackMove);
+            System.out.println(messageDelay);
+            System.out.println("player can attack: " + playerCanAttack);
+            if (playerTurn && attackMove != null && playerCanAttack && messageDelay == 10) {
+                playerMove(attackMove);
+            }
         }
     }
 
@@ -292,23 +306,23 @@ public class Battle extends Entity implements KeyListener {
 
     @Override
     public void onAKey() {
+        if (isBattleOngoing) {
+            // Perform selected attack move
+            attackMove = playerAnimon.getAttackMoves().get(currentSelector);
+        }
+
         if (currentSelector == 0 && !isBattleOngoing && nextMessageTrigger) {
             //When player picks FIGHT option
             isBattleOngoing = true;
-        }
-
-        if (currentSelector == 1 && !isBattleOngoing && nextMessageTrigger){
+        } else if (currentSelector == 1 && !isBattleOngoing && nextMessageTrigger) {
             //When player chooses inventory option
-        }
-
-        if (currentSelector == 2 && !isBattleOngoing && nextMessageTrigger) {
+        } else if (currentSelector == 2 && !isBattleOngoing && nextMessageTrigger) {
             //When player wants to run from battle
             state = MAP_STATE;
         }
 
-        if (isBattleOngoing) {
-            // Perform selected attack move
-            attackMove = playerAnimon.getAttackMoves().get(currentSelector);
+        if (isBattleOngoing && !playerCanAttack) {
+            playerCanAttack = true;
         }
     }
 

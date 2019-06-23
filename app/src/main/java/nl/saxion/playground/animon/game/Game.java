@@ -57,9 +57,9 @@ public class Game extends GameModel {
         addEntity(inventory);
         addEntity(help);
 
-        addEntity(new Chicken(this, "Chicken", 100, 1, 0));
+        addEntity(new Chicken(this, "Chicken", 100, 12, 0));
 
-        addEntity(new Bear(this, "Bear", 200, 2, 0));
+        addEntity(new Bear(this, "Bear", 100, 15, 0));
 
 
         addEntity(new Battle(R.drawable.s_battle_background, this, R.drawable.s_battle_platform, R.drawable.s_battle_message_box, pokemonfont));

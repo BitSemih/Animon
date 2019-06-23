@@ -167,7 +167,7 @@ public class Player extends Entity implements KeyListener {
             x = rightBoundary;
         }
 
-        if (collision.checkForAnimons(this.x, this.y, 0)) {
+        if (collision.checkForAnimons(this.x, this.y, 0) && state == MAP_STATE) {
             double rand = Math.random();
             if (rand < triggerChance){
                 Log.i(TAG, "Battle" + rand);
@@ -206,7 +206,7 @@ public class Player extends Entity implements KeyListener {
             playerOffsetX = 0;
         }
 
-        if (collision.checkForAnimons(this.x, this.y, 0)) {
+        if (collision.checkForAnimons(this.x, this.y, 0) && state == MAP_STATE) {
             double rand = Math.random();
             if (rand < triggerChance){
                 Log.i(TAG, "Battle" + rand);
@@ -247,7 +247,7 @@ public class Player extends Entity implements KeyListener {
             playerOffsetY = 0;
         }
 
-        if (collision.checkForAnimons(this.x, this.y, 0)) {
+        if (collision.checkForAnimons(this.x, this.y, 0) && state == MAP_STATE) {
             double rand = Math.random();
             if (rand < triggerChance){
                 Log.i(TAG, "Battle" + rand);
@@ -280,7 +280,7 @@ public class Player extends Entity implements KeyListener {
             playerOffsetY = game.getHeight();
         }
 
-        if (collision.checkForAnimons(this.x, this.y, 0)) {
+        if (collision.checkForAnimons(this.x, this.y, 0) && state == MAP_STATE) {
             double rand = Math.random();
             if (rand < triggerChance){
                 Log.i(TAG, "Battle" + rand);
