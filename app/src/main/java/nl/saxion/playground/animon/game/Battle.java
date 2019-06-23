@@ -77,6 +77,7 @@ public class Battle extends Entity implements KeyListener {
         this.messageDelay = 0;
         this.count = 0;
         this.playerTurn = true;
+        this.currentSelector = 0;
 
         npcAnimon.setHealth(100);
         playerAnimon.setHealth(100);
@@ -145,10 +146,7 @@ public class Battle extends Entity implements KeyListener {
                     messageDelay++;
                 }
             }
-            System.out.println(playerTurn);
-            System.out.println(attackMove);
-            System.out.println(messageDelay);
-            System.out.println("player can attack: " + playerCanAttack);
+
             if (playerTurn && attackMove != null && playerCanAttack && messageDelay == 10) {
                 playerMove(attackMove);
             }

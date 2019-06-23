@@ -90,7 +90,9 @@ public class Activity extends AppCompatActivity {
         new Timer().scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                state = game.getState();
+                if (state != game.getState()){
+                    state = game.getState();
+                }
                 Log.i(TAG, "run: " + state);
             }
         }, 0, 1000);
@@ -117,8 +119,6 @@ public class Activity extends AppCompatActivity {
             findViewById(R.id.buttonRight).setEnabled(false);
 
             findViewById(R.id.buttonLeft).setEnabled(false);
-
-            System.out.println("DISABLED");
 
         } else if (state == 1) {
             //When a battle is active assign keys with higher intervals
