@@ -49,10 +49,12 @@ public class Layer extends Entity {
                 int number = jsonArray.getInt(i);
                 tiles[x][y] = number;
 
-
                 if (name.equals("Trees") && number != 0 || name.equals("Buildings") && number != 0) {
                     collision.addCollisionTiles(x, y, number);
-
+                } else if (name.equals("Water")) {
+                    if (number == 3015){
+                        collision.addWaterTiles(x, y, number);
+                    }
                 }
 
                 x++;
@@ -111,6 +113,7 @@ public class Layer extends Entity {
 
         float playerX = game.getEntity(Player.class).getX();
         float playerY = game.getEntity(Player.class).getY();
+
         // Draw any visible tiles.
         for (int x = startX; x < endX; x++) {
             for (int y = startY; y < endY; y++) {

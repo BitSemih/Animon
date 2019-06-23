@@ -1,6 +1,7 @@
 package nl.saxion.playground.animon.game;
 
 import android.graphics.RectF;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -29,9 +30,9 @@ public class Player extends Entity implements KeyListener {
     private float cameraCenterY;
     private String walkDirection = "right";
     private int animationCount = 1;
-    private boolean walking = false;
+    private boolean walking = false, swimming;
     private float frame = 0;
-    private SpriteSheet player_sheet;
+    private SpriteSheet player_sheet, player_sheet_swimming;
 
     private ArrayList<Animon> animonArrayList = new ArrayList<>();
 
@@ -69,68 +70,89 @@ public class Player extends Entity implements KeyListener {
         }
     }
 
+    public void setSwimming(boolean swimming) {
+        this.swimming = swimming;
+    }
+
     @Override
     public void draw(GameView gv) {
 
-        if (player_sheet == null) {
+        if (player_sheet == null || player_sheet_swimming == null) {
             //Load in player sheet
-            player_sheet = SpriteSheet.createSheetFromColumnsAndRows(gv.getBitmapFromResource(R.drawable.s_player_sheet),12, 1);
+            player_sheet = SpriteSheet.createSheetFromColumnsAndRows(gv.getBitmapFromResource(R.drawable.s_player_sheet), 12, 1);
+            player_sheet_swimming = SpriteSheet.createSheetFromColumnsAndRows(gv.getBitmapFromResource(R.drawable.s_player_sheet_swin), 4, 1);
         }
 
         //Look which direction the player is walking
         switch (walkDirection) {
             case "left":
-                if (!walking) {
-                    //Standing still
-                    player_sheet.drawFrame(11, gv.getCanvas(), new RectF(playerOffsetX, playerOffsetY, playerOffsetX + 1, playerOffsetY + 1));
+                if (!checkBoundary() && collision.checkForWater((int) x, (int) y) || checkBoundary() && collision.checkForWater((int) x, (int) playerOffsetY)){
+                    player_sheet_swimming.drawFrame(1, gv.getCanvas(), new RectF(playerOffsetX, playerOffsetY, playerOffsetX + 1, playerOffsetY + 1));
                 } else {
-                    //Walk animation
-                    if (animationCount == 0) {
-                        player_sheet.drawFrame(9, gv.getCanvas(), new RectF(playerOffsetX, playerOffsetY, playerOffsetX + 1, playerOffsetY + 1));
+                    if (!walking) {
+                        //Standing still
+                        player_sheet.drawFrame(11, gv.getCanvas(), new RectF(playerOffsetX, playerOffsetY, playerOffsetX + 1, playerOffsetY + 1));
                     } else {
-                        player_sheet.drawFrame(10, gv.getCanvas(), new RectF(playerOffsetX, playerOffsetY, playerOffsetX + 1, playerOffsetY + 1));
+                        //Walk animation
+                        if (animationCount == 0) {
+                            player_sheet.drawFrame(9, gv.getCanvas(), new RectF(playerOffsetX, playerOffsetY, playerOffsetX + 1, playerOffsetY + 1));
+                        } else {
+                            player_sheet.drawFrame(10, gv.getCanvas(), new RectF(playerOffsetX, playerOffsetY, playerOffsetX + 1, playerOffsetY + 1));
+                        }
                     }
                 }
                 break;
             case "right":
-                if (!walking) {
-                    //Standing still
-                    player_sheet.drawFrame(0, gv.getCanvas(), new RectF(playerOffsetX, playerOffsetY, playerOffsetX + 1, playerOffsetY + 1));
+                if (!checkBoundary() && collision.checkForWater((int) x, (int) y) || checkBoundary() && collision.checkForWater((int) x, (int) playerOffsetY)){
+                    player_sheet_swimming.drawFrame(0, gv.getCanvas(), new RectF(playerOffsetX, playerOffsetY, playerOffsetX + 1, playerOffsetY + 1));
                 } else {
-                    //Walk animation
-                    if (animationCount == 0) {
-                        player_sheet.drawFrame(1, gv.getCanvas(), new RectF(playerOffsetX, playerOffsetY, playerOffsetX + 1, playerOffsetY + 1));
+                    if (!walking) {
+                        //Standing still
+                        player_sheet.drawFrame(0, gv.getCanvas(), new RectF(playerOffsetX, playerOffsetY, playerOffsetX + 1, playerOffsetY + 1));
                     } else {
-                        player_sheet.drawFrame(2, gv.getCanvas(), new RectF(playerOffsetX, playerOffsetY, playerOffsetX + 1, playerOffsetY + 1));
+                        //Walk animation
+                        if (animationCount == 0) {
+                            player_sheet.drawFrame(1, gv.getCanvas(), new RectF(playerOffsetX, playerOffsetY, playerOffsetX + 1, playerOffsetY + 1));
+                        } else {
+                            player_sheet.drawFrame(2, gv.getCanvas(), new RectF(playerOffsetX, playerOffsetY, playerOffsetX + 1, playerOffsetY + 1));
+                        }
                     }
                 }
                 break;
             case "up":
-                if (!walking) {
-                    //Standing still
-                    player_sheet.drawFrame(6, gv.getCanvas(), new RectF(playerOffsetX, playerOffsetY, playerOffsetX + 1, playerOffsetY + 1));
-
+                if (!checkBoundary() && collision.checkForWater((int) x, (int) y) || checkBoundary() && collision.checkForWater((int) x, (int) playerOffsetY)){
+                    player_sheet_swimming.drawFrame(3, gv.getCanvas(), new RectF(playerOffsetX, playerOffsetY, playerOffsetX + 1, playerOffsetY + 1));
                 } else {
-                    //Walk animation
-                    if (animationCount == 0) {
-                        player_sheet.drawFrame(7, gv.getCanvas(), new RectF(playerOffsetX, playerOffsetY, playerOffsetX + 1, playerOffsetY + 1));
+                    if (!walking) {
+                        //Standing still
+                        player_sheet.drawFrame(6, gv.getCanvas(), new RectF(playerOffsetX, playerOffsetY, playerOffsetX + 1, playerOffsetY + 1));
 
                     } else {
-                        player_sheet.drawFrame(8, gv.getCanvas(), new RectF(playerOffsetX, playerOffsetY, playerOffsetX + 1, playerOffsetY + 1));
+                        //Walk animation
+                        if (animationCount == 0) {
+                            player_sheet.drawFrame(7, gv.getCanvas(), new RectF(playerOffsetX, playerOffsetY, playerOffsetX + 1, playerOffsetY + 1));
 
+                        } else {
+                            player_sheet.drawFrame(8, gv.getCanvas(), new RectF(playerOffsetX, playerOffsetY, playerOffsetX + 1, playerOffsetY + 1));
+
+                        }
                     }
                 }
                 break;
             case "down":
-                if (!walking) {
-                    //Standing still
-                    player_sheet.drawFrame(3, gv.getCanvas(), new RectF(playerOffsetX, playerOffsetY, playerOffsetX + 1, playerOffsetY + 1));
+                if (!checkBoundary() && collision.checkForWater((int) x, (int) y) || checkBoundary() && collision.checkForWater((int) x, (int) playerOffsetY)){
+                    player_sheet_swimming.drawFrame(2, gv.getCanvas(), new RectF(playerOffsetX, playerOffsetY, playerOffsetX + 1, playerOffsetY + 1));
                 } else {
-                    //Walk animation
-                    if (animationCount == 0) {
-                        player_sheet.drawFrame(4, gv.getCanvas(), new RectF(playerOffsetX, playerOffsetY, playerOffsetX + 1, playerOffsetY + 1));
+                    if (!walking) {
+                        //Standing still
+                        player_sheet.drawFrame(3, gv.getCanvas(), new RectF(playerOffsetX, playerOffsetY, playerOffsetX + 1, playerOffsetY + 1));
                     } else {
-                        player_sheet.drawFrame(5, gv.getCanvas(), new RectF(playerOffsetX, playerOffsetY, playerOffsetX + 1, playerOffsetY + 1));
+                        //Walk animation
+                        if (animationCount == 0) {
+                            player_sheet.drawFrame(4, gv.getCanvas(), new RectF(playerOffsetX, playerOffsetY, playerOffsetX + 1, playerOffsetY + 1));
+                        } else {
+                            player_sheet.drawFrame(5, gv.getCanvas(), new RectF(playerOffsetX, playerOffsetY, playerOffsetX + 1, playerOffsetY + 1));
+                        }
                     }
                 }
                 break;
@@ -143,18 +165,27 @@ public class Player extends Entity implements KeyListener {
         if (x > rightBoundary - 0.2f) {
             x = rightBoundary;
         }
+
         if (x >= rightBoundary || playerOffsetX < 7) {
-            if (playerOffsetX < game.getWidth() - 1.2f) {
+            if (playerOffsetX < game.getWidth() - 1.2f && !collision.checkForCollision(playerOffsetX + 0.1f, playerOffsetY, 0) || x <= leftBoundary && !collision.checkForCollision(playerOffsetX + 0.1f, y, 0)) {
                 playerOffsetX += 0.1f;
             }
         } else {
             if (playerOffsetX != 7) {
                 playerOffsetX = 7;
             }
-            if (!collision.checkForCollision(this.x + 0.3f, this.y, 0)) {
-                x += 0.1f;
+            if (y <= upperBoundary) {
+                if (!collision.checkForCollision(this.x + 0.2f, playerOffsetY, 0)){
+                    x += 0.1f;
+                }
+            } else {
+                if (!collision.checkForCollision(this.x + 0.3f, this.y, 0) || y <= upperBoundary && !collision.checkForCollision(this.x + 0.1f, playerOffsetY, 0) || y >= downBoundary) {
+                    x += 0.1f;
+                }
             }
+
         }
+
         this.walkDirection = "right";
         this.walking = true;
     }
@@ -164,18 +195,27 @@ public class Player extends Entity implements KeyListener {
         if (playerOffsetX < 0.2f) {
             playerOffsetX = 0;
         }
+
         if (x <= leftBoundary || playerOffsetX > 7) {
-            if (playerOffsetX > 0) {
-                playerOffsetX -= 0.1f;
+            if (y <= upperBoundary){
+                if (playerOffsetX > 0 && !collision.checkForCollision(this.playerOffsetX - 0.2f, playerOffsetY, 0)){
+                    playerOffsetX -= 0.1f;
+                }
+            } else {
+                if (playerOffsetX > 0 && !collision.checkForCollision(this.playerOffsetX - 0.2f, y, 0)) {
+                    playerOffsetX -= 0.1f;
+                }
             }
+
         } else {
             if (playerOffsetX != 7) {
                 playerOffsetX = 7;
             }
-            if (!collision.checkForCollision(this.x - 0.2f, this.y, 0)) {
+            if (!collision.checkForCollision(this.x - 0.2f, this.y, 0) || y <= upperBoundary && !collision.checkForCollision(this.x - 0.2f, playerOffsetY, 0) || y >= downBoundary) {
                 x -= 0.1f;
             }
         }
+
         this.walkDirection = "left";
         this.walking = true;
     }
@@ -187,17 +227,18 @@ public class Player extends Entity implements KeyListener {
         }
 
         if (y <= upperBoundary || playerOffsetY > cameraCenterY) {
-            if (playerOffsetY > 0) {
+            if (playerOffsetY > 0 && !collision.checkForCollision(this.x, playerOffsetY-0.2f,1) || x <= leftBoundary && !collision.checkForCollision(playerOffsetX, playerOffsetY-0.2f,1) ) {
                 playerOffsetY -= 0.1f;
             }
         } else {
             if (playerOffsetY != cameraCenterY) {
                 playerOffsetY = cameraCenterY;
             }
-            if (!collision.checkForCollision(this.x, this.y - 0.2f, 1)) {
+            if (!collision.checkForCollision(this.x, this.y - 0.2f, 1) || x <= leftBoundary && !collision.checkForCollision(playerOffsetX, y - 0.1f, 1)) {
                 y -= 0.1f;
             }
         }
+
         this.walkDirection = "up";
         this.walking = true;
     }
@@ -209,17 +250,22 @@ public class Player extends Entity implements KeyListener {
         }
 
         if (y >= downBoundary || playerOffsetY < cameraCenterY) {
-            if (playerOffsetY < game.getHeight() - 1.2f) {
+            if (playerOffsetY < game.getHeight() - 1.2f && !collision.checkForCollision(this.x, playerOffsetY + 1.1f, 1) || x <= leftBoundary && !collision.checkForCollision(playerOffsetX, playerOffsetY+1.1f, 1)) {
                 playerOffsetY += 0.1f;
             }
         } else {
             if (playerOffsetY != cameraCenterY) {
                 playerOffsetY = cameraCenterY;
             }
-            if (!collision.checkForCollision(this.x, this.y + 1.1f, 1)) {
+            if (x <= leftBoundary){
+                if(!collision.checkForCollision(playerOffsetX, y + 1.1f, 1)) {
+                    y += 0.1f;
+                }
+            } else if (!collision.checkForCollision(this.x, this.y + 1.1f, 1) && x > leftBoundary){
                 y += 0.1f;
             }
         }
+
         this.walkDirection = "down";
         this.walking = true;
     }
@@ -260,7 +306,7 @@ public class Player extends Entity implements KeyListener {
     }
 
     private boolean checkBoundary() {
-        if (y == downBoundary || y == upperBoundary || x == leftBoundary || x == rightBoundary) {
+        if (y >= downBoundary || y <= upperBoundary || x <= leftBoundary || x >= rightBoundary) {
             return true;
         }
         return false;
