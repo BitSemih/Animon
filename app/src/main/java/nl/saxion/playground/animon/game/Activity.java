@@ -9,6 +9,8 @@ import android.view.View;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import nl.saxion.playground.animon.R;
 import nl.saxion.playground.animon._lib.Entity;
@@ -80,10 +82,20 @@ public class Activity extends AppCompatActivity {
                 game.getEntity(KeyEntity.class).onKeyPress("b");
             }
         });
+        checkState();
     }
 
-    public void actionButtonsToggle(){
-        if (ismenuactive){
+    private void checkState() {
+        new Timer().scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                state = game.getState();
+            }
+        }, 0, 1000);
+    }
+
+    public void actionButtonsToggle() {
+        if (ismenuactive) {
             //When the menu is open assign up and down to menu control buttons
             findViewById(R.id.buttonUp).setOnTouchListener(new RepeatListener(500, 500, new View.OnClickListener() {
                 @Override
@@ -106,7 +118,7 @@ public class Activity extends AppCompatActivity {
 
             System.out.println("DISABLED");
 
-        } else if(isBattleActive){
+        } else if (isBattleActive) {
             //When a battle is active assign keys with higher intervals
             findViewById(R.id.buttonLeft).setOnTouchListener(new RepeatListener(500, 500, new View.OnClickListener() {
                 @Override
